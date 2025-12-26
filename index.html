@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
     <link rel="styleshet" href="css/style.css">
     <link rel="styleshet" href="css/responsive.css">
     <title>SmartBiz Dashboard</title>
@@ -31,7 +33,7 @@
 
         <div class="search-bar">
             <input type="text" id="search" placeholder="Search">
-            <button type="button" id="search-btn">Search</button>
+                            <i class="fas fa-search" id = "search-icon"></i>
         </div>
 
 
@@ -39,21 +41,31 @@
     <div class="row">
         <div class="sidebar">
             <div class="home">
+<i class="fas fa-home"></i>
                 <p>Home</p>
             </div>
-            <div class="Products">
+            <div class="products">
+                <i class="fas fa-box"></i>
 
+  <p>Products</p>
             </div>
             <div class="sales-orders">
+                <i class="fas fa-shopping-cart"></i>
 
+  <p>Sales</p>
             </div>
             <div class="chart">
-
+                <i class="fas fa-chart-line"></i>
+                <p>Chart</p>
             </div>
             <div class="setting-sidebar">
+                <i class="fas fa-cog"></i>
                 <p>Setting</p>
+                </div>
+                <div class = "support">
+                <i class="fas fa-headset"></i>
                 <p>Support</p>
-            </div>
+                </div>
 
 
         </div>
@@ -119,6 +131,18 @@
         </div>
     </div>
 
+    <div class = "customer-section">
+        <input id="customerName">
+<input id="customerEmail">
+<select id="customerStatus">
+<button id="addCustomerBtn">
+<input id="searchCustomer">
+
+<table>
+  <tbody id="customerTable"></tbody>
+</table>
+
+    </div>
 
     <div class="footer">
         <div class="system-active-status">
@@ -144,3 +168,120 @@
 </html>
 
 
+<style>
+     body {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid rgba(0, 0, 0, 0.322);
+        padding: 10px;
+        height: 65px;
+        border-radius: 4px;
+    }
+
+    .head-option {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    #search {
+        padding: 7px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.438);
+        outline: none;
+        border-radius: 0px;
+        width: 100%;
+    }
+
+    #search-btn {
+        background-color: rgba(240, 248, 255, 0);
+        color: rgba(0, 0, 0, 0.74);
+        padding: 7px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .one-section-header {
+        padding-bottom: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar {
+        width: 30%;
+        display: flex;
+        gap: 5px;
+    }
+
+    .head-option p {
+        padding: 7px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.027);
+        border: 1px solid rgba(0, 0, 0, 0.911);
+        color: black;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    #profile-img {
+        width: 50px;
+        border-radius: 50px;
+    }
+
+    .setting p {
+        padding: 0px;
+        margin: 0px;
+        background-color: rgba(0, 0, 0, 0.856);
+        color: white;
+        padding: 4px;
+        border-radius: 5px;
+        font-size: 13px;
+        cursor: pointer;
+
+    }
+    .row{
+        display: flex;
+    }
+    .sidebar{
+        padding-left: 15px;
+          margin-top: auto;
+        margin-bottom: auto;
+        width: 15%;
+         
+    }
+    .gap{
+        width: 1px;
+        background-color: rgba(0, 0, 0, 0.603);
+        margin-top: auto;
+        margin-bottom: auto;
+    display: grid;
+  place-items: center;
+  height: 60vh;
+
+    }
+    .home,.products,.sales-orders,.chart,.setting-sidebar,.support{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .search-bar{
+        display: flex;
+        align-items: center;
+    }
+    #search-icon{
+        cursor: pointer;
+    }
+    .sidebar p{
+        font-size: 18px;
+    }
+    i{
+        font-size: 18px;
+    }
+</style>
