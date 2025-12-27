@@ -1,12 +1,40 @@
- body {
+
+     body {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        background-color: rgba(0, 0, 0, 0.945);
+        color: white;
     }
+    .body{
+        width: 100%;
+        padding-left: 30px;
+                      height: 500px;        
+  overflow-y: auto; 
+    }
+
+
+    
+    .body::-webkit-scrollbar {
+  width: 7px;
+}
+
+.body::-webkit-scrollbar-track {
+  background: #1e1e1e4b;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: #55555588;
+  border-radius: 10px;
+}
+
+.body::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
 
     .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid rgba(0, 0, 0, 0.322);
+        border: 1px solid rgba(255, 255, 255, 0.322);
         padding: 10px;
         height: 65px;
         border-radius: 4px;
@@ -19,17 +47,19 @@
     }
 
     #search {
+        background-color: rgba(240, 248, 255, 0);
+        color: white;
         padding: 7px;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.438);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.438);
         outline: none;
         border-radius: 0px;
         width: 100%;
     }
 
     #search-btn {
-        background-color: rgba(240, 248, 255, 0);
-        color: rgba(0, 0, 0, 0.74);
+        background-color: rgba(255, 255, 255, 0);
+        color: rgba(255, 255, 255, 0.74);
         padding: 7px;
         border: none;
         cursor: pointer;
@@ -52,9 +82,9 @@
         padding: 7px;
         border: none;
         border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.027);
-        border: 1px solid rgba(0, 0, 0, 0.911);
-        color: black;
+        background-color: rgba(255, 255, 255, 0.027);
+        border: 1px solid rgba(255, 255, 255, 0.911);
+        color: rgb(255, 255, 255);
         cursor: pointer;
         font-size: 14px;
     }
@@ -67,7 +97,7 @@
     .setting p {
         padding: 0px;
         margin: 0px;
-        background-color: rgba(0, 0, 0, 0.856);
+        background-color: rgba(66, 66, 66, 0.856);
         color: white;
         padding: 4px;
         border-radius: 5px;
@@ -79,16 +109,177 @@
         display: flex;
     }
     .sidebar{
-        width: 20%;
-        
+        padding-left: 15px;
+        margin-top: 50px;
+        width: 15%;
+         
     }
     .gap{
         width: 1px;
-        background-color: rgba(0, 0, 0, 0.603);
-        margin-top: auto;
-        margin-bottom: auto;
+        background-color: rgba(255, 255, 255, 0.308);
+     margin-top: 50px;
+
     display: grid;
   place-items: center;
   height: 60vh;
 
     }
+    .home,.products,.sales-orders,.chart,.setting-sidebar,.support{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .search-bar{
+        display: flex;
+        align-items: center;
+    }
+    #search-icon{
+        cursor: pointer;
+    }
+    .sidebar p{
+        font-size: 18px;
+    }
+    i{
+        font-size: 18px;
+    }
+    .first-row{
+        display: flex;
+        gap: 50px;
+        padding: 10px;
+    }
+    .active-orders,.total-sales,.profit{
+  padding: 10px;
+  border-radius: 0px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+
+    }
+
+      .active-orders p,.total-sales p,.profit p{
+        color: #0284fde1;
+     }
+
+     .combine{
+        display: flex;
+        gap: 300px;
+        align-items: center;
+        
+     }
+     .top-products h2{
+        text-align: center;
+        color: #1f86e7;
+     }
+     .second-row{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+     }
+     .line-chart{
+
+     }
+     .bar-chart{
+
+     }
+     th{
+        padding: 10px;
+        padding-bottom: 20px;
+        
+        
+    }
+    .data-table{
+              height: 300px;        
+  overflow-y: auto; 
+    }
+
+    .data-table::-webkit-scrollbar {
+  width: 7px;
+}
+
+.data-table::-webkit-scrollbar-track {
+  background: #1e1e1e4b;
+}
+
+.data-table::-webkit-scrollbar-thumb {
+  background: #55555588;
+  border-radius: 10px;
+}
+
+.data-table::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+
+
+     .sales-table{
+        text-align: center;
+        width: 100%;
+         border-collapse: collapse;
+     }
+
+     .third-row{
+                padding: 10px;
+     }
+     td{
+        padding: 15px;
+        font-size: 17px;
+
+ 
+     }
+     .sales-table tr{
+        padding: 10px;
+               border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+     }
+     #table-header{
+        font-size: 27px;
+        color: #0284fde1;
+        font-weight: 1;
+     }
+     #best-seller-table{
+        text-align: center;
+        border-collapse: collapse;
+     }
+     #best-seller-table tr{
+        border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+     }
+
+     .best-seller-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 16px;
+}
+
+.card {
+  background: #111827;
+  border-radius: 12px;
+  padding: 14px;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+}
+
+.card .name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.card .qty {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.card .profit {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 700;
+  color: #22c55e;
+}

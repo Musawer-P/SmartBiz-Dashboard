@@ -73,20 +73,50 @@
 
         </div>
         <div class="body">
+            <div class = "combine">
             <div class="first-row">
                 <div class="active-orders">
-                    <h2>Orders</h2>
-                    <p>40</p>
+                    <h2>40</h2>
+                    <p>Orders</p>
                 </div>
-
                 <div class="total-sales">
-                    <h2>Total Sales</h2>
-                    <p>4000$</p>
+                    <h2>4000$</h2>
+                    <p>Total Sales</p>
                 </div>
 
-                <div class="Profit">
-                    <h2>Profit</h2>
-                    <p>1000$</p>
+                <div class="profit">
+                    <h2>1000$</h2>
+                    <p>Profit</p>
+                </div>
+            </div>
+             <div class="top-products">
+                    <h2>Best Sellers</h2>
+                   <div class="best-seller-cards">
+  <div class="card">
+    <div class="top">
+      <span class="name">Gloves</span>
+      <span class="qty">Sold Qty: 12</span>
+    </div>
+    <div class="profit">$3.00</div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <span class="name">Sneakers B76</span>
+      <span class="qty">Sold Qty: 29</span>
+    </div>
+    <div class="profit">$5.00</div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <span class="name">Neo Watch</span>
+      <span class="qty">Sold Qty: 23</span>
+    </div>
+    <div class="profit">$7.00</div>
+  </div>
+</div>
+
                 </div>
             </div>
             <div class="second-row">
@@ -100,33 +130,148 @@
 
             </div>
             <div class="third-row">
+                <h2 id = "table-header">Sold Items Today</h2>
                 <div class="data-table">
-                    <table>
-                        <thead>
-                            <th>Number</th>
-                            <th>Product Name</th>
-                            <th>Stock Qty</th>
-                            <th>Price</th>
-                            <th>Sold Qty</th>
-                            <th>Sold Date</th>
-                            <th>Profit</th>
-                        </thead>
-                        <tbody>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
+                   <table class="sales-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Product Name</th>
+      <th>Stock Qty</th>
+      <th>Sold Qty</th>
+      <th>Main Price</th>
+      <th>Sell Price</th>
+      <th>Profit</th>
+      <th>Sold Date</th>
+    </tr>
+  </thead>
 
-                        </tbody>
-                    </table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Gloves</td>
+      <td>12</td>
+      <td>10</td>
+      <td>$9.00</td>
+      <td>$12.00</td>
+      <td>$3.00</td>
+      <td>2025-12-30</td>
+    </tr>
+<tr>
+  <td>2</td>
+  <td>Shoes</td>
+  <td>25</td>
+  <td>8</td>
+  <td>$25.00</td>
+  <td>$32.00</td>
+  <td>$7.00</td>
+  <td>2025-12-29</td>
+</tr>
+
+<tr>
+  <td>3</td>
+  <td>T-Shirt</td>
+  <td>40</td>
+  <td>15</td>
+  <td>$6.00</td>
+  <td>$10.00</td>
+  <td>$4.00</td>
+  <td>2025-12-28</td>
+</tr>
+
+<tr>
+  <td>4</td>
+  <td>Cap</td>
+  <td>30</td>
+  <td>10</td>
+  <td>$3.00</td>
+  <td>$6.00</td>
+  <td>$3.00</td>
+  <td>2025-12-27</td>
+</tr>
+
+<tr>
+  <td>5</td>
+  <td>Jacket</td>
+  <td>18</td>
+  <td>6</td>
+  <td>$35.00</td>
+  <td>$50.00</td>
+  <td>$15.00</td>
+  <td>2025-12-26</td>
+</tr>
+
+<tr>
+  <td>6</td>
+  <td>Backpack</td>
+  <td>20</td>
+  <td>9</td>
+  <td>$18.00</td>
+  <td>$28.00</td>
+  <td>$10.00</td>
+  <td>2025-12-25</td>
+</tr>
+
+<tr>
+  <td>7</td>
+  <td>Watch</td>
+  <td>14</td>
+  <td>5</td>
+  <td>$45.00</td>
+  <td>$65.00</td>
+  <td>$20.00</td>
+  <td>2025-12-24</td>
+</tr>
+
+<tr>
+  <td>8</td>
+  <td>Sunglasses</td>
+  <td>22</td>
+  <td>11</td>
+  <td>$12.00</td>
+  <td>$20.00</td>
+  <td>$8.00</td>
+  <td>2025-12-23</td>
+</tr>
+
+<tr>
+  <td>9</td>
+  <td>Belt</td>
+  <td>35</td>
+  <td>14</td>
+  <td>$5.00</td>
+  <td>$9.00</td>
+  <td>$4.00</td>
+  <td>2025-12-22</td>
+</tr>
+
+<tr>
+  <td>10</td>
+  <td>Wallet</td>
+  <td>28</td>
+  <td>7</td>
+  <td>$10.00</td>
+  <td>$18.00</td>
+  <td>$8.00</td>
+  <td>2025-12-21</td>
+</tr>
+
+<tr>
+  <td>11</td>
+  <td>Headphones</td>
+  <td>16</td>
+  <td>6</td>
+  <td>$30.00</td>
+  <td>$45.00</td>
+  <td>$15.00</td>
+  <td>2025-12-20</td>
+</tr>
+
+  </tbody>
+</table>
+
                 </div>
-                <div class="top-products">
-                    <h2>Product Name</h2>
-                    <p>Snow Gloves</p>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -169,119 +314,6 @@
 
 
 <style>
-     body {
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
 
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 1px solid rgba(0, 0, 0, 0.322);
-        padding: 10px;
-        height: 65px;
-        border-radius: 4px;
-    }
-
-    .head-option {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-    }
-
-    #search {
-        padding: 7px;
-        border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.438);
-        outline: none;
-        border-radius: 0px;
-        width: 100%;
-    }
-
-    #search-btn {
-        background-color: rgba(240, 248, 255, 0);
-        color: rgba(0, 0, 0, 0.74);
-        padding: 7px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .one-section-header {
-        padding-bottom: 0px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .search-bar {
-        width: 30%;
-        display: flex;
-        gap: 5px;
-    }
-
-    .head-option p {
-        padding: 7px;
-        border: none;
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.027);
-        border: 1px solid rgba(0, 0, 0, 0.911);
-        color: black;
-        cursor: pointer;
-        font-size: 14px;
-    }
-
-    #profile-img {
-        width: 50px;
-        border-radius: 50px;
-    }
-
-    .setting p {
-        padding: 0px;
-        margin: 0px;
-        background-color: rgba(0, 0, 0, 0.856);
-        color: white;
-        padding: 4px;
-        border-radius: 5px;
-        font-size: 13px;
-        cursor: pointer;
-
-    }
-    .row{
-        display: flex;
-    }
-    .sidebar{
-        padding-left: 15px;
-          margin-top: auto;
-        margin-bottom: auto;
-        width: 15%;
-         
-    }
-    .gap{
-        width: 1px;
-        background-color: rgba(0, 0, 0, 0.603);
-        margin-top: auto;
-        margin-bottom: auto;
-    display: grid;
-  place-items: center;
-  height: 60vh;
-
-    }
-    .home,.products,.sales-orders,.chart,.setting-sidebar,.support{
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    .search-bar{
-        display: flex;
-        align-items: center;
-    }
-    #search-icon{
-        cursor: pointer;
-    }
-    .sidebar p{
-        font-size: 18px;
-    }
-    i{
-        font-size: 18px;
-    }
+    
 </style>
