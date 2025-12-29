@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
     <link rel="styleshet" href="css/style.css">
     <link rel="styleshet" href="css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>SmartBiz Dashboard</title>
 </head>
 
 <body>
+
+
     <div class="header">
         <div class="one-section-header">
             <div class="profile">
@@ -74,7 +77,11 @@
         </div>
         <div class="body">
             <div class = "combine">
-            <div class="first-row">
+              <div class = "main-first-row">
+              <div class = "kpi-h2">
+                <h2>KPI</h2>              
+              </div>
+              <div class="first-row">
                 <div class="active-orders">
                     <h2>40</h2>
                     <p>Orders</p>
@@ -83,14 +90,20 @@
                     <h2>4000$</h2>
                     <p>Total Sales</p>
                 </div>
-
-                <div class="profit">
+<div class="total-sales">
                     <h2>1000$</h2>
+                    <p>Expenses</p>
+                </div>
+                <div class="profit">
+                    <h2>3000$</h2>
                     <p>Profit</p>
                 </div>
             </div>
+            </div>
              <div class="top-products">
+              <div class = "top-product-h2">
                     <h2>Best Sellers</h2>
+                    </div>
                    <div class="best-seller-cards">
   <div class="card">
     <div class="top">
@@ -122,9 +135,17 @@
             <div class="second-row">
                 <div class="line-chart">
                     <h2>Line Chart</h2>
+                    <div style="width:600px; margin:20px auto;">
+    <canvas id="lineChart"></canvas>
+</div>
+
                 </div>
                 <div class="bar-chart">
                     <h2>Bar Chart</h2>
+
+<div style="width:600px; margin:20px auto;">
+    <canvas id="barChart"></canvas>
+</div>
 
                 </div>
 
@@ -308,12 +329,7 @@
     </div>
     <script src="js/main.js"></script>
     <script src="js/data.js"></script>
+    
 </body>
-
 </html>
 
-
-<style>
-
-    
-</style>

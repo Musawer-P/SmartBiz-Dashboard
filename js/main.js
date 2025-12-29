@@ -76,3 +76,55 @@ const themeBtn = document.getElementById("themeToggle");
 themeBtn?.addEventListener("click", () => {
   document.body.classList.toggle("light");
 });
+
+
+
+
+// Line Chart
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+
+new Chart(lineCtx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            label: 'Sales',
+            data: [12, 19, 8, 15, 22, 18],
+            borderWidth: 2,
+            tension: 0.4,
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: true }
+        }
+    }
+});
+
+
+
+
+
+// Bar Chart
+const barCtx = document.getElementById('barChart').getContext('2d');
+
+new Chart(barCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+        datasets: [{
+            label: 'Stock',
+            data: [30, 50, 20, 40],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: true }
+        }
+    }
+});
+

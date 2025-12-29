@@ -1,7 +1,7 @@
 
      body {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        background-color: rgba(0, 0, 0, 0.945);
+background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
         color: white;
     }
     .body{
@@ -11,7 +11,11 @@
   overflow-y: auto; 
     }
 
+.kpi-h2 h2{
+font-weight: 1;
+        color: #dbdbdbce;      padding-left: 10px;
 
+}
     
     .body::-webkit-scrollbar {
   width: 7px;
@@ -34,13 +38,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid rgba(255, 255, 255, 0.322);
-        padding: 10px;
+       
         height: 65px;
-        border-radius: 4px;
     }
 
     .head-option {
+              padding: 0px 10px;
+border-radius: 15px;
+       border: 1px solid rgba(255, 255, 255, 0.322);
         display: flex;
         justify-content: space-between;
         gap: 20px;
@@ -66,7 +71,8 @@
     }
 
     .one-section-header {
-        padding-bottom: 0px;
+        padding: 50px;
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -143,9 +149,18 @@
         font-size: 18px;
     }
     .first-row{
+       background: rgba(255, 255, 255, 0.1); /* slight white tint */
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* for Safari */
+ 
+       border: 1px solid rgba(255, 255, 255, 0.219);
+      border-radius: 5px;
         display: flex;
+        align-items: center;
         gap: 50px;
         padding: 10px;
+        width: 100%;
     }
     .active-orders,.total-sales,.profit{
   padding: 10px;
@@ -157,36 +172,52 @@
     }
 
       .active-orders p,.total-sales p,.profit p{
-        color: #0284fde1;
+        color: #73ade4d5;
      }
 
      .combine{
+      width: 100%;
         display: flex;
-        gap: 300px;
-        align-items: center;
+        gap: 40px;
+        align-items: start;
+        margin-top: 50px;
         
      }
-     .top-products h2{
-        text-align: center;
-        color: #1f86e7;
+     .main-first-row{
+     width: 50%;
      }
+     .top-products{
+           
+            width: 50%;
+
+     }
+     .top-products h2{
+      padding-left: 10px;
+        text-align: start;
+font-weight: 1;
+        color: #dbdbdbce;     }
      .second-row{
         display: flex;
         justify-content: space-between;
         padding: 20px;
      }
-     .line-chart{
+     .line-chart h2{
+      font-weight: 1;
+        color: #dbdbdbce;
 
      }
-     .bar-chart{
-
+     .bar-chart h2{
+font-weight: 1;
+        color: #dbdbdbce;
      }
+
      th{
         padding: 10px;
         padding-bottom: 20px;
         
         
     }
+  
     .data-table{
               height: 300px;        
   overflow-y: auto; 
@@ -232,7 +263,7 @@
      }
      #table-header{
         font-size: 27px;
-        color: #0284fde1;
+        color: #dbdbdb63;
         font-weight: 1;
      }
      #best-seller-table{
@@ -244,13 +275,21 @@
      }
 
      .best-seller-cards {
+       background: rgba(255, 255, 255, 0.1); /* slight white tint */
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px); /* for Safari */
+ 
+       border: 1px solid rgba(255, 255, 255, 0.219);
+            border-radius: 5px;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
   gap: 16px;
+  padding: 10px;
 }
 
 .card {
-  background: #111827;
+  background: #27417931;
   border-radius: 12px;
   padding: 14px;
   color: #fff;
@@ -273,7 +312,7 @@
 }
 
 .card .qty {
-  font-size: 13px;
+  font-size: 11px;
   opacity: 0.8;
 }
 
