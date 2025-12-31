@@ -2,334 +2,370 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
-    <link rel="styleshet" href="css/style.css">
-    <link rel="styleshet" href="css/responsive.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>SmartBiz Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
+  <link rel="styleshet" href="css/style.css">
+  <link rel="styleshet" href="css/responsive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>SmartBiz Dashboard</title>
 </head>
+
 
 <body>
 
+<!--Modal-->
 
-    <div class="header">
-        <div class="one-section-header">
-            <div class="profile">
-                <img src="assets/images/2.jpg" id="profile-img">
-            </div>
-            <div class="setting">
-                <p>logout</p>
+<div id="modalOverlay">
+  <div id="modalBox">
+    <h3>Add Product</h3>
+<div class = "p-row">
+    <input type="text" placeholder="Name" id = "p-name"/>
+    <input type="text" placeholder="Qty" id = "p-qty"/>
+</div>
+<div class = "p-row">
 
-            </div>
+    <input type="text" placeholder="Category" id = "p-category"/>
+    <input type="text" placeholder="Barcode" id = "p-barcode"/>
+    </div>
+    <div class = "p-row">
+    <input type="text" placeholder="Real Price" id = "p-real-price"/>
+    <input type="text" placeholder="Sale Price" id = "p-sale-price"/>
+</div>
+    <button id="submitBtn">Submit</button>
+  </div>
+</div>
+
+<!--/-->
+
+  <div class="header">
+    <div class="one-section-header">
+      <div class="merge-p-s">
+        <div class="profile">
+          <img src="assets/images/2.jpg" id="profile-img">
+        </div>
+        <div class="setting">
+          <p>logout</p>
 
         </div>
-        <div class="head-option">
-            <p>Customers</p>
-            <p>Ads</p>
-            <p>Suppliers</p>
-            <p>Payments</p>
-            <p>Customers</p>
-        </div>
+      </div>
+    </div>
+    <div class="second-section-header">
+     <div class="head-option">
+  <p><i class="fas fa-truck"></i> Suppliers</p>
+  <p><i class="fas fa-users"></i> Customers</p>
+  <p><i class="fas fa-credit-card"></i> Payments</p>
+  <p><i class="fas fa-chart-line"></i> Reports</p>
+  <p><i class="fas fa-bullhorn"></i> Ads</p>
+</div>
 
-        <div class="search-bar">
-            <input type="text" id="search" placeholder="Search">
-                            <i class="fas fa-search" id = "search-icon"></i>
-        </div>
+    </div>
+
+    <div class="search-bar">
+      <i class="fa fa-search" id="search-icon"></i>
+      <i class="fas fa-headset"></i>
+<i class="far fa-bell"></i> 
+      <i class="fas fa-globe"></i>
 
 
     </div>
-    <div class="row">
-        <div class="sidebar">
-            <div class="home">
-<i class="fas fa-home"></i>
-                <p>Home</p>
-            </div>
-            <div class="products">
-                <i class="fas fa-box"></i>
-
-  <p>Products</p>
-            </div>
-            <div class="sales-orders">
-                <i class="fas fa-shopping-cart"></i>
-
-  <p>Sales</p>
-            </div>
-            <div class="chart">
-                <i class="fas fa-chart-line"></i>
-                <p>Chart</p>
-            </div>
-            <div class="setting-sidebar">
-                <i class="fas fa-cog"></i>
-                <p>Setting</p>
-                </div>
-                <div class = "support">
-                <i class="fas fa-headset"></i>
-                <p>Support</p>
-                </div>
 
 
+  </div>
+  <div class="row">
+    <div class="sidebar">
+      <div class="home">
+        <i class="fas fa-home"></i>
+        <p>Home</p>
+      </div>
+      <div class="products">
+        <i class="fas fa-box"></i>
+
+        <p class = "openModal-product">Products</p>
+      </div>
+      <div class="sales-orders">
+        <i class="fas fa-shopping-cart"></i>
+
+        <p>Sales</p>
+      </div>
+      <div class="chart">
+        <i class="fas fa-chart-line"></i>
+        <p>Chart</p>
+      </div>
+      <div class="setting-sidebar">
+        <i class="fas fa-cog"></i>
+        <p>Setting</p>
+      </div>
+      <div class="support">
+        <i class="fas fa-headset"></i>
+        <p>Support</p>
+      </div>
+
+
+    </div>
+
+
+  
+
+    <div class="gap">
+
+    </div>
+    <div class="body">
+      <div class="combine">
+        <div class="main-first-row">
+          <div class="kpi-h2">
+            <h2>KPI</h2>
+          </div>
+          <div class="first-row">
+            <div class="active-orders">
+              <h2>40</h2>
+              <p>Orders</p>
+            </div>
+            <div class="total-sales">
+              <h2>4000$</h2>
+              <p>Total Sales</p>
+            </div>
+            <div class="total-sales">
+              <h2>1000$</h2>
+              <p>Expenses</p>
+            </div>
+            <div class="profit">
+              <h2>3000$</h2>
+              <p>Profit</p>
+            </div>
+          </div>
         </div>
-        <div class = "gap">
-
-        </div>
-        <div class="body">
-            <div class = "combine">
-              <div class = "main-first-row">
-              <div class = "kpi-h2">
-                <h2>KPI</h2>              
+        <div class="top-products">
+          <div class="top-product-h2">
+            <h2>Best Sellers</h2>
+          </div>
+          <div class="best-seller-cards">
+            <div class="card">
+              <div class="top">
+                <span class="name">Gloves</span>
+                <span class="qty">Sold Qty: 12</span>
               </div>
-              <div class="first-row">
-                <div class="active-orders">
-                    <h2>40</h2>
-                    <p>Orders</p>
-                </div>
-                <div class="total-sales">
-                    <h2>4000$</h2>
-                    <p>Total Sales</p>
-                </div>
-<div class="total-sales">
-                    <h2>1000$</h2>
-                    <p>Expenses</p>
-                </div>
-                <div class="profit">
-                    <h2>3000$</h2>
-                    <p>Profit</p>
-                </div>
+              <div class="profit">$3.00</div>
             </div>
+
+            <div class="card">
+              <div class="top">
+                <span class="name">Sneakers B76</span>
+                <span class="qty">Sold Qty: 29</span>
+              </div>
+              <div class="profit">$5.00</div>
             </div>
-             <div class="top-products">
-              <div class = "top-product-h2">
-                    <h2>Best Sellers</h2>
-                    </div>
-                   <div class="best-seller-cards">
-  <div class="card">
-    <div class="top">
-      <span class="name">Gloves</span>
-      <span class="qty">Sold Qty: 12</span>
+
+            <div class="card">
+              <div class="top">
+                <span class="name">Neo Watch</span>
+                <span class="qty">Sold Qty: 23</span>
+              </div>
+              <div class="profit">$7.00</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="second-row">
+        <div class="line-chart">
+          <h2>Line Chart</h2>
+          <div style="width:600px; margin:20px auto;">
+            <canvas id="lineChart"></canvas>
+          </div>
+
+        </div>
+        <div class="bar-chart">
+          <h2>Bar Chart</h2>
+
+          <div style="width:600px; margin:20px auto;">
+            <canvas id="barChart"></canvas>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="third-row">
+        <h2 id="table-header">Sold Items Today</h2>
+        <div class="data-table">
+          <table class="sales-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Stock Qty</th>
+                <th>Sold Qty</th>
+                <th>Main Price</th>
+                <th>Sell Price</th>
+                <th>Profit</th>
+                <th>Sold Date</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Gloves</td>
+                <td>12</td>
+                <td>10</td>
+                <td>$9.00</td>
+                <td>$12.00</td>
+                <td>$3.00</td>
+                <td>2025-12-30</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Shoes</td>
+                <td>25</td>
+                <td>8</td>
+                <td>$25.00</td>
+                <td>$32.00</td>
+                <td>$7.00</td>
+                <td>2025-12-29</td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>T-Shirt</td>
+                <td>40</td>
+                <td>15</td>
+                <td>$6.00</td>
+                <td>$10.00</td>
+                <td>$4.00</td>
+                <td>2025-12-28</td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td>Cap</td>
+                <td>30</td>
+                <td>10</td>
+                <td>$3.00</td>
+                <td>$6.00</td>
+                <td>$3.00</td>
+                <td>2025-12-27</td>
+              </tr>
+
+              <tr>
+                <td>5</td>
+                <td>Jacket</td>
+                <td>18</td>
+                <td>6</td>
+                <td>$35.00</td>
+                <td>$50.00</td>
+                <td>$15.00</td>
+                <td>2025-12-26</td>
+              </tr>
+
+              <tr>
+                <td>6</td>
+                <td>Backpack</td>
+                <td>20</td>
+                <td>9</td>
+                <td>$18.00</td>
+                <td>$28.00</td>
+                <td>$10.00</td>
+                <td>2025-12-25</td>
+              </tr>
+
+              <tr>
+                <td>7</td>
+                <td>Watch</td>
+                <td>14</td>
+                <td>5</td>
+                <td>$45.00</td>
+                <td>$65.00</td>
+                <td>$20.00</td>
+                <td>2025-12-24</td>
+              </tr>
+
+              <tr>
+                <td>8</td>
+                <td>Sunglasses</td>
+                <td>22</td>
+                <td>11</td>
+                <td>$12.00</td>
+                <td>$20.00</td>
+                <td>$8.00</td>
+                <td>2025-12-23</td>
+              </tr>
+
+              <tr>
+                <td>9</td>
+                <td>Belt</td>
+                <td>35</td>
+                <td>14</td>
+                <td>$5.00</td>
+                <td>$9.00</td>
+                <td>$4.00</td>
+                <td>2025-12-22</td>
+              </tr>
+
+              <tr>
+                <td>10</td>
+                <td>Wallet</td>
+                <td>28</td>
+                <td>7</td>
+                <td>$10.00</td>
+                <td>$18.00</td>
+                <td>$8.00</td>
+                <td>2025-12-21</td>
+              </tr>
+
+              <tr>
+                <td>11</td>
+                <td>Headphones</td>
+                <td>16</td>
+                <td>6</td>
+                <td>$30.00</td>
+                <td>$45.00</td>
+                <td>$15.00</td>
+                <td>2025-12-20</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
     </div>
-    <div class="profit">$3.00</div>
   </div>
 
-  <div class="card">
-    <div class="top">
-      <span class="name">Sneakers B76</span>
-      <span class="qty">Sold Qty: 29</span>
-    </div>
-    <div class="profit">$5.00</div>
+  <div class="customer-section">
+    <input id="customerName">
+    <input id="customerEmail">
+    <select id="customerStatus">
+      <button id="addCustomerBtn">
+        <input id="searchCustomer">
+
+        <table>
+          <tbody id="customerTable"></tbody>
+        </table>
+
   </div>
 
-  <div class="card">
-    <div class="top">
-      <span class="name">Neo Watch</span>
-      <span class="qty">Sold Qty: 23</span>
+  <div class="footer">
+    <div class="system-active-status">
+      <h2>Status</h2>
+
+      <p>Active</p>
     </div>
-    <div class="profit">$7.00</div>
+    <div class="version">
+      <h2>Version</h2>
+
+      <p>3.1</p>
+
+    </div>
+    <div class="help-center">
+      <a href="">Help Center</a>
+    </div>
+
   </div>
-</div>
+  <script src="js/main.js"></script>
+  <script src="js/data.js"></script>
 
-                </div>
-            </div>
-            <div class="second-row">
-                <div class="line-chart">
-                    <h2>Line Chart</h2>
-                    <div style="width:600px; margin:20px auto;">
-    <canvas id="lineChart"></canvas>
-</div>
-
-                </div>
-                <div class="bar-chart">
-                    <h2>Bar Chart</h2>
-
-<div style="width:600px; margin:20px auto;">
-    <canvas id="barChart"></canvas>
-</div>
-
-                </div>
-
-            </div>
-            <div class="third-row">
-                <h2 id = "table-header">Sold Items Today</h2>
-                <div class="data-table">
-                   <table class="sales-table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Product Name</th>
-      <th>Stock Qty</th>
-      <th>Sold Qty</th>
-      <th>Main Price</th>
-      <th>Sell Price</th>
-      <th>Profit</th>
-      <th>Sold Date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Gloves</td>
-      <td>12</td>
-      <td>10</td>
-      <td>$9.00</td>
-      <td>$12.00</td>
-      <td>$3.00</td>
-      <td>2025-12-30</td>
-    </tr>
-<tr>
-  <td>2</td>
-  <td>Shoes</td>
-  <td>25</td>
-  <td>8</td>
-  <td>$25.00</td>
-  <td>$32.00</td>
-  <td>$7.00</td>
-  <td>2025-12-29</td>
-</tr>
-
-<tr>
-  <td>3</td>
-  <td>T-Shirt</td>
-  <td>40</td>
-  <td>15</td>
-  <td>$6.00</td>
-  <td>$10.00</td>
-  <td>$4.00</td>
-  <td>2025-12-28</td>
-</tr>
-
-<tr>
-  <td>4</td>
-  <td>Cap</td>
-  <td>30</td>
-  <td>10</td>
-  <td>$3.00</td>
-  <td>$6.00</td>
-  <td>$3.00</td>
-  <td>2025-12-27</td>
-</tr>
-
-<tr>
-  <td>5</td>
-  <td>Jacket</td>
-  <td>18</td>
-  <td>6</td>
-  <td>$35.00</td>
-  <td>$50.00</td>
-  <td>$15.00</td>
-  <td>2025-12-26</td>
-</tr>
-
-<tr>
-  <td>6</td>
-  <td>Backpack</td>
-  <td>20</td>
-  <td>9</td>
-  <td>$18.00</td>
-  <td>$28.00</td>
-  <td>$10.00</td>
-  <td>2025-12-25</td>
-</tr>
-
-<tr>
-  <td>7</td>
-  <td>Watch</td>
-  <td>14</td>
-  <td>5</td>
-  <td>$45.00</td>
-  <td>$65.00</td>
-  <td>$20.00</td>
-  <td>2025-12-24</td>
-</tr>
-
-<tr>
-  <td>8</td>
-  <td>Sunglasses</td>
-  <td>22</td>
-  <td>11</td>
-  <td>$12.00</td>
-  <td>$20.00</td>
-  <td>$8.00</td>
-  <td>2025-12-23</td>
-</tr>
-
-<tr>
-  <td>9</td>
-  <td>Belt</td>
-  <td>35</td>
-  <td>14</td>
-  <td>$5.00</td>
-  <td>$9.00</td>
-  <td>$4.00</td>
-  <td>2025-12-22</td>
-</tr>
-
-<tr>
-  <td>10</td>
-  <td>Wallet</td>
-  <td>28</td>
-  <td>7</td>
-  <td>$10.00</td>
-  <td>$18.00</td>
-  <td>$8.00</td>
-  <td>2025-12-21</td>
-</tr>
-
-<tr>
-  <td>11</td>
-  <td>Headphones</td>
-  <td>16</td>
-  <td>6</td>
-  <td>$30.00</td>
-  <td>$45.00</td>
-  <td>$15.00</td>
-  <td>2025-12-20</td>
-</tr>
-
-  </tbody>
-</table>
-
-                </div>
-               
-            </div>
-        </div>
-    </div>
-
-    <div class = "customer-section">
-        <input id="customerName">
-<input id="customerEmail">
-<select id="customerStatus">
-<button id="addCustomerBtn">
-<input id="searchCustomer">
-
-<table>
-  <tbody id="customerTable"></tbody>
-</table>
-
-    </div>
-
-    <div class="footer">
-        <div class="system-active-status">
-            <h2>Status</h2>
-
-            <p>Active</p>
-        </div>
-        <div class="version">
-            <h2>Version</h2>
-
-            <p>3.1</p>
-
-        </div>
-        <div class="help-center">
-            <a href="">Help Center</a>
-        </div>
-
-    </div>
-    <script src="js/main.js"></script>
-    <script src="js/data.js"></script>
-    
 </body>
-</html>
 
+</html>
