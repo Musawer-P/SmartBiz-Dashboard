@@ -128,3 +128,18 @@ new Chart(barCtx, {
     }
 });
 
+
+
+
+const openDiv = document.querySelector(".openModal-product");
+  const modal = document.getElementById("modalOverlay");
+
+  openDiv.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
