@@ -130,16 +130,81 @@ new Chart(barCtx, {
 
 
 
+  const openDivVendor = document.querySelector(".openModal-vendor");
+      const modalVendor = document.getElementById("modalOverlay-vendor");
+      const xBtnVendor = document.getElementById("x-vendor");
 
-const openDiv = document.querySelector(".openModal-product");
-  const modal = document.getElementById("modalOverlay");
+      openDivVendor.addEventListener("click", () => {
+        modalVendor.style.display = "flex";
+      });
 
-  openDiv.addEventListener("click", () => {
-    modal.style.display = "flex";
-  });
+  xBtnVendor.addEventListener("click", () => {
+        modalVendor.style.display = "none";
+      });
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
+      modalVendor.addEventListener("click", (e) => {
+        if (e.target === modalVendor) {
+          modalVendor.style.display = "none";
+        }
+      });
+
+
+
+
+       const openDiv = document.querySelector(".openModal-product");
+      const modal = document.getElementById("modalOverlay");
+      const xBtn = document.getElementById("x");
+
+      openDiv.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+  xBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+
+       const openDivCustomer = document.querySelector(".openModal-customer");
+      const modalCustomer = document.getElementById("modalOverlay-customer");
+      const xBtnCustomer = document.getElementById("x-customer");
+
+      openDivCustomer.addEventListener("click", () => {
+        modalCustomer.style.display = "flex";
+      });
+
+  xBtnCustomer.addEventListener("click", () => {
+        modalCustomer.style.display = "none";
+      });
+
+      modalCustomer.addEventListener("click", (e) => {
+        if (e.target === modalCustomer) {
+          modalCustomer.style.display = "none";
+        }
+      });
+     
+
+
+      
+       const openDivReport = document.querySelector(".openModal-reports");
+      const modalReport = document.getElementById("modalOverlay-reports");
+      const xBtnReport = document.getElementById("x-reports");
+
+      openDivReport.addEventListener("click", () => {
+        modalReport.style.display = "flex";
+      });
+
+  xBtnReport.addEventListener("click", () => {
+        modalReport.style.display = "none";
+      });
+
+      modalReport.addEventListener("click", (e) => {
+        if (e.target === modalReport) {
+          modalReport.style.display = "none";
+        }
+      });
