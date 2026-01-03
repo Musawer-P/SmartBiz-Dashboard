@@ -1,4 +1,3 @@
-
 // Get elements
 const productName = document.getElementById("productName");
 const productPrice = document.getElementById("productPrice");
@@ -70,7 +69,7 @@ function saveProducts() {
 }
 
 // Clear input fields
-function clearInputs() {
+function clearInputs() { 
   productName.value = "";
   productPrice.value = "";
   productStock.value = "";

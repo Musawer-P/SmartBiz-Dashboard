@@ -11,6 +11,592 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>SmartBiz Dashboard</title>
 </head>
+<style>
+  body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
+    color: white;
+  }
+
+  .body {
+    width: 100%;
+    padding-left: 30px;
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  .kpi-h2 h2 {
+    font-weight: 1;
+    color: #dbdbdbce;
+    padding-left: 10px;
+
+  }
+
+  .body::-webkit-scrollbar,
+  #modalBox-reports::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .body::-webkit-scrollbar-track,
+  #modalBox-reports::-webkit-scrollbar-track {
+    background: #1e1e1e11;
+    border-radius: 10px;
+  }
+
+  .body::-webkit-scrollbar-thumb,
+  #modalBox-reports::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .body::-webkit-scrollbar-thumb:hover,
+  #modalBox-reports::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+  .header {
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+  }
+
+  .head-option {
+    background: rgba(0, 0, 0, 0);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+    padding: 0px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #search {
+    background-color: rgba(240, 248, 255, 0);
+    color: white;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.438);
+    outline: none;
+    border-radius: 0px;
+    width: 100%;
+  }
+
+  #search-btn {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgba(255, 255, 255, 0.74);
+    padding: 7px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .one-section-header {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 0px;
+  }
+
+  .second-section-header {
+    width: 40%;
+  }
+
+  .search-bar {
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+
+  }
+
+  .head-option p {
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.027);
+    border: 1px solid rgba(255, 255, 255, 0.116);
+    color: rgba(255, 255, 255, 0.918);
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .head-option i {
+    color: rgba(255, 255, 255, 0.918);
+  }
+
+  .merge-p-s {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  #profile-img {
+    border: 1px solid white;
+    padding: 3px;
+    width: 50px;
+    border-radius: 50px;
+  }
+
+  .setting p {
+    margin: 0px;
+    background-color: rgba(66, 66, 66, 0);
+    color: white;
+    border: 1px solid white;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+
+  }
+
+  .setting p:hover {
+    background-color: rgb(223, 45, 45);
+    border: 1px solid rgb(223, 45, 45);
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .sidebar {
+    padding-left: 15px;
+    margin-top: 50px;
+    width: 15%;
+
+  }
+
+  .gap {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.308);
+    margin-top: 50px;
+
+    display: grid;
+    place-items: center;
+    height: 60vh;
+
+  }
+
+  .home,
+  .products,
+  .sales-orders,
+  .chart,
+  .setting-sidebar,
+  .supplier {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+
+  #search-icon {
+    cursor: pointer;
+  }
+
+  .sidebar p {
+    font-size: 18px;
+  }
+
+  i {
+    font-size: 18px;
+  }
+
+  .first-row {
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+
+    border: 1px solid rgba(255, 255, 255, 0.219);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .active-orders,
+  .total-sales,
+  .profit {
+    padding: 10px;
+    border-radius: 0px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+
+  }
+
+  .active-orders p,
+  .total-sales p,
+  .profit p {
+    color: #73ade4d5;
+  }
+
+  .combine {
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: start;
+    margin-top: 50px;
+
+  }
+
+  .main-first-row {
+    width: 50%;
+  }
+
+  .top-products {
+
+    width: 50%;
+
+  }
+
+  .top-products h2 {
+    padding-left: 10px;
+    text-align: start;
+    font-weight: 1;
+    color: #dbdbdbce;
+  }
+
+  .second-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .line-chart h2 {
+    font-weight: 1;
+    color: #dbdbdbce;
+
+  }
+
+  .bar-chart h2 {
+    font-weight: 1;
+    color: #dbdbdbce;
+  }
+
+  th {
+    padding: 10px;
+    padding-bottom: 20px;
+
+
+  }
+
+  .data-table {
+    height: 300px;
+    overflow-y: auto;
+  }
+
+  .data-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .data-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .data-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .data-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+
+
+  .sales-table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .third-row {
+    padding: 10px;
+  }
+
+  td {
+    padding: 15px;
+    font-size: 17px;
+
+
+  }
+
+  .sales-table tr {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+  }
+
+  #table-header {
+    font-size: 27px;
+    color: #dbdbdb63;
+    font-weight: 1;
+  }
+
+  #best-seller-table {
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  #best-seller-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+  }
+
+  .best-seller-cards {
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+
+    border: 1px solid rgba(255, 255, 255, 0.219);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cards per row */
+    gap: 16px;
+    padding: 10px;
+  }
+
+  .card {
+    background: #27417931;
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card .top {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .card .name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .card .qty {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+
+  .card .profit {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 700;
+    color: #22c55e;
+  }
+
+  .p-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  /*Modal*/
+  /* Overlay */
+  #modalOverlay,
+  #modalOverlay-vendor,
+  #modalOverlay-customer,
+  #modalOverlay-reports,
+  #modalOverlay-payments {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  /* Modal box */
+  #modalBox,
+  #modalBox-vendor,
+  #modalBox-customer,
+  #modalBox-reports,
+  #modalBox-payments {
+    width: 80%;
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+    padding: 25px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Inputs */
+  #modalBox input,
+  #modalBox-vendor input,
+  #modalBox-customer input,
+  #modalBox-reports input,
+  #modalBox-payments input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    border-bottom: 3px solid rgba(24, 25, 90, 0.952);
+    outline: none;
+  }
+
+  /* Button */
+  #submitBtn,
+  #submitBtn-vendor,
+  #submitBtn-customer,
+  #submitBtn-reports,
+  #submitBtn-payments {
+    padding: 12px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4facfe00;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /*/*/
+  .modal-btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0px;
+    margin-top: 30px;
+
+  }
+
+  #cash:hover {
+    background-color: #22c55e;
+    border-color: #22c55e;
+  }
+
+  #loan:hover {
+    background-color: rgb(240, 29, 29);
+    border-color: rgb(240, 29, 29);
+
+  }
+
+  #bank:hover {
+    background-color: #0a3cff;
+    border-color: #0a3cff;
+
+  }
+
+  .modal-header,
+  .modal-header-vendor,
+  .modal-header-customer,
+  .modal-header-reports,
+  .modal-header-payments {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header-reports h3 {
+    font-size: 30px;
+  }
+
+  #x,
+  #x-vendor,
+  #x-customer,
+  #x-reports,
+  #x-payments {
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  #x:hover,
+  #x-vendor:hover,
+  #x-customer:hover,
+  #x-reports:hover,
+  #x-payments:hover {
+    color: rgb(240, 29, 29);
+  }
+
+
+
+  .vendor-select {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(24, 25, 90, 0.952);
+    color: #f5f5f5;
+    border: 1px solid #ffffff00;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+    /* remove default style */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  .vendor-select option {
+    background: #fcfcfc;
+    color: #131313;
+  }
+
+  .vendor-select-div {
+    width: 50%;
+  }
+
+  .payment-type {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .payment-type button {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 33%;
+
+  }
+</style>
 
 <body>
 
@@ -18,9 +604,9 @@
 
   <div id="modalOverlay">
     <div id="modalBox">
-      <div class = "modal-header">
+      <div class="modal-header">
         <h3>Add Product</h3>
-        <p id = "x">x</p>
+        <p id="x">x</p>
       </div>
       <div class="p-row">
         <input type="text" placeholder="Name" id="p-name" />
@@ -38,20 +624,20 @@
       <div class="p-row">
 
 
-         <div class = "payment-type">
-<button type = "button" id = "cash">Cash</button>
-<button type = "button" id = "loan">Loan</button>
-<button type = "button" id = "bank">Bank</button>
-</div>
+        <div class="payment-type">
+          <button type="button" id="cash">Cash</button>
+          <button type="button" id="loan">Loan</button>
+          <button type="button" id="bank">Bank</button>
+        </div>
 
-<div class = "vendor-select-div">
-<select class="vendor-select">
-  <option selected disabled>Vendors</option>
-  <option>Ali Baba</option>
-  <option>Ali Express</option>
-  <option>Etsy</option>
-</select>
-       </div>
+        <div class="vendor-select-div">
+          <select class="vendor-select">
+            <option selected disabled>Vendors</option>
+            <option>Ali Baba</option>
+            <option>Ali Express</option>
+            <option>Etsy</option>
+          </select>
+        </div>
       </div>
       <div class="modal-btn">
         <button id="submitBtn">Submit</button>
@@ -63,14 +649,14 @@
   <!--/-->
 
 
-  
+
   <!--Modal Vendor-->
 
   <div id="modalOverlay-vendor">
     <div id="modalBox-vendor">
-      <div class = "modal-header-vendor">
+      <div class="modal-header-vendor">
         <h3>Add Vendor</h3>
-        <p id = "x-vendor">x</p>
+        <p id="x-vendor">x</p>
       </div>
       <div class="p-row">
         <input type="text" placeholder="Name" id="p-name" />
@@ -81,7 +667,7 @@
         <input type="text" placeholder="Email" id="email" />
         <input type="text" placeholder="Address" id="address" />
       </div>
-      
+
       <div class="modal-btn">
         <button id="submitBtn-vendor">Submit</button>
         <i class="fas fa-arrow-right"></i>
@@ -92,14 +678,14 @@
   <!--/-->
 
 
-  
+
   <!--Modal Customer-->
 
   <div id="modalOverlay-customer">
     <div id="modalBox-customer">
-      <div class = "modal-header-customer">
+      <div class="modal-header-customer">
         <h3>Add Customer</h3>
-        <p id = "x-customer">x</p>
+        <p id="x-customer">x</p>
       </div>
       <div class="p-row">
         <input type="text" placeholder="Name" id="customer-name" />
@@ -113,7 +699,7 @@
         <input type="text" placeholder="Gender" id="gender" />
         <input type="text" placeholder="Discount" id="discount" />
       </div>
-      
+
       <div class="modal-btn">
         <button id="submitBtn-customer">Submit</button>
         <i class="fas fa-arrow-right"></i>
@@ -127,154 +713,155 @@
   <!--Modal Reports-->
 
   <div id="modalOverlay-reports">
-    <div id="modalBox-reports">
-      <div class = "modal-header-reports">
+    <div id="modalBox-reports" style=" height: 500px;
+    overflow-y: auto;">
+      <div class="modal-header-reports">
         <h3>Reports</h3>
-        <p id = "x-customer">x</p>
+        <p id="x-reports">x</p>
       </div>
-      <div class = "get-sales">
       <h3>Sales Reports</h3>
-<input type = "datetime-local" id = "to">
-<input type = "datetime-local" id = "from">
-</div>
+      <div class="get-sales" style="display: flex; gap: 10px;">
+        <input type="datetime-local" id="to">
+        <input type="datetime-local" id="from">
+      </div>
 
-       <table class="sales-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Product Name</th>
-                <th>Stock Qty</th>
-                <th>Sold Qty</th>
-                <th>Main Price</th>
-                <th>Sell Price</th>
-                <th>Profit</th>
-                <th>Sold Date</th>
-              </tr>
-            </thead>
+      <table class="sales-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Stock Qty</th>
+            <th>Sold Qty</th>
+            <th>Main Price</th>
+            <th>Sell Price</th>
+            <th>Profit</th>
+            <th>Sold Date</th>
+          </tr>
+        </thead>
 
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Gloves</td>
-                <td>12</td>
-                <td>10</td>
-                <td>$9.00</td>
-                <td>$12.00</td>
-                <td>$3.00</td>
-                <td>2025-12-30</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Shoes</td>
-                <td>25</td>
-                <td>8</td>
-                <td>$25.00</td>
-                <td>$32.00</td>
-                <td>$7.00</td>
-                <td>2025-12-29</td>
-              </tr>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Gloves</td>
+            <td>12</td>
+            <td>10</td>
+            <td>$9.00</td>
+            <td>$12.00</td>
+            <td>$3.00</td>
+            <td>2025-12-30</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Shoes</td>
+            <td>25</td>
+            <td>8</td>
+            <td>$25.00</td>
+            <td>$32.00</td>
+            <td>$7.00</td>
+            <td>2025-12-29</td>
+          </tr>
 
-              <tr>
-                <td>3</td>
-                <td>T-Shirt</td>
-                <td>40</td>
-                <td>15</td>
-                <td>$6.00</td>
-                <td>$10.00</td>
-                <td>$4.00</td>
-                <td>2025-12-28</td>
-              </tr>
+          <tr>
+            <td>3</td>
+            <td>T-Shirt</td>
+            <td>40</td>
+            <td>15</td>
+            <td>$6.00</td>
+            <td>$10.00</td>
+            <td>$4.00</td>
+            <td>2025-12-28</td>
+          </tr>
 
-              <tr>
-                <td>4</td>
-                <td>Cap</td>
-                <td>30</td>
-                <td>10</td>
-                <td>$3.00</td>
-                <td>$6.00</td>
-                <td>$3.00</td>
-                <td>2025-12-27</td>
-              </tr>
+          <tr>
+            <td>4</td>
+            <td>Cap</td>
+            <td>30</td>
+            <td>10</td>
+            <td>$3.00</td>
+            <td>$6.00</td>
+            <td>$3.00</td>
+            <td>2025-12-27</td>
+          </tr>
 
-              <tr>
-                <td>5</td>
-                <td>Jacket</td>
-                <td>18</td>
-                <td>6</td>
-                <td>$35.00</td>
-                <td>$50.00</td>
-                <td>$15.00</td>
-                <td>2025-12-26</td>
-              </tr>
+          <tr>
+            <td>5</td>
+            <td>Jacket</td>
+            <td>18</td>
+            <td>6</td>
+            <td>$35.00</td>
+            <td>$50.00</td>
+            <td>$15.00</td>
+            <td>2025-12-26</td>
+          </tr>
 
-              <tr>
-                <td>6</td>
-                <td>Backpack</td>
-                <td>20</td>
-                <td>9</td>
-                <td>$18.00</td>
-                <td>$28.00</td>
-                <td>$10.00</td>
-                <td>2025-12-25</td>
-              </tr>
+          <tr>
+            <td>6</td>
+            <td>Backpack</td>
+            <td>20</td>
+            <td>9</td>
+            <td>$18.00</td>
+            <td>$28.00</td>
+            <td>$10.00</td>
+            <td>2025-12-25</td>
+          </tr>
 
-              <tr>
-                <td>7</td>
-                <td>Watch</td>
-                <td>14</td>
-                <td>5</td>
-                <td>$45.00</td>
-                <td>$65.00</td>
-                <td>$20.00</td>
-                <td>2025-12-24</td>
-              </tr>
+          <tr>
+            <td>7</td>
+            <td>Watch</td>
+            <td>14</td>
+            <td>5</td>
+            <td>$45.00</td>
+            <td>$65.00</td>
+            <td>$20.00</td>
+            <td>2025-12-24</td>
+          </tr>
 
-              <tr>
-                <td>8</td>
-                <td>Sunglasses</td>
-                <td>22</td>
-                <td>11</td>
-                <td>$12.00</td>
-                <td>$20.00</td>
-                <td>$8.00</td>
-                <td>2025-12-23</td>
-              </tr>
+          <tr>
+            <td>8</td>
+            <td>Sunglasses</td>
+            <td>22</td>
+            <td>11</td>
+            <td>$12.00</td>
+            <td>$20.00</td>
+            <td>$8.00</td>
+            <td>2025-12-23</td>
+          </tr>
 
-              <tr>
-                <td>9</td>
-                <td>Belt</td>
-                <td>35</td>
-                <td>14</td>
-                <td>$5.00</td>
-                <td>$9.00</td>
-                <td>$4.00</td>
-                <td>2025-12-22</td>
-              </tr>
+          <tr>
+            <td>9</td>
+            <td>Belt</td>
+            <td>35</td>
+            <td>14</td>
+            <td>$5.00</td>
+            <td>$9.00</td>
+            <td>$4.00</td>
+            <td>2025-12-22</td>
+          </tr>
 
-              <tr>
-                <td>10</td>
-                <td>Wallet</td>
-                <td>28</td>
-                <td>7</td>
-                <td>$10.00</td>
-                <td>$18.00</td>
-                <td>$8.00</td>
-                <td>2025-12-21</td>
-              </tr>
+          <tr>
+            <td>10</td>
+            <td>Wallet</td>
+            <td>28</td>
+            <td>7</td>
+            <td>$10.00</td>
+            <td>$18.00</td>
+            <td>$8.00</td>
+            <td>2025-12-21</td>
+          </tr>
 
-              <tr>
-                <td>11</td>
-                <td>Headphones</td>
-                <td>16</td>
-                <td>6</td>
-                <td>$30.00</td>
-                <td>$45.00</td>
-                <td>$15.00</td>
-                <td>2025-12-20</td>
-              </tr>
+          <tr>
+            <td>11</td>
+            <td>Headphones</td>
+            <td>16</td>
+            <td>6</td>
+            <td>$30.00</td>
+            <td>$45.00</td>
+            <td>$15.00</td>
+            <td>2025-12-20</td>
+          </tr>
 
-            </tbody>
-          </table>
+        </tbody>
+      </table>
 
 
 
@@ -283,6 +870,76 @@
   </div>
 
   <!--/-->
+
+<!--Modal Payments-->
+
+  <div id="modalOverlay-payments">
+    <div id="modalBox-payments" style=" height: 500px;
+    overflow-y: auto;">
+      <div class="modal-header-payments">
+        <h3>Payments</h3>
+        <p id="x-payments">x</p>
+      </div>
+      <div class = "payment-row" style = "display: flex; justify-content: space-between; width: 100%;">
+ <div class ="payment-customer" style = "width: 100%;">
+            <h3>Supplier</h3>
+            <table style = "width: 100%; text-align: center;">
+              <thead>
+                <th>Bill No</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </thead>
+              <tr>
+                <td>1</td>
+                <td>200$</td>
+                <td>Loan</td>
+              </tr>
+                <tr>
+                <td>2</td>
+                <td>100$</td>
+                <td>Cash</td>
+              </tr>
+                <tr>
+                <td>3</td>
+                <td>0$</td>
+                <td>Clear</td>
+              </tr>
+            </table>
+            </div>
+          <div class ="payment-customer" style = "width: 100%;">
+            <h3>Customers</h3>
+            <table  style = "width: 100%; text-align: center;">
+              <thead>
+                <th>Bill No</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </thead>
+              <tr>
+                <td>1</td>
+                <td>200$</td>
+                <td>Loan</td>
+              </tr>
+                <tr>
+                <td>2</td>
+                <td>100$</td>
+                <td>Cash</td>
+              </tr>
+                <tr>
+                <td>3</td>
+                <td>0$</td>
+                <td>Clear</td>
+              </tr>
+            </table>
+          </div>
+
+          </div>
+        </div>
+    </div>
+
+  <!--/-->
+
+
+
 
 
   <div class="header">
@@ -299,9 +956,9 @@
     </div>
     <div class="second-section-header">
       <div class="head-option">
-        <p><i class="fas fa-truck"></i> Suppliers</p>
+        <p class="openModal-vendor"><i class="fas fa-truck"></i> Suppliers</p>
         <p class="openModal-customer"><i class="fas fa-users"></i> Customers</p>
-        <p><i class="fas fa-credit-card"></i> Payments</p>
+        <p class="openModal-payments"><i class="fas fa-credit-card"></i> Payments</p>
         <p class="openModal-reports"><i class="fas fa-chart-line"></i> Reports</p>
         <p><i class="fas fa-bullhorn"></i> Ads</p>
       </div>
@@ -351,6 +1008,110 @@
 
     </div>
 
+
+    <script>
+
+      const openDivVendor = document.querySelector(".openModal-vendor");
+      const modalVendor = document.getElementById("modalOverlay-vendor");
+      const xBtnVendor = document.getElementById("x-vendor");
+
+      openDivVendor.addEventListener("click", () => {
+        modalVendor.style.display = "flex";
+      });
+
+      xBtnVendor.addEventListener("click", () => {
+        modalVendor.style.display = "none";
+      });
+
+      modalVendor.addEventListener("click", (e) => {
+        if (e.target === modalVendor) {
+          modalVendor.style.display = "none";
+        }
+      });
+
+
+
+
+      const openDiv = document.querySelector(".openModal-product");
+      const modal = document.getElementById("modalOverlay");
+      const xBtn = document.getElementById("x");
+
+      openDiv.addEventListener("click", () => {
+        modal.style.display = "flex";
+      });
+
+      xBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+
+      const openDivCustomer = document.querySelector(".openModal-customer");
+      const modalCustomer = document.getElementById("modalOverlay-customer");
+      const xBtnCustomer = document.getElementById("x-customer");
+
+      openDivCustomer.addEventListener("click", () => {
+        modalCustomer.style.display = "flex";
+      });
+
+      xBtnCustomer.addEventListener("click", () => {
+        modalCustomer.style.display = "none";
+      });
+
+      modalCustomer.addEventListener("click", (e) => {
+        if (e.target === modalCustomer) {
+          modalCustomer.style.display = "none";
+        }
+      });
+
+
+
+
+      const openDivReport = document.querySelector(".openModal-reports");
+      const modalReport = document.getElementById("modalOverlay-reports");
+      const xBtnReport = document.getElementById("x-reports");
+
+      openDivReport.addEventListener("click", () => {
+        modalReport.style.display = "flex";
+      });
+
+      xBtnReport.addEventListener("click", () => {
+        modalReport.style.display = "none";
+      });
+
+      modalReport.addEventListener("click", (e) => {
+        if (e.target === modalReport) {
+          modalReport.style.display = "none";
+        }
+      });
+
+
+
+
+
+      const openDivPayemnt = document.querySelector(".openModal-payments");
+      const modalPayemnt = document.getElementById("modalOverlay-payments");
+      const xBtnPayemnt = document.getElementById("x-payments");
+
+      openDivPayemnt.addEventListener("click", () => {
+        modalPayemnt.style.display = "flex";
+      });
+
+      xBtnPayemnt.addEventListener("click", () => {
+        modalPayemnt.style.display = "none";
+      });
+
+      modalPayemnt.addEventListener("click", (e) => {
+        if (e.target === modalPayemnt) {
+          modalPayemnt.style.display = "none";
+        }
+      });
+    </script>
 
     <div class="gap">
 
