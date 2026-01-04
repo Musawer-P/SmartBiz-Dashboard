@@ -18,21 +18,25 @@
 
   }
 
-  .body::-webkit-scrollbar {
+  .body::-webkit-scrollbar,
+  #modalBox-reports::-webkit-scrollbar {
     width: 7px;
   }
 
-  .body::-webkit-scrollbar-track {
+  .body::-webkit-scrollbar-track,
+  #modalBox-reports::-webkit-scrollbar-track {
     background: #1e1e1e11;
     border-radius: 10px;
   }
 
-  .body::-webkit-scrollbar-thumb {
+  .body::-webkit-scrollbar-thumb,
+  #modalBox-reports::-webkit-scrollbar-thumb {
     background: #55555588;
     border-radius: 10px;
   }
 
-  .body::-webkit-scrollbar-thumb:hover {
+  .body::-webkit-scrollbar-thumb:hover,
+  #modalBox-reports::-webkit-scrollbar-thumb:hover {
     background: #777;
   }
 
@@ -330,6 +334,18 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.308);
   }
 
+  #payment-table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+  }
+
+  #payment-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+  }
+
   #table-header {
     font-size: 27px;
     color: #dbdbdb63;
@@ -404,7 +420,12 @@
 
   /*Modal*/
   /* Overlay */
-  #modalOverlay,#modalOverlay-vendor,#modalOverlay-customer,#modalOverlay-reports {
+  #modalOverlay,
+  #modalOverlay-vendor,
+  #modalOverlay-customer,
+  #modalOverlay-reports,
+  #modalOverlay-payments,
+  #modalOverlay-chart {
     position: fixed;
     top: 0;
     left: 0;
@@ -418,7 +439,12 @@
   }
 
   /* Modal box */
-  #modalBox,#modalBox-vendor,#modalBox-customer,#modalBox-reports {
+  #modalBox,
+  #modalBox-vendor,
+  #modalBox-customer,
+  #modalBox-reports,
+  #modalBox-payments,
+  #modalBox-chart {
     width: 80%;
     background: rgba(255, 255, 255, 0.1);
     /* slight white tint */
@@ -433,7 +459,12 @@
   }
 
   /* Inputs */
-  #modalBox input, #modalBox-vendor input , #modalBox-customer input, #modalBox-reports input {
+  #modalBox input,
+  #modalBox-vendor input,
+  #modalBox-customer input,
+  #modalBox-reports input,
+  #modalBox-payments input,
+  #modalBox-chart input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -444,7 +475,12 @@
   }
 
   /* Button */
-  #submitBtn,#submitBtn-vendor,#submitBtn-customer,#submitBtn-reports {
+  #submitBtn,
+  #submitBtn-vendor,
+  #submitBtn-customer,
+  #submitBtn-reports,
+  #submitBtn-payments,
+  #submitBtn-chart {
     padding: 12px 10px;
     border: none;
     border-radius: 8px;
@@ -459,84 +495,169 @@
     justify-content: end;
     align-items: center;
     gap: 0px;
-        margin-top: 30px;
+    margin-top: 30px;
 
   }
 
-  #cash:hover{
+  #cash-btn:hover {
     background-color: #22c55e;
     border-color: #22c55e;
   }
-  #loan:hover{
-background-color: rgb(240, 29, 29);
+
+  #loan-btn:hover {
+    background-color: rgb(240, 29, 29);
     border-color: rgb(240, 29, 29);
 
   }
-  #bank:hover{
-background-color: #0a3cff;
+
+  #bank-btn:hover {
+    background-color: #0a3cff;
     border-color: #0a3cff;
 
   }
 
-  .modal-header,.modal-header-vendor,.modal-header-customer,.modal-header-reports{
+  .modal-header,
+  .modal-header-vendor,
+  .modal-header-customer,
+  .modal-header-reports,
+  .modal-header-payments,
+  .modal-header-chart {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  #x,#x-vendor,#x-customer,#x-reports{
+
+  .modal-header-reports h3 {
+    font-size: 30px;
+  }
+
+  #x,
+  #x-vendor,
+  #x-customer,
+  #x-reports,
+  #x-payments,
+  #x-chart {
     font-size: 25px;
     cursor: pointer;
   }
-  #x:hover , #x-vendor:hover, #x-customer:hover, #x-reports:hover{
+
+  #x:hover,
+  #x-vendor:hover,
+  #x-customer:hover,
+  #x-reports:hover,
+  #x-payments:hover,
+  #x-chart:hover {
     color: rgb(240, 29, 29);
   }
 
 
 
   .vendor-select {
-  width: 100%;
-  padding: 12px 14px;
-  background: rgba(24, 25, 90, 0.952);
-  color: #f5f5f5;
-  border: 1px solid #ffffff00;
-  border-radius: 8px;
-  font-size: 14px;
-  outline: none;
-  cursor: pointer;
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(24, 25, 90, 0.952);
+    color: #f5f5f5;
+    border: 1px solid #ffffff00;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
 
-  /* remove default style */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+    /* remove default style */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
-  /* custom arrow */
-  background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-}
+    /* custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
 
-.vendor-select option {
-  background: #fcfcfc;
-  color: #131313;
-}
+  .vendor-select option {
+    background: #fcfcfc;
+    color: #131313;
+  }
 
-.vendor-select-div{
-  width: 50%;
-}
-.payment-type{
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.payment-type button{
-padding: 10px;
-background-color: rgba(255, 255, 255, 0);
-border: 1px solid white;
-color: white;
-border-radius: 5px;
-cursor: pointer;
-width: 33%;
+  .vendor-select-div {
+    width: 50%;
+  }
 
-}
+  .payment-type {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .payment-type button {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 33%;
+
+  }
+
+  .payment-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .payment-customer {
+    width: 100%;
+  }
+
+  .payment-customer h3 {
+    width: fit-content;
+    padding-left: 10px;
+    border-left: 4px solid rgba(24, 25, 90, 0.952);
+  }
+
+  .modalBox-payments {
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  #loan-td {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: rgb(240, 29, 29);
+  }
+
+  #cash-td {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: #22c55e;
+
+  }
+
+  #clear-td {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: #0a3cff;
+  }
+
+  .payment-total {
+    display: flex;
+    gap: 50px;
+  }
+
+  .total {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .total p {
+    background-color: rgb(240, 29, 29);
+    padding: 5px;
+    border-radius: 5px;
+
+  }

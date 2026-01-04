@@ -130,7 +130,11 @@ new Chart(barCtx, {
 
 
 
-  const openDivVendor = document.querySelector(".openModal-vendor");
+
+
+
+
+      const openDivVendor = document.querySelector(".openModal-vendor");
       const modalVendor = document.getElementById("modalOverlay-vendor");
       const xBtnVendor = document.getElementById("x-vendor");
 
@@ -138,7 +142,7 @@ new Chart(barCtx, {
         modalVendor.style.display = "flex";
       });
 
-  xBtnVendor.addEventListener("click", () => {
+      xBtnVendor.addEventListener("click", () => {
         modalVendor.style.display = "none";
       });
 
@@ -151,7 +155,7 @@ new Chart(barCtx, {
 
 
 
-       const openDiv = document.querySelector(".openModal-product");
+      const openDiv = document.querySelector(".openModal-product");
       const modal = document.getElementById("modalOverlay");
       const xBtn = document.getElementById("x");
 
@@ -159,7 +163,7 @@ new Chart(barCtx, {
         modal.style.display = "flex";
       });
 
-  xBtn.addEventListener("click", () => {
+      xBtn.addEventListener("click", () => {
         modal.style.display = "none";
       });
 
@@ -170,7 +174,7 @@ new Chart(barCtx, {
       });
 
 
-       const openDivCustomer = document.querySelector(".openModal-customer");
+      const openDivCustomer = document.querySelector(".openModal-customer");
       const modalCustomer = document.getElementById("modalOverlay-customer");
       const xBtnCustomer = document.getElementById("x-customer");
 
@@ -178,7 +182,7 @@ new Chart(barCtx, {
         modalCustomer.style.display = "flex";
       });
 
-  xBtnCustomer.addEventListener("click", () => {
+      xBtnCustomer.addEventListener("click", () => {
         modalCustomer.style.display = "none";
       });
 
@@ -187,11 +191,11 @@ new Chart(barCtx, {
           modalCustomer.style.display = "none";
         }
       });
-     
 
 
-      
-       const openDivReport = document.querySelector(".openModal-reports");
+
+
+      const openDivReport = document.querySelector(".openModal-sales-reports");
       const modalReport = document.getElementById("modalOverlay-reports");
       const xBtnReport = document.getElementById("x-reports");
 
@@ -199,12 +203,55 @@ new Chart(barCtx, {
         modalReport.style.display = "flex";
       });
 
-  xBtnReport.addEventListener("click", () => {
+      xBtnReport.addEventListener("click", () => {
         modalReport.style.display = "none";
       });
 
       modalReport.addEventListener("click", (e) => {
         if (e.target === modalReport) {
           modalReport.style.display = "none";
+        }
+      });
+
+
+
+
+
+
+      const openDivPayemnt = document.querySelector(".openModal-payments");
+      const modalPayemnt = document.getElementById("modalOverlay-payments");
+      const xBtnPayemnt = document.getElementById("x-payments");
+
+      openDivPayemnt.addEventListener("click", () => {
+        modalPayemnt.style.display = "flex";
+      });
+
+      xBtnPayemnt.addEventListener("click", () => {
+        modalPayemnt.style.display = "none";
+      });
+
+      modalPayemnt.addEventListener("click", (e) => {
+        if (e.target === modalPayemnt) {
+          modalPayemnt.style.display = "none";
+        }
+      });
+
+
+
+      const openDivchart = document.querySelector(".openModal-chart");
+      const modalchart = document.getElementById("modalOverlay-chart");
+      const xBtnchart = document.getElementById("x-chart");
+
+      openDivchart.addEventListener("click", () => {
+        modalchart.style.display = "flex";
+      });
+
+      xBtnchart.addEventListener("click", () => {
+        modalchart.style.display = "none";
+      });
+
+      modalchart.addEventListener("click", (e) => {
+        if (e.target === modalchart) {
+          modalchart.style.display = "none";
         }
       });
