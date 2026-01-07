@@ -12,6 +12,7 @@
   <title>SmartBiz Dashboard</title>
 </head>
 
+
 <body>
 
   <!--Modal Product-->
@@ -379,24 +380,107 @@
   <div id="modalOverlay-chart">
     <div id="modalBox-chart">
       <div class="modal-header-chart">
-        <h3>Charts</h3>
+        <h3>Sales Chart</h3>
         <p id="x-chart">x</p>
       </div>
-        <div class="sales-chart">
-          <div clss="sales-chart-header">
-            <h3>Sales Chart</h3>
-            <input type="datetime-local" id="sales-chart-input"/>
+      <div class="sales-chart">
+        <div clss="sales-chart-header">
+          <div class="sales-chart-input">
+            <input type="datetime-local" id="sales-chart-input" />
+            <input type="datetime-local" id="sales-chart-input" />
           </div>
-          <div class = "chart-main-div">
-           <canvas id="lineChart"></canvas>
-           </div>
+
         </div>
+        <div class="chart-main-div">
+          <h3>2025/3/3 Chart</h3>
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 
   <!--/-->
 
 
+
+
+  <!--Modal Ads-->
+  <div id="modalOverlay-ads">
+    <div id="modalBox-ads">
+      <div class="modal-header-ads">
+        <h3>Ads</h3>
+        <p id="x-ads">x</p>
+      </div>
+
+      <div class="ads-input-div">
+        <div class="ads-input-row">
+          <input type="text" id="campaign-name" placeholder="Campaign Name" />
+          <input type="text" id="platform" placeholder="Platform" />
+        <input type = "datetime-local" id = "start-date"/>
+
+        </div>
+         <div class="ads-input-row">
+          <input type="text" id="budget" placeholder="Budget" />
+          <input type="text" id="period" placeholder="Period" />
+        <input type = "datetime-local" id = "end-date"/>
+
+        </div>
+         <div class="modal-btn">
+        <button id="submitBtn-vendor">Submit</button>
+        <i class="fas fa-arrow-right"></i>
+      </div>
+      </div>
+
+      <div class = "ads-table">
+        <table id = "ads-table">
+          <thead>
+            <th>#</th>
+            <th>Campaign Name</th>
+            <th>Platform</th>
+            <th>Start Date</th>
+            <th>Budget</th>
+            <th>Period</th>
+            <th>Status</th>
+            <th>End Date</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Winter Sale</td>
+              <td>Facebook</td>
+              <td>2025-12-01</td>
+              <td>$500</td>
+              <td>30 days</td>
+              <td>Active</td>
+              <td>2025-12-31</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Summer Promo</td>
+              <td>Instagram</td>
+              <td>2025-06-15</td>
+              <td>$300</td>
+              <td>15 days</td>
+              <td>Completed</td>
+              <td>2025-06-30</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Back to School</td>
+              <td>Google Ads</td>
+              <td>2025-08-01</td>
+              <td>$400</td>
+              <td>20 days</td>
+              <td>Active</td>
+              <td>2025-08-21</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--/-->
 
 
 
@@ -418,7 +502,7 @@
         <p class="openModal-customer"><i class="fas fa-users"></i> Customers</p>
         <p class="openModal-payments"><i class="fas fa-credit-card"></i> Payments</p>
         <p><i class="fas fa-chart-line"></i> Reports</p>
-        <p><i class="fas fa-bullhorn"></i> Ads</p>
+        <p class="openModal-ads"><i class="fas fa-bullhorn"></i> Ads</p>
       </div>
 
     </div>
@@ -458,15 +542,13 @@
         <i class="fas fa-cog"></i>
         <p>Setting</p>
       </div>
-      <div class="supplier">
-        <i class="fas fa-user-tie"></i>
-        <p class="openModal-vendor">Supplier</p>
-      </div>
+
 
 
     </div>
 
 
+ 
 
     <div class="gap">
 

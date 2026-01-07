@@ -134,6 +134,7 @@ new Chart(barCtx, {
 
 
 
+
       const openDivVendor = document.querySelector(".openModal-vendor");
       const modalVendor = document.getElementById("modalOverlay-vendor");
       const xBtnVendor = document.getElementById("x-vendor");
@@ -253,5 +254,24 @@ new Chart(barCtx, {
       modalchart.addEventListener("click", (e) => {
         if (e.target === modalchart) {
           modalchart.style.display = "none";
+        }
+      });
+
+      
+      const openDivads = document.querySelector(".openModal-ads");
+      const modalads = document.getElementById("modalOverlay-ads");
+      const xBtnads = document.getElementById("x-ads");
+
+      openDivads.addEventListener("click", () => {
+        modalads.style.display = "flex";
+      });
+
+      xBtnads.addEventListener("click", () => {
+        modalads.style.display = "none";
+      });
+
+      modalads.addEventListener("click", (e) => {
+        if (e.target === modalads) {
+          modalads.style.display = "none";
         }
       });

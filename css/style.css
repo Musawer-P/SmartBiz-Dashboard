@@ -1,4 +1,5 @@
- body {
+
+  body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
     color: white;
@@ -425,7 +426,8 @@
   #modalOverlay-customer,
   #modalOverlay-reports,
   #modalOverlay-payments,
-  #modalOverlay-chart {
+  #modalOverlay-chart,
+  #modalOverlay-ads {
     position: fixed;
     top: 0;
     left: 0;
@@ -444,7 +446,8 @@
   #modalBox-customer,
   #modalBox-reports,
   #modalBox-payments,
-  #modalBox-chart {
+  #modalBox-chart,
+  #modalBox-ads {
     width: 80%;
     background: rgba(255, 255, 255, 0.1);
     /* slight white tint */
@@ -464,7 +467,8 @@
   #modalBox-customer input,
   #modalBox-reports input,
   #modalBox-payments input,
-  #modalBox-chart input {
+  #modalBox-chart input,
+  #modalBox-ads input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -480,7 +484,8 @@
   #submitBtn-customer,
   #submitBtn-reports,
   #submitBtn-payments,
-  #submitBtn-chart {
+  #submitBtn-chart,
+  #submitBtn-ads {
     padding: 12px 10px;
     border: none;
     border-radius: 8px;
@@ -521,7 +526,8 @@
   .modal-header-customer,
   .modal-header-reports,
   .modal-header-payments,
-  .modal-header-chart {
+  .modal-header-chart,
+  .modal-header-ads {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -536,7 +542,8 @@
   #x-customer,
   #x-reports,
   #x-payments,
-  #x-chart {
+  #x-chart,
+  #x-ads {
     font-size: 25px;
     cursor: pointer;
   }
@@ -546,7 +553,8 @@
   #x-customer:hover,
   #x-reports:hover,
   #x-payments:hover,
-  #x-chart:hover {
+  #x-chart:hover,
+  #x-ads:hover {
     color: rgb(240, 29, 29);
   }
 
@@ -660,4 +668,50 @@
     padding: 5px;
     border-radius: 5px;
 
+  }
+
+  .sales-chart-input {
+    display: flex;
+    gap: 10px;
+  }
+  .ads-input-row{
+    display: flex;
+    gap: 10px;
+  }
+  .ads-table{
+    width: 100%;
+    height: 220px;
+    overflow-x: auto;
+  }
+  #ads-table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    
+  }
+  #ads-table th{
+    padding: 15px;
+
+  }
+  #ads-table tr{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+  }
+
+
+    .ads-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .ads-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .ads-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .ads-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
   }
