@@ -134,7 +134,6 @@ new Chart(barCtx, {
 
 
 
-
       const openDivVendor = document.querySelector(".openModal-vendor");
       const modalVendor = document.getElementById("modalOverlay-vendor");
       const xBtnVendor = document.getElementById("x-vendor");
@@ -275,3 +274,74 @@ new Chart(barCtx, {
           modalads.style.display = "none";
         }
       });
+
+
+
+
+            
+      const openDivsetting = document.querySelector(".openModal-setting");
+      const modalsetting = document.getElementById("modalOverlay-setting");
+      const xBtnsetting = document.getElementById("x-setting");
+
+      openDivsetting.addEventListener("click", () => {
+        modalsetting.style.display = "flex";
+      });
+
+      xBtnsetting.addEventListener("click", () => {
+        modalsetting.style.display = "none";
+      });
+
+      modalsetting.addEventListener("click", (e) => {
+        if (e.target === modalsetting) {
+          modalsetting.style.display = "none";
+        }
+      });
+
+
+
+      // PROFILE PHOTO CLICK
+document.querySelector(".photo-div img")?.addEventListener("click", () => {
+  alert("Change profile photo (connect file upload here)");
+});
+
+// COMPANY LOGO CLICK
+document.querySelector(".company-setting img")?.addEventListener("click", () => {
+  alert("Change company logo (connect upload here)");
+});
+
+// PROFILE SETTINGS 
+document.querySelectorAll(".profile-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    alert(`Edit: ${item.innerText}`);
+  });
+});
+
+// SECURITY SETTINGS
+document.querySelectorAll(".security-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    if (item.innerText.includes("Delete")) {
+      const confirmDelete = confirm("Are you sure you want to delete your account?");
+      if (confirmDelete) {
+        alert("Account deleted (connect backend)");
+      }
+    } else {
+      alert("Change password (open password modal)");
+    }
+  });
+});
+
+// COMPANY SETTINGS 
+document.querySelectorAll(".company-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    if (item.innerText.trim() !== "") {
+      alert(`Edit company field: ${item.innerText}`);
+    }
+  });
+});
+
+// HELP SETTINGS
+document.querySelectorAll(".help-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    alert(`Open: ${item.innerText}`);
+  });
+});

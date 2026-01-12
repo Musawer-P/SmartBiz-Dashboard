@@ -1,4 +1,4 @@
-body {
+  body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
   color: white;
@@ -426,7 +426,8 @@ td {
 #modalOverlay-reports,
 #modalOverlay-payments,
 #modalOverlay-chart,
-#modalOverlay-ads {
+#modalOverlay-ads,
+#modalOverlay-setting {
   position: fixed;
   top: 0;
   left: 0;
@@ -446,7 +447,8 @@ td {
 #modalBox-reports,
 #modalBox-payments,
 #modalBox-chart,
-#modalBox-ads {
+#modalBox-ads,
+#modalBox-setting {
   width: 80%;
   background: rgba(255, 255, 255, 0.1);
   /* slight white tint */
@@ -467,7 +469,8 @@ td {
 #modalBox-reports input,
 #modalBox-payments input,
 #modalBox-chart input,
-#modalBox-ads input {
+#modalBox-ads input,
+#modalBox-setting input {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -484,7 +487,8 @@ td {
 #submitBtn-reports,
 #submitBtn-payments,
 #submitBtn-chart,
-#submitBtn-ads {
+#submitBtn-ads,
+#submitBtn-setting {
   padding: 12px 10px;
   border: none;
   border-radius: 8px;
@@ -526,7 +530,8 @@ td {
 .modal-header-reports,
 .modal-header-payments,
 .modal-header-chart,
-.modal-header-ads {
+.modal-header-ads,
+.modal-header-setting {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -542,7 +547,8 @@ td {
 #x-reports,
 #x-payments,
 #x-chart,
-#x-ads {
+#x-ads,
+#x-setting {
   font-size: 25px;
   cursor: pointer;
 }
@@ -553,7 +559,8 @@ td {
 #x-reports:hover,
 #x-payments:hover,
 #x-chart:hover,
-#x-ads:hover {
+#x-ads:hover,
+#x-setting:hover{
   color: rgb(240, 29, 29);
 }
 
@@ -718,4 +725,98 @@ td {
 
 .ads-table::-webkit-scrollbar-thumb:hover {
   background: #777;
+}
+
+
+
+
+
+
+
+/* setting css */
+
+.profile-setting,
+.security-setting,
+.company-setting,
+.help-setting {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== SECTION TITLES (first p optional highlight) ===== */
+.profile-setting p,
+.security-setting p,
+.company-setting p,
+.help-setting p {
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover effect */
+.profile-setting p:hover,
+.security-setting p:hover,
+.company-setting p:hover,
+.help-setting p:hover {
+  background: #f5f7fb;
+  transform: translateX(4px);
+}
+
+/* ===== PROFILE PHOTO ===== */
+.photo-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.photo-div img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e5e7eb;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.photo-div img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== COMPANY LOGO ===== */
+.company-setting img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 2px dashed #d1d5db;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* ===== DANGER ACTIONS ===== */
+.security-setting p:last-child {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.security-setting p:last-child:hover {
+  background: #fee2e2;
+}
+
+/* ===== HELP LINKS ===== */
+.help-setting p {
+  color: #2563eb;
+}
+
+.help-setting p:hover {
+  text-decoration: underline;
 }
