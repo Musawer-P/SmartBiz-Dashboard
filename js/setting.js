@@ -51,3 +51,72 @@ form.addEventListener("submit", (e) => {
 
 
 
+
+
+
+// ROLE DEFINITIONS
+const ROLE_PERMISSIONS = {
+  admin: [
+    "dashboard_view",
+    "users_manage",
+    "settings_manage",
+    "products_manage",
+    "sales_manage",
+    "reports_view",
+    "payments_manage"
+  ],
+
+  manager: [
+    "dashboard_view",
+    "products_manage",
+    "sales_manage",
+    "reports_view"
+  ],
+
+  staff: [
+    "dashboard_view",
+    "sales_manage"
+  ]
+};
+
+// SET CURRENT USER ROLE 
+function setUserRole(role) {
+  if (!ROLE_PERMISSIONS[role]) {
+    console.error("Invalid role");
+    return;
+  }
+  localStorage.setItem("smartbiz_user_role", role);
+}
+
+//GET CURRENT USER ROL
+function getUserRole() {
+  return localStorage.getItem("smartbiz_user_role");
+}
+
+// CHECK PERMISSION
+function hasPermission(permission) {
+  const role = getUserRole();
+  if (!role) return false;
+
+  return ROLE_PERMISSIONS[role].includes(permission);
+}
+
+//BLOCK UNAUTHORIZED ACTION 
+function requirePermission(permission) {
+  if (!hasPermission(permission)) {
+    alert("Access denied");
+    throw new Error("Permission denied");
+  }
+}
+
+// APPLY PERMISSIONS TO UI
+function applyRolePermissions() {
+  document.querySelectorAll("[data-permission]").forEach(el => {
+    const permission = el.dataset.permission;
+    if (!hasPermission(permission)) {
+      el.style.display = "none";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", applyRolePermissions);
