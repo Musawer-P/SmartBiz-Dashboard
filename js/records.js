@@ -1,4 +1,3 @@
-
 //RECORD TYPES & STORAGE
 
 const RECORDS = {
@@ -115,4 +114,43 @@ document.addEventListener("click", e => {
 
   document.querySelectorAll("table").forEach(t => t.classList.add("hidden"));
   document.getElementById(e.target.dataset.type)?.classList.remove("hidden");
+});
+
+
+
+// Sections
+const suppliers = document.querySelector('.suppliers');
+const products = document.querySelector('.products');
+const customers = document.querySelector('.customers');
+
+// Buttons
+const btnSuppliers = document.getElementById('btnSuppliers');
+const btnProducts = document.getElementById('btnProducts');
+const btnCustomers = document.getElementById('btnCustomers');
+
+// Hide all
+function hideAll() {
+    suppliers.style.display = 'none';
+    products.style.display = 'none';
+    customers.style.display = 'none';
+}
+
+// Default view
+hideAll();
+suppliers.style.display = 'block';
+
+// Click events
+btnSuppliers.addEventListener('click', () => {
+    hideAll();
+    suppliers.style.display = 'block';
+});
+
+btnProducts.addEventListener('click', () => {
+    hideAll();
+    products.style.display = 'block';
+});
+
+btnCustomers.addEventListener('click', () => {
+    hideAll();
+    customers.style.display = 'block';
 });

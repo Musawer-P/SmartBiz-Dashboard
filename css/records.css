@@ -1,0 +1,28 @@
+body{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
+  color: white;
+}
+.body {
+  width: 100%;
+  padding-left: 30px;
+  height: 500px;
+  overflow-y: auto;
+}
+
+.suppliers,
+.products,
+.customers {
+    display: none;
+}
+
+.suppliers,
+.products,
+.customers {
+    animation: fade 0.3s ease-in-out;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
