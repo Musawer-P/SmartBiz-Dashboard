@@ -1,4 +1,4 @@
-let suppliers = [];
+let suppliers = JSON.parse(localStorage.getItem("suppliers")) || [];
 
 const supplierForm = document.getElementById("supplierForm");
 const supplierTableBody = document.getElementById("supplierTableBody");
@@ -12,6 +12,7 @@ function addSupplier(name, phone, company) {
         company
     };
     suppliers.push(supplier);
+    localStorage.setItem("suppliers", JSON.stringify(suppliers)); // SAVE
     renderSuppliers();
 }
 
@@ -39,6 +40,7 @@ function renderSuppliers() {
 // Delete Supplier
 function deleteSupplier(id) {
     suppliers = suppliers.filter(supplier => supplier.id !== id);
+    localStorage.setItem("suppliers", JSON.stringify(suppliers)); // UPDATE STORAGE
     renderSuppliers();
 }
 
@@ -49,9 +51,13 @@ if (supplierForm) {
 
         const name = document.getElementById("supplierName").value;
         const phone = document.getElementById("supplierPhone").value;
-        const company = document.getElementById("supplierCompany").value;
+        const email = document.getElementById("supplierEmail").value;
+        const address = document.getElementById("supplierAddress").value;
 
-        addSupplier(name, phone, company);
+        addSupplier(name, phone, email, address);
         supplierForm.reset();
     });
 }
+
+// Render on page load
+renderSuppliers();
