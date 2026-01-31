@@ -10,41 +10,10 @@ body{
   overflow-y: auto;
 }
 
-.suppliers,
-.products,
-.customers {
-    display: none;
-}
-
-.suppliers,
-.products,
-.customers {
-    animation: fade 0.3s ease-in-out;
-}
-
-@keyframes fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.header{
-    display: flex;
-    text-align: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 95%;
-}
-.one,.two,.three{
-    border: 1px solid rgba(255, 255, 255, 0.432);
-    width: 100%;
-    border-radius: 30px;
-    cursor: pointer;
-}
-#main-h1{
+h1{
     font-weight: 1;
-    width: fit-content;
 }
-.date-input{
+.date{
     margin-bottom: 30px;
 display: flex;
 width: 95%;
@@ -60,4 +29,24 @@ background-color: #ffffff25;
 border: 1px solid rgba(255, 255, 255, 0.432);
 color: white;
 border-radius: 30px;
+}
+
+
+
+#table {
+  text-align: center;
+  width: 95%;
+  border-collapse: collapse;
+}
+#table th{
+    padding-bottom: 15px;
+}
+#table td {
+  padding: 20px;
+  font-size: 17px;
+}
+
+#table tr {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.308);
 }
