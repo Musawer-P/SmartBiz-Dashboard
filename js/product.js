@@ -1,76 +1,40 @@
-// Get elements
-const productName = document.getElementById("productName");
-const productPrice = document.getElementById("productPrice");
-const productStock = document.getElementById("productStock");
-const addProductBtn = document.getElementById("addProductBtn");
-const productsTable = document.getElementById("productsTable");
+let selectedPayment = "";
 
-// Load products from localStorage
-let products = JSON.parse(localStorage.getItem("smartbiz_products")) || [];
+// payment buttons
+document.getElementById("cash-btn").onclick = () => selectedPayment = "Cash";
+document.getElementById("loan-btn").onclick = () => selectedPayment = "Loan";
+document.getElementById("bank-btn").onclick = () => selectedPayment = "Bank";
 
-// Render products on page load
-document.addEventListener("DOMContentLoaded", renderProducts);
+document.getElementById("submitBtn").addEventListener("click", () => {
+  const product = {
+    id: Date.now(),
+    name: document.getElementById("p-name").value,
+    qty: document.getElementById("p-qty").value,
+    category: document.getElementById("p-category").value,
+    barcode: document.getElementById("p-barcode").value,
+    realPrice: document.getElementById("p-real-price").value,
+    salePrice: document.getElementById("p-sale-price").value,
+    payment: selectedPayment,
+    supplier: document.getElementById("vendor").value
+  };
 
-// Add product
-addProductBtn.addEventListener("click", () => {
   if (
-    productName.value === "" ||
-    productPrice.value === "" ||
-    productStock.value === ""
+    !product.name ||
+    !product.qty ||
+    !product.category ||
+    !product.barcode ||
+    !product.realPrice ||
+    !product.salePrice ||
+    !product.payment ||
+    !product.supplier
   ) {
     alert("Please fill all fields");
     return;
   }
 
-  const product = {
-    id: Date.now(),
-    name: productName.value,
-    price: productPrice.value,
-    stock: productStock.value,
-  };
-
+  let products = JSON.parse(localStorage.getItem("products")) || [];
   products.push(product);
-  saveProducts();
-  renderProducts();
-  clearInputs();
+  localStorage.setItem("products", JSON.stringify(products));
+
+  alert("Product added successfully ✅");
 });
-
-// Render products
-function renderProducts() {
-  productsTable.innerHTML = "";
-
-  products.forEach((product, index) => {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${product.name}</td>
-      <td>$${product.price}</td>
-      <td>${product.stock}</td>
-      <td>
-        <button onclick="deleteProduct(${product.id})">Delete</button>
-      </td>
-    `;
-
-    productsTable.appendChild(row);
-  });
-}
-
-// Delete product
-function deleteProduct(id) {
-  products = products.filter(product => product.id !== id);
-  saveProducts();
-  renderProducts();
-}
-
-// Save to localStorage
-function saveProducts() {
-  localStorage.setItem("smartbiz_products", JSON.stringify(products));
-}
-
-// Clear input fields
-function clearInputs() { 
-  productName.value = "";
-  productPrice.value = "";
-  productStock.value = "";
-}
