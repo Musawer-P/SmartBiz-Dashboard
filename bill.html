@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+</head>
+<body>
+<div class="product-list">
+  <div class="product-item">
+    <span>Laptop - $1000</span>
+    <button onclick="addToBill('Laptop', 1000)">Add to Bill</button>
+  </div>
+  <div class="product-item">
+    <span>Mouse - $25</span>
+    <button onclick="addToBill('Mouse', 25)">Add to Bill</button>
+  </div>
+</div>
+
+<div id="bill-section">
+  <h3>Your Bill</h3>
+  <table id="bill-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody id="bill-body">
+    </tbody>
+  </table>
+  <p><strong>Total: $<span id="total-price">0</span></strong></p>
+</div>
+</body>
+</html>
