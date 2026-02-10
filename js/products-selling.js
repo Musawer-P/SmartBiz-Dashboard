@@ -74,3 +74,40 @@ checkoutBtn.addEventListener("click", () => {
 
 
 renderProducts();
+
+
+
+const soldItems = []; 
+
+
+function getTodaysSales(items) {
+  const today = new Date();
+  return items.filter(item => {
+    const soldDate = new Date(item.soldAt);
+    return soldDate.toDateString() === today.toDateString();
+  });
+}
+
+function renderSalesTable() {
+  const tableBody = document.querySelector("#sales-table tbody");
+  tableBody.innerHTML = ""; // clear old rows
+
+  const todaySales = getTodaysSales(soldItems);
+
+  todaySales.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.qty}</td>
+      <td>$${item.price}</td>
+      <td>${new Date(item.soldAt).toLocaleTimeString()}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+
+
+function addSale(item) {
+  soldItems.push({ ...item, soldAt: new Date().toISOString() });
+  renderSalesTable(); // update table immediately
+}
