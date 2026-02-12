@@ -49,4 +49,5 @@ border-radius: 30px;
 #table tr {
   padding: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+  color: rgba(255, 255, 255, 0.349);
 }
