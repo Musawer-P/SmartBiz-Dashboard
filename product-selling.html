@@ -7,33 +7,70 @@
 </head>
 <body>
 
-  <div class="pos-container">
 
-    <!-- PRODUCTS SECTION -->
-    <div class="products-section">
-      <h2>Products</h2>
-
-      <div id="productsContainer" class="products-grid">
-
-    </div>
-    </div>
-
-    <div class="cart-section">
-      <h2>Cart</h2>
-
-      <ul id="cartItems" class="cart-items">
-      </ul>
-
-      <div class="cart-total">
-        Total: $<span id="totalPrice">0</span>
+<div class = "body">
+  <div class = "main">
+    <div class = "product-cart">
+      <div class = "p-price">
+        <p id = "p-price">20$</p>
       </div>
-
-      <button id="checkoutBtn" class="checkout-btn">
-        Proceed to Checkout
-      </button>
+      <div class = "img">
+      <img src = "images/chocolate.png" id = "p-img">  
+      </div>
+      <div class = "product-desc">
+        <p id = "p-name">Chocolate</p>
+        <p id = "p-qty">20 PCS</p>
+      </div>
     </div>
-
   </div>
+
+  <div class = "cc-row">
+  <div class = "cart">
+    <h1 id = "h1-cart">Cart</h1>
+    <div class = "cart-table">
+      <table id = "cart-table">
+        <thead>
+          <th>Name</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chocolate</td>
+            <td>100$</td>
+            <td>5</td>
+          </tr>
+           <tr>
+            <td>biscuit</td>
+            <td>50$</td>
+            <td>7</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class = "checkout-btn">
+
+    
+    <button type = "submit" id = "checkout-btn">
+      Checkout
+    </button>
+    </div>
+  </div>
+
+<div class = "checkout">
+      <h1 id = "h1-checkout">Payment</h1>
+
+      <div class = "payment-btn">
+        <button type = "submit" id = "cash">Cash</button>
+        <button type = "submit" id = "credit">Credit</button>
+      </div>
+      <div class = "payment-footer">
+        <p id = "payment-amount">Amount</p>
+        <button type = "submit" id = "payment-submit">Submit</button>
+      </div>
+    </div>
+</div>
+</div>
 
   <!-- JS -->
   <script src="js/products-selling.js"></script>
