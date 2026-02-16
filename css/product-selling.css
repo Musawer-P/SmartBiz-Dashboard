@@ -1,19 +1,22 @@
   body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
-  color: white;
   overflow-x: hidden;
+  padding: 20px;
 
 }
-
+.main{
+  width: 80%;
+}
+h1{
+  color: rgba(0, 0, 0, 0.904);;
+}
 .body {
   width: 100%;
-  padding-left: 30px;
   height: 100%;
 }
 .product-cart{
   width: fit-content;
-  border: 1px solid white;
+  border: 1px solid rgba(5, 5, 5, 0.356);
   padding: 10px;
   padding-bottom: 20px;
 
@@ -23,7 +26,7 @@
   text-align: center;
   font-size: 25px;
   margin-top: 5px;
-  color: rgba(255, 255, 255, 0.767);
+  color: rgba(5, 5, 5, 0.808);
 }
 #p-img{
   width: 200px;
@@ -31,18 +34,20 @@
 .product-desc{
   display: flex;
   justify-content: space-around;
-  background-color: #0206174b;
-  border: 1px solid white;
+  background-color: #020a30ee;
   border-radius: 40px;
+  color: white;
 }
 
-.cart{
 
-}
 .cart-table{
-  border: 1px solid rgba(255, 255, 255, 0.301);
+  width: 100%;
     border-radius: 10px;
     padding-bottom: 15px;
+
+}
+#cart-table{
+    width: 100%;
 
 }
 table{
@@ -58,17 +63,18 @@ table th{
 }
 table td{
   padding: 15px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgba(5, 5, 5, 0.123);
 }
 
 .cc-row{
   display: flex;
-    width: fit-content;
-  border: 1px solid rgba(255, 255, 255, 0.733);
+  flex-direction: column;
+  width: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.733);
   padding: 10px;
   border-radius: 20px;
   justify-content: space-between;
-  gap: 10px;
+  padding-bottom: 20px;
 
 }
 
@@ -78,15 +84,7 @@ table td{
         padding-bottom: 15px;
 
 }
-#checkout-btn{
-  padding: 7px 10px;
-  font-size: 15px;
-  margin-top: 10px;
-  background-color: white;
-  border: none;
-  border-radius: 3px;
 
-}
 .checkout-btn{
   display: flex;
   align-items: end;
@@ -102,12 +100,20 @@ table td{
   width: 100%;
   padding: 5px 10px;
   border: none;
+  color: white;
+  cursor: pointer;
 
 
 }
-
+#cash{
+  background-color: #13f35e;
+}
+#credit{
+  background-color: #135af3;
+}
 .payment-footer{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
@@ -116,10 +122,20 @@ table td{
 #payment-amount,#payment-submit{
 width: 100%;
 }
-
+#payment-amount{
+  text-align: center;
+}
 #payment-submit{
   height: 30px;
    width: 100%;
   padding: 5px 10px;
   border: none;
+  background-color: rgba(0, 0, 0, 0.904);
+  color: white;
+  border-radius: 5px;
+}
+.row{
+  width: 100%;
+  display: flex;
+
 }

@@ -1,113 +1,117 @@
-const productsContainer = document.getElementById("productsContainer");
-const cartItems = document.getElementById("cartItems");
-const totalPriceEl = document.getElementById("totalPrice");
-const checkoutBtn = document.getElementById("checkoutBtn");
 
-let products = JSON.parse(localStorage.getItem("products")) || [];
-let cart = [];
+const products = document.querySelectorAll(".product-cart");
+const cartTable = document.querySelector("#cart-table tbody");
+const totalDisplay = document.getElementById("cart-total");
+const amountDisplay = document.getElementById("payment-amount");
 
-function renderProducts() {
-  productsContainer.innerHTML = "";
+const cashBtn = document.getElementById("cash");
+const creditBtn = document.getElementById("credit");
+const submitBtn = document.getElementById("payment-submit");
+const billTable = document.querySelector("#bill-table tbody");
 
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
+let cart = {};
+let selectedPayment = "";
 
-    card.innerHTML = `
-      <h4>${product.name}</h4>
-      <p>Price: $${product.salePrice}</p>
-      <p>Stock: ${product.qty}</p>
-    `;
+// =======================
+// ADD PRODUCT TO CART
+// =======================
 
-    card.addEventListener("click", () => addToCart(product));
-    productsContainer.appendChild(card);
+products.forEach(product => {
+  product.addEventListener("click", () => {
+
+    const name = product.dataset.name;
+    const price = parseFloat(product.dataset.price);
+
+    if(cart[name]){
+      cart[name].qty += 1;
+    } else {
+      cart[name] = { price: price, qty: 1 };
+    }
+
+    renderCart();
   });
-}
-
-
-function addToCart(product) {
-  const item = cart.find(p => p.id === product.id);
-
-  if (item) {
-    item.qty += 1;
-  } else {
-    cart.push({
-      id: product.id,
-      name: product.name,
-      price: Number(product.salePrice),
-      qty: 1
-    });
-  }
-
-  renderCart();
-}
-
-
-function renderCart() {
-  cartItems.innerHTML = "";
-  let total = 0;
-
-  cart.forEach(item => {
-    total += item.price * item.qty;
-
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${item.name} × ${item.qty} — $${item.price * item.qty}
-    `;
-    cartItems.appendChild(li);
-  });
-
-  totalPriceEl.textContent = total;
-}
-
-checkoutBtn.addEventListener("click", () => {
-  if (cart.length === 0) {
-    alert("Cart is empty");
-    return;
-  }
-
-  alert("Checkout successful ✅");
-
-  cart = [];
-  renderCart();
 });
 
 
-renderProducts();
+// =======================
+// RENDER CART
+// =======================
 
+function renderCart(){
+  cartTable.innerHTML = "";
+  let total = 0;
 
+  for(let item in cart){
+    let row = document.createElement("tr");
 
-const soldItems = []; 
+    let nameCell = `<td>${item}</td>`;
+    let qtyCell = `<td>${cart[item].qty}</td>`;
+    let priceCell = `<td>${cart[item].price * cart[item].qty} $</td>`;
 
+    row.innerHTML = nameCell + qtyCell + priceCell;
+    cartTable.appendChild(row);
 
-function getTodaysSales(items) {
-  const today = new Date();
-  return items.filter(item => {
-    const soldDate = new Date(item.soldAt);
-    return soldDate.toDateString() === today.toDateString();
-  });
+    total += cart[item].price * cart[item].qty;
+  }
+
+  totalDisplay.textContent = total;
+  amountDisplay.textContent = "Amount: " + total + " $";
 }
 
-function renderSalesTable() {
-  const tableBody = document.querySelector("#sales-table tbody");
-  tableBody.innerHTML = ""; // clear old rows
 
-  const todaySales = getTodaysSales(soldItems);
+// =======================
+// PAYMENT SELECT
+// =======================
 
-  todaySales.forEach(item => {
-    const row = document.createElement("tr");
+cashBtn.addEventListener("click", () => {
+  selectedPayment = "Cash";
+  cashBtn.style.background = "green";
+  creditBtn.style.background = "";
+});
+
+creditBtn.addEventListener("click", () => {
+  selectedPayment = "Credit";
+  creditBtn.style.background = "blue";
+  cashBtn.style.background = "";
+});
+
+
+// =======================
+// SUBMIT BILL
+// =======================
+
+submitBtn.addEventListener("click", () => {
+
+  if(Object.keys(cart).length === 0){
+    alert("Cart is empty!");
+    return;
+  }
+
+  if(selectedPayment === ""){
+    alert("Select payment method!");
+    return;
+  }
+
+  for(let item in cart){
+    let row = document.createElement("tr");
+
     row.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.qty}</td>
-      <td>$${item.price}</td>
-      <td>${new Date(item.soldAt).toLocaleTimeString()}</td>
+      <td>${item}</td>
+      <td>${cart[item].qty}</td>
+      <td>${cart[item].price * cart[item].qty} $</td>
+      <td>${selectedPayment}</td>
     `;
-    tableBody.appendChild(row);
-  });
-}
 
+    billTable.appendChild(row);
+  }
 
-function addSale(item) {
-  soldItems.push({ ...item, soldAt: new Date().toISOString() });
-  renderSalesTable(); // update table immediately
-}
+  // Clear cart
+  cart = {};
+  renderCart();
+  selectedPayment = "";
+  cashBtn.style.background = "";
+  creditBtn.style.background = "";
+
+  alert("Bill Created Successfully!");
+
+});
