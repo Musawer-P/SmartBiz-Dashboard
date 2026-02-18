@@ -343,3 +343,6 @@ document.querySelectorAll(".help-setting p").forEach(item => {
     alert(`Open: ${item.innerText}`);
   });
 });
+
+
+

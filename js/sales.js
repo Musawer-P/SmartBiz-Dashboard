@@ -1,71 +1,37 @@
-let sales = [];
+function addToSalesReports(product) {
+  let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
+  const timestamp = Date.now();
 
-// DOM Elements
-const salesForm = document.getElementById("salesForm");
-const salesTableBody = document.getElementById("salesTableBody");
-const totalSalesEl = document.getElementById("totalSales");
-const totalProfitEl = document.getElementById("totalProfit");
+  salesReports.push({
+    ...product,
+    timestamp: timestamp
+  });
 
-// Add Sale
-function addSale(product, price, cost, qty) {
-    const sale = {
-        id: Date.now(),
-        product,
-        price,
-        cost,
-        qty,
-        profit: (price - cost) * qty,
-        date: new Date().toLocaleDateString()
-    };
-
-    sales.push(sale);
-    renderSales();
-    updateSummary();
+  localStorage.setItem("salesReports", JSON.stringify(salesReports));
+  renderSalesReports();
 }
 
-// Render Sales Table
-function renderSales() {
-    salesTableBody.innerHTML = "";
+function renderSalesReports() {
+  const tbody = document.getElementById("modal-sales-body");
+  if(!tbody) return;
 
-    sales.forEach((sale, index) => {
-        salesTableBody.innerHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${sale.product}</td>
-                <td>${sale.qty}</td>
-                <td>$${sale.price}</td>
-                <td>$${sale.profit}</td>
-                <td>${sale.date}</td>
-            </tr>
-        `;
-    });
+  let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
+  tbody.innerHTML = "";
+  salesReports.forEach((sale, index) => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${sale.name}</td>
+        <td>${sale.stockQty}</td>
+        <td>${sale.soldQty}</td>
+        <td>$${sale.mainPrice}</td>
+        <td>$${sale.sellPrice}</td>
+        <td>$${sale.profit}</td>
+        <td>${new Date(sale.timestamp).toLocaleDateString()}</td>
+      </tr>
+    `;
+  });
 }
 
-// Update Summary
-function updateSummary() {
-    let totalSales = 0;
-    let totalProfit = 0;
-
-    sales.forEach(sale => {
-        totalSales += sale.price * sale.qty;
-        totalProfit += sale.profit;
-    });
-
-    totalSalesEl.textContent = `$${totalSales}`;
-    totalProfitEl.textContent = `$${totalProfit}`;
-}
-
-// Form Submit
-if (salesForm) {
-    salesForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const product = document.getElementById("saleProduct").value;
-        const price = Number(document.getElementById("salePrice").value);
-        const cost = Number(document.getElementById("saleCost").value);
-        const qty = Number(document.getElementById("saleQty").value);
-
-        addSale(product, price, cost, qty);
-        salesForm.reset();
-    });
-}
+// Load on page load
+document.addEventListener("DOMContentLoaded", renderSalesReports);
