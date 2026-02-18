@@ -1,4 +1,3 @@
-
 const products = document.querySelectorAll(".product-cart");
 const cartTable = document.querySelector("#cart-table tbody");
 const totalDisplay = document.getElementById("cart-total");
@@ -7,20 +6,15 @@ const amountDisplay = document.getElementById("payment-amount");
 const cashBtn = document.getElementById("cash");
 const creditBtn = document.getElementById("credit");
 const submitBtn = document.getElementById("payment-submit");
-const billTable = document.querySelector("#bill-table tbody");
-const todaySalesBody = document.getElementById("today-sales-body");
-
 
 let cart = {};
 let selectedPayment = "";
 
-// =======================
-// ADD PRODUCT TO CART
-// =======================
-
+// ---------------------------
+// ADD TO CART
+// ---------------------------
 products.forEach(product => {
   product.addEventListener("click", () => {
-
     const name = product.dataset.name;
     const price = parseFloat(product.dataset.price);
 
@@ -34,37 +28,32 @@ products.forEach(product => {
   });
 });
 
-
-// =======================
+// ---------------------------
 // RENDER CART
-// =======================
-
+// ---------------------------
 function renderCart(){
   cartTable.innerHTML = "";
   let total = 0;
 
   for(let item in cart){
     let row = document.createElement("tr");
-
-    let nameCell = `<td>${item}</td>`;
-    let qtyCell = `<td>${cart[item].qty}</td>`;
-    let priceCell = `<td>${cart[item].price * cart[item].qty} $</td>`;
-
-    row.innerHTML = nameCell + qtyCell + priceCell;
+    row.innerHTML = `
+      <td>${item}</td>
+      <td>${cart[item].qty}</td>
+      <td>${(cart[item].price * cart[item].qty).toFixed(2)} $</td>
+    `;
     cartTable.appendChild(row);
 
     total += cart[item].price * cart[item].qty;
   }
 
-  totalDisplay.textContent = total;
-  amountDisplay.textContent = "Amount: " + total + " $";
+  totalDisplay.textContent = total.toFixed(2);
+  amountDisplay.textContent = "Amount: " + total.toFixed(2) + " $";
 }
 
-
-// =======================
+// ---------------------------
 // PAYMENT SELECT
-// =======================
-
+// ---------------------------
 cashBtn.addEventListener("click", () => {
   selectedPayment = "Cash";
   cashBtn.style.background = "green";
@@ -77,69 +66,52 @@ creditBtn.addEventListener("click", () => {
   cashBtn.style.background = "";
 });
 
-
-// =======================
-// SUBMIT BILL
-// =======================
+// ---------------------------
+// SUBMIT CART
+// ---------------------------
 submitBtn.addEventListener("click", () => {
+  if (Object.keys(cart).length === 0) { alert("Cart is empty!"); return; }
+  if (!selectedPayment) { alert("Select payment method!"); return; }
 
-  if(Object.keys(cart).length === 0){
-    alert("Cart is empty!");
-    return;
-  }
+  let bills = JSON.parse(localStorage.getItem("bills")) || [];
+  let todaySales = JSON.parse(localStorage.getItem("todaySales")) || [];
+  let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
 
-  if(selectedPayment === ""){
-    alert("Select payment method!");
-    return;
-  }
-
-  for(let item in cart){
+  for (let item in cart) {
     const soldQty = cart[item].qty;
     const sellPrice = cart[item].price;
-    const mainPrice = sellPrice - 2; // example cost
+    const mainPrice = sellPrice - 2; // example
     const profit = sellPrice - mainPrice;
 
-    // Add to Bills
-    if(window.addToBill) {
-      addToBill({
-        name: item,
-        soldQty: soldQty,
-        sellPrice: sellPrice,
-        payment: selectedPayment
-      });
-    }
+    const productData = {
+      product: item,
+      stockQty: "-",
+      soldQty,
+      mainPrice,
+      sellPrice,
+      profit,
+      payment: selectedPayment,
+      timestamp: Date.now()
+    };
 
-    // Add to Today Sales
-    if(window.addToTodaySales) {
-      addToTodaySales({
-        name: item,
-        stockQty: "-",
-        soldQty: soldQty,
-        mainPrice: mainPrice,
-        sellPrice: sellPrice,
-        profit: profit
-      });
-    }
-
-    // Add to Sales Reports (Modal)
-    if(window.addToSalesReports) {
-      addToSalesReports({
-        name: item,
-        stockQty: "-",
-        soldQty: soldQty,
-        mainPrice: mainPrice,
-        sellPrice: sellPrice,
-        profit: profit
-      });
-    }
+    bills.push(productData);
+    todaySales.push(productData);
+    salesReports.push(productData);
   }
 
-  // Reset cart
+  localStorage.setItem("bills", JSON.stringify(bills));
+  localStorage.setItem("todaySales", JSON.stringify(todaySales));
+  localStorage.setItem("salesReports", JSON.stringify(salesReports));
+
   cart = {};
-  renderCart();
   selectedPayment = "";
   cashBtn.style.background = "";
   creditBtn.style.background = "";
+  renderCart();
 
-  alert("Sale Saved Successfully!");
+  renderBills();
+  renderTodaySales();
+  renderSalesReports();
+
+  alert("Sale saved successfully!");
 });
