@@ -1,20 +1,13 @@
 let total = 0;
 
-function addToBill(name, price) {
-    const tableBody = document.getElementById('bill-body');
-    const totalDisplay = document.getElementById('total-price');
-
-    const row = document.createElement('tr');
-    const nameCell = document.createElement('td');
-    const priceCell = document.createElement('td');
-
-    nameCell.textContent = name;
-    priceCell.textContent = `$${price}`;
-
-    row.appendChild(nameCell);
-    row.appendChild(priceCell);
-    tableBody.appendChild(row);
-
-    total += price;
-    totalDisplay.textContent = total;
+function addToBill(product) {
+  const tbody = document.querySelector("#bill-table tbody");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${product.name}</td>
+    <td>${product.soldQty}</td>
+    <td>${(product.soldQty * product.sellPrice).toFixed(2)} $</td>
+    <td>${product.payment}</td>
+  `;
+  tbody.appendChild(row);
 }

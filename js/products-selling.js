@@ -8,6 +8,8 @@ const cashBtn = document.getElementById("cash");
 const creditBtn = document.getElementById("credit");
 const submitBtn = document.getElementById("payment-submit");
 const billTable = document.querySelector("#bill-table tbody");
+const todaySalesBody = document.getElementById("today-sales-body");
+
 
 let cart = {};
 let selectedPayment = "";
@@ -79,7 +81,6 @@ creditBtn.addEventListener("click", () => {
 // =======================
 // SUBMIT BILL
 // =======================
-
 submitBtn.addEventListener("click", () => {
 
   if(Object.keys(cart).length === 0){
@@ -93,25 +94,52 @@ submitBtn.addEventListener("click", () => {
   }
 
   for(let item in cart){
-    let row = document.createElement("tr");
+    const soldQty = cart[item].qty;
+    const sellPrice = cart[item].price;
+    const mainPrice = sellPrice - 2; // example cost
+    const profit = sellPrice - mainPrice;
 
-    row.innerHTML = `
-      <td>${item}</td>
-      <td>${cart[item].qty}</td>
-      <td>${cart[item].price * cart[item].qty} $</td>
-      <td>${selectedPayment}</td>
-    `;
+    // Add to Bills
+    if(window.addToBill) {
+      addToBill({
+        name: item,
+        soldQty: soldQty,
+        sellPrice: sellPrice,
+        payment: selectedPayment
+      });
+    }
 
-    billTable.appendChild(row);
+    // Add to Today Sales
+    if(window.addToTodaySales) {
+      addToTodaySales({
+        name: item,
+        stockQty: "-",
+        soldQty: soldQty,
+        mainPrice: mainPrice,
+        sellPrice: sellPrice,
+        profit: profit
+      });
+    }
+
+    // Add to Sales Reports (Modal)
+    if(window.addToSalesReports) {
+      addToSalesReports({
+        name: item,
+        stockQty: "-",
+        soldQty: soldQty,
+        mainPrice: mainPrice,
+        sellPrice: sellPrice,
+        profit: profit
+      });
+    }
   }
 
-  // Clear cart
+  // Reset cart
   cart = {};
   renderCart();
   selectedPayment = "";
   cashBtn.style.background = "";
   creditBtn.style.background = "";
 
-  alert("Bill Created Successfully!");
-
+  alert("Sale Saved Successfully!");
 });
