@@ -1262,18 +1262,25 @@ td {
     </div>
     <div class="second-section-header">
       <div class="head-option">
-        <p class="openModal-vendor"><i class="fas fa-truck"></i> Suppliers</p>
-        <p class="openModal-customer"><i class="fas fa-users"></i> Customers</p>
-        <p class="openModal-payments"><i class="fas fa-credit-card"></i> Payments</p>
-        <p><i class="fas fa-chart-line"></i> Reports</p>
-        <p class="openModal-ads"><i class="fas fa-bullhorn"></i> Ads</p>
+        <p class="openModal-vendor" data-key="suppliers"><i class="fas fa-truck"></i> Suppliers</p>
+        <p class="openModal-customer" data-key="customers"><i class="fas fa-users"></i> Customers</p>
+        <p class="openModal-payments" data-key="payments"><i class="fas fa-credit-card"></i> Payments</p>
+        <p data-key="reports"><i class="fas fa-chart-line"></i> Reports</p>
+        <p data-key="ads" class="openModal-ads"><i class="fas fa-bullhorn"></i> Ads</p>
       </div>
 
     </div>
 
     <div class="search-bar">
       <i class="fa fa-search" id="search-icon"></i>
-      <i class="fas fa-headset"></i>
+      <i class="fas fa-headset">
+        <select onchange="changeLanguage(this.value)">
+  <option value="">Language</option>
+  <option value="fa">فارسی</option>
+  <option value="ar">العربية</option>
+  <option value="en">English</option>
+</select>
+      </i>
       <i class="far fa-bell"></i>
       <i class="fas fa-globe"></i>
 
@@ -1291,24 +1298,24 @@ td {
       <div class="products">
         <i class="fas fa-box"></i>
 
-        <p class="openModal-product">Products</p>
+        <p class="openModal-product" data-key="products">Products</p>
       </div>
       <div class="sales-orders">
         <i class="fas fa-shopping-cart"></i>
 
-        <p class="openModal-sales-reports">Sales</p>
+        <p class="openModal-sales-reports" data-key="sales">Sales</p>
       </div>
       <div class="chart">
         <i class="fas fa-chart-line"></i>
-        <p class="openModal-chart">Chart</p>
+        <p class="openModal-chart" data-key="chart">Chart</p>
       </div>
       <div class="setting-sidebar">
         <i class="fas fa-cog"></i>
-        <p class="openModal-setting">Setting</p>
+        <p class="openModal-setting" data-key="setting">Setting</p>
       </div>
        <div class="setting-sidebar">
 <i class="fas fa-file-alt"></i>
-        <p class="openModal-setting">Records</p>
+        <p class="openModal-setting" data-key="records">Records</p>
       </div>
 
 
@@ -1494,25 +1501,25 @@ td {
           <div class="first-row">
             <div class="active-orders">
               <h2>40</h2>
-              <p>Orders</p>
+              <p data-key="orders"></p>>Orders</p>
             </div>
             <div class="total-sales">
               <h2>4000$</h2>
-              <p>Total Sales</p>
+              <p data-key="totalSales"></p>>Total Sales</p>
             </div>
             <div class="total-sales">
               <h2>1000$</h2>
-              <p>Expenses</p>
+              <p data-key="expenses"></p>>Expenses</p>
             </div>
             <div class="profit">
               <h2>3000$</h2>
-              <p>Profit</p>
+              <p data-key="profit">Profit</p>
             </div>
           </div>
         </div>
         <div class="top-products">
           <div class="top-product-h2">
-            <h2>Best Sellers</h2>
+            <h2 data-key="bestSellers">Best Sellers</h2>
           </div>
           <div class="best-seller-cards">
             <div class="card">
@@ -1544,14 +1551,14 @@ td {
       </div>
       <div class="second-row">
         <div class="line-chart">
-          <h2>Line Chart</h2>
+          <h2 data-key="lineChart">Line Chart</h2>
           <div style="width:600px; margin:20px auto;">
             <canvas id="lineChart"></canvas>
           </div>
 
         </div>
         <div class="bar-chart">
-          <h2>Bar Chart</h2>
+          <h2 data-key="barChart">Bar Chart</h2>
 
           <div style="width:600px; margin:20px auto;">
             <canvas id="barChart"></canvas>
@@ -1561,7 +1568,7 @@ td {
 
       </div>
       <div class="third-row">
-        <h2 id="table-header">Sold Items Today</h2>
+        <h2 id="table-header" data-key="soldToday">Sold Items Today</h2>
         <div class="data-table">
           <table class="sales-table">
             <thead>
@@ -1588,18 +1595,18 @@ td {
 
       <div class="footer">
         <div class="system-active-status">
-          <h2>Status</h2>
+          <h2 data-key="status">Status</h2>
 
-          <p>Active</p>
+          <p data-key="active">Active</p>
         </div>
         <div class="version">
-          <h2>Version</h2>
+          <h2 data-key="version">Version</h2>
 
           <p>3.1</p>
 
         </div>
         <div class="help-center">
-          <a href="">Help Center</a>
+          <a href="" data-key="helpCenter">Help Center</a>
         </div>
 
       </div>
@@ -1618,6 +1625,9 @@ td {
   <script src="js/setting.js"></script>
   <script src= "js/dashboard.js"></script>
   <script src= "js/products-selling.js"></script>
+  <script src= "js/translation.js"></script>
+    <script src= "js/language.js"></script>
+
 
 </body>
 
