@@ -130,9 +130,7 @@ new Chart(barCtx, {
 
 
 
-
-
-      const openDivVendor = document.querySelector(".openModal-vendor");
+ const openDivVendor = document.querySelector(".openModal-vendor");
       const modalVendor = document.getElementById("modalOverlay-vendor");
       const xBtnVendor = document.getElementById("x-vendor");
 
@@ -254,7 +252,7 @@ new Chart(barCtx, {
         }
       });
 
-      
+
       const openDivads = document.querySelector(".openModal-ads");
       const modalads = document.getElementById("modalOverlay-ads");
       const xBtnads = document.getElementById("x-ads");
@@ -276,7 +274,7 @@ new Chart(barCtx, {
 
 
 
-            
+
       const openDivsetting = document.querySelector(".openModal-setting");
       const modalsetting = document.getElementById("modalOverlay-setting");
       const xBtnsetting = document.getElementById("x-setting");
@@ -292,6 +290,28 @@ new Chart(barCtx, {
       modalsetting.addEventListener("click", (e) => {
         if (e.target === modalsetting) {
           modalsetting.style.display = "none";
+        }
+      });
+
+
+
+
+
+      const openDivexpenses = document.querySelector(".openModal-expenses");
+      const modalexpenses = document.getElementById("modalOverlay-expenses");
+      const xBtnexpenses = document.getElementById("x-expenses");
+
+      openDivexpenses.addEventListener("click", () => {
+        modalexpenses.style.display = "flex";
+      });
+
+      xBtnexpenses.addEventListener("click", () => {
+        modalexpenses.style.display = "none";
+      });
+
+      modalexpenses.addEventListener("click", (e) => {
+        if (e.target === modalexpenses) {
+          modalexpenses.style.display = "none";
         }
       });
 
