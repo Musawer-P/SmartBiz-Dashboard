@@ -84,23 +84,23 @@ themeBtn?.addEventListener("click", () => {
 const lineCtx = document.getElementById('lineChart').getContext('2d');
 
 new Chart(lineCtx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-            label: 'Sales',
-            data: [12, 19, 8, 15, 22, 18],
-            borderWidth: 2,
-            tension: 0.4,
-            fill: false
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { display: true }
-        }
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Sales',
+      data: [12, 19, 8, 15, 22, 18],
+      borderWidth: 2,
+      tension: 0.4,
+      fill: false
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true }
     }
+  }
 });
 
 
@@ -111,228 +111,256 @@ new Chart(lineCtx, {
 const barCtx = document.getElementById('barChart').getContext('2d');
 
 new Chart(barCtx, {
-    type: 'bar',
-    data: {
-        labels: ['Product A', 'Product B', 'Product C', 'Product D'],
-        datasets: [{
-            label: 'Stock',
-            data: [30, 50, 20, 40],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { display: true }
-        }
+  type: 'bar',
+  data: {
+    labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+    datasets: [{
+      label: 'Stock',
+      data: [30, 50, 20, 40],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true }
     }
+  }
 });
 
 
 
- const openDivVendor = document.querySelector(".openModal-vendor");
-      const modalVendor = document.getElementById("modalOverlay-vendor");
-      const xBtnVendor = document.getElementById("x-vendor");
+const openDivVendor = document.querySelector(".openModal-vendor");
+const modalVendor = document.getElementById("modalOverlay-vendor");
+const xBtnVendor = document.getElementById("x-vendor");
 
-      openDivVendor.addEventListener("click", () => {
-        modalVendor.style.display = "flex";
-      });
-
-      xBtnVendor.addEventListener("click", () => {
-        modalVendor.style.display = "none";
-      });
-
-      modalVendor.addEventListener("click", (e) => {
-        if (e.target === modalVendor) {
-          modalVendor.style.display = "none";
-        }
-      });
-
-
-
-
-      const openDiv = document.querySelector(".openModal-product");
-      const modal = document.getElementById("modalOverlay");
-      const xBtn = document.getElementById("x");
-
-      openDiv.addEventListener("click", () => {
-        modal.style.display = "flex";
-      });
-
-      xBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
-
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-
-
-      const openDivCustomer = document.querySelector(".openModal-customer");
-      const modalCustomer = document.getElementById("modalOverlay-customer");
-      const xBtnCustomer = document.getElementById("x-customer");
-
-      openDivCustomer.addEventListener("click", () => {
-        modalCustomer.style.display = "flex";
-      });
-
-      xBtnCustomer.addEventListener("click", () => {
-        modalCustomer.style.display = "none";
-      });
-
-      modalCustomer.addEventListener("click", (e) => {
-        if (e.target === modalCustomer) {
-          modalCustomer.style.display = "none";
-        }
-      });
-
-
-
-
-      const openDivReport = document.querySelector(".openModal-sales-reports");
-      const modalReport = document.getElementById("modalOverlay-reports");
-      const xBtnReport = document.getElementById("x-reports");
-
-      openDivReport.addEventListener("click", () => {
-        modalReport.style.display = "flex";
-      });
-
-      xBtnReport.addEventListener("click", () => {
-        modalReport.style.display = "none";
-      });
-
-      modalReport.addEventListener("click", (e) => {
-        if (e.target === modalReport) {
-          modalReport.style.display = "none";
-        }
-      });
-
-
-
-
-
-
-      const openDivPayemnt = document.querySelector(".openModal-payments");
-      const modalPayemnt = document.getElementById("modalOverlay-payments");
-      const xBtnPayemnt = document.getElementById("x-payments");
-
-      openDivPayemnt.addEventListener("click", () => {
-        modalPayemnt.style.display = "flex";
-      });
-
-      xBtnPayemnt.addEventListener("click", () => {
-        modalPayemnt.style.display = "none";
-      });
-
-      modalPayemnt.addEventListener("click", (e) => {
-        if (e.target === modalPayemnt) {
-          modalPayemnt.style.display = "none";
-        }
-      });
-
-
-
-      const openDivchart = document.querySelector(".openModal-chart");
-      const modalchart = document.getElementById("modalOverlay-chart");
-      const xBtnchart = document.getElementById("x-chart");
-
-      openDivchart.addEventListener("click", () => {
-        modalchart.style.display = "flex";
-      });
-
-      xBtnchart.addEventListener("click", () => {
-        modalchart.style.display = "none";
-      });
-
-      modalchart.addEventListener("click", (e) => {
-        if (e.target === modalchart) {
-          modalchart.style.display = "none";
-        }
-      });
-
-
-      const openDivads = document.querySelector(".openModal-ads");
-      const modalads = document.getElementById("modalOverlay-ads");
-      const xBtnads = document.getElementById("x-ads");
-
-      openDivads.addEventListener("click", () => {
-        modalads.style.display = "flex";
-      });
-
-      xBtnads.addEventListener("click", () => {
-        modalads.style.display = "none";
-      });
-
-      modalads.addEventListener("click", (e) => {
-        if (e.target === modalads) {
-          modalads.style.display = "none";
-        }
-      });
-
-
-
-
-
-      const openDivsetting = document.querySelector(".openModal-setting");
-      const modalsetting = document.getElementById("modalOverlay-setting");
-      const xBtnsetting = document.getElementById("x-setting");
-
-      openDivsetting.addEventListener("click", () => {
-        modalsetting.style.display = "flex";
-      });
-
-      xBtnsetting.addEventListener("click", () => {
-        modalsetting.style.display = "none";
-      });
-
-      modalsetting.addEventListener("click", (e) => {
-        if (e.target === modalsetting) {
-          modalsetting.style.display = "none";
-        }
-      });
-
-
-
-
-
-      const openDivexpenses = document.querySelector(".openModal-expenses");
-      const modalexpenses = document.getElementById("modalOverlay-expenses");
-      const xBtnexpenses = document.getElementById("x-expenses");
-
-      openDivexpenses.addEventListener("click", () => {
-        modalexpenses.style.display = "flex";
-      });
-
-      xBtnexpenses.addEventListener("click", () => {
-        modalexpenses.style.display = "none";
-      });
-
-      modalexpenses.addEventListener("click", (e) => {
-        if (e.target === modalexpenses) {
-          modalexpenses.style.display = "none";
-        }
-      });
-
-
-
-      // PROFILE PHOTO CLICK
-document.querySelector(".photo-div img")?.addEventListener("click", () => {
-  alert("Change profile photo (connect file upload here)");
+openDivVendor.addEventListener("click", () => {
+  modalVendor.style.display = "flex";
 });
 
-// COMPANY LOGO CLICK
-document.querySelector(".company-setting img")?.addEventListener("click", () => {
-  alert("Change company logo (connect upload here)");
+xBtnVendor.addEventListener("click", () => {
+  modalVendor.style.display = "none";
 });
 
-// PROFILE SETTINGS 
-document.querySelectorAll(".profile-setting p").forEach(item => {
-  item.addEventListener("click", () => {
-    alert(`Edit: ${item.innerText}`);
+modalVendor.addEventListener("click", (e) => {
+  if (e.target === modalVendor) {
+    modalVendor.style.display = "none";
+  }
+});
+
+
+
+
+const openDiv = document.querySelector(".openModal-product");
+const modal = document.getElementById("modalOverlay");
+const xBtn = document.getElementById("x");
+
+openDiv.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+xBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+
+const openDivCustomer = document.querySelector(".openModal-customer");
+const modalCustomer = document.getElementById("modalOverlay-customer");
+const xBtnCustomer = document.getElementById("x-customer");
+
+openDivCustomer.addEventListener("click", () => {
+  modalCustomer.style.display = "flex";
+});
+
+xBtnCustomer.addEventListener("click", () => {
+  modalCustomer.style.display = "none";
+});
+
+modalCustomer.addEventListener("click", (e) => {
+  if (e.target === modalCustomer) {
+    modalCustomer.style.display = "none";
+  }
+});
+
+
+
+
+const openDivReport = document.querySelector(".openModal-sales-reports");
+const modalReport = document.getElementById("modalOverlay-reports");
+const xBtnReport = document.getElementById("x-reports");
+
+openDivReport.addEventListener("click", () => {
+  modalReport.style.display = "flex";
+});
+
+xBtnReport.addEventListener("click", () => {
+  modalReport.style.display = "none";
+});
+
+modalReport.addEventListener("click", (e) => {
+  if (e.target === modalReport) {
+    modalReport.style.display = "none";
+  }
+});
+
+
+
+
+
+
+const openDivPayemnt = document.querySelector(".openModal-payments");
+const modalPayemnt = document.getElementById("modalOverlay-payments");
+const xBtnPayemnt = document.getElementById("x-payments");
+
+openDivPayemnt.addEventListener("click", () => {
+  modalPayemnt.style.display = "flex";
+});
+
+xBtnPayemnt.addEventListener("click", () => {
+  modalPayemnt.style.display = "none";
+});
+
+modalPayemnt.addEventListener("click", (e) => {
+  if (e.target === modalPayemnt) {
+    modalPayemnt.style.display = "none";
+  }
+});
+
+
+
+const openDivchart = document.querySelector(".openModal-chart");
+const modalchart = document.getElementById("modalOverlay-chart");
+const xBtnchart = document.getElementById("x-chart");
+
+openDivchart.addEventListener("click", () => {
+  modalchart.style.display = "flex";
+});
+
+xBtnchart.addEventListener("click", () => {
+  modalchart.style.display = "none";
+});
+
+modalchart.addEventListener("click", (e) => {
+  if (e.target === modalchart) {
+    modalchart.style.display = "none";
+  }
+});
+
+
+const openDivads = document.querySelector(".openModal-ads");
+const modalads = document.getElementById("modalOverlay-ads");
+const xBtnads = document.getElementById("x-ads");
+
+openDivads.addEventListener("click", () => {
+  modalads.style.display = "flex";
+});
+
+xBtnads.addEventListener("click", () => {
+  modalads.style.display = "none";
+});
+
+modalads.addEventListener("click", (e) => {
+  if (e.target === modalads) {
+    modalads.style.display = "none";
+  }
+});
+
+
+
+
+
+const openDivsetting = document.querySelector(".openModal-setting");
+const modalsetting = document.getElementById("modalOverlay-setting");
+const xBtnsetting = document.getElementById("x-setting");
+
+openDivsetting.addEventListener("click", () => {
+  modalsetting.style.display = "flex";
+});
+
+xBtnsetting.addEventListener("click", () => {
+  modalsetting.style.display = "none";
+});
+
+modalsetting.addEventListener("click", (e) => {
+  if (e.target === modalsetting) {
+    modalsetting.style.display = "none";
+  }
+});
+
+
+
+
+
+const openDivexpenses = document.querySelector(".openModal-expenses");
+const modalexpenses = document.getElementById("modalOverlay-expenses");
+const xBtnexpenses = document.getElementById("x-expenses");
+
+openDivexpenses.addEventListener("click", () => {
+  modalexpenses.style.display = "flex";
+});
+
+xBtnexpenses.addEventListener("click", () => {
+  modalexpenses.style.display = "none";
+});
+
+modalexpenses.addEventListener("click", (e) => {
+  if (e.target === modalexpenses) {
+    modalexpenses.style.display = "none";
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bestSellerContainer = document.querySelector(".best-seller-cards");
+
+  let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
+
+  if (salesReports.length === 0) {
+    bestSellerContainer.innerHTML = "<p>No sales yet</p>";
+    return;
+  }
+
+  const productMap = {};
+
+  salesReports.forEach(sale => {
+    if (!productMap[sale.product]) {
+      productMap[sale.product] = {
+        name: sale.product,
+        soldQty: 0,
+        sellPrice: sale.sellPrice
+      };
+    }
+    productMap[sale.product].soldQty += Number(sale.soldQty || 0);
+  });
+
+  const productsArray = Object.values(productMap).sort((a, b) => b.soldQty - a.soldQty);
+
+  const topProducts = productsArray.slice(0, 5);
+
+  bestSellerContainer.innerHTML = "";
+
+  topProducts.forEach(product => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.innerHTML = `
+            <div class="top">
+                <span class="name">${product.name}</span>
+                <span class="qty">Sold Qty: ${product.soldQty}</span>
+            </div>
+            <div class="profit">$${Number(product.sellPrice).toFixed(2)}</div>
+        `;
+
+    bestSellerContainer.appendChild(card);
   });
 });
+
 
 // SECURITY SETTINGS
 document.querySelectorAll(".security-setting p").forEach(item => {

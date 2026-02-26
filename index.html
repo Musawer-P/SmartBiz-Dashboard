@@ -6,14 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
-  <link rel="styleshet" href="css/style.css">
-  <link rel="styleshet" href="css/responsive.css">
+  <link href="css/style.css" rel="styleshet">
+  <link href="css/responsive.css" rel="styleshet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>SmartBiz Dashboard</title>
 </head>
 
 <body>
-
 
   <!--Modal Product-->
 
@@ -382,7 +381,7 @@
       <div class="expenses-input-div">
         <div class="expenses-input-row">
           <input type="text" id="name" placeholder="Name" />
-          <input type="text" id="amount" placeholder="Amount" />
+          <input type="number" id="amount" placeholder="Amount" />
 
         </div>
         <div class="expense-btn-div">
@@ -400,7 +399,7 @@
             <th>Name</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Edit</th>
+            <th>Action</th>
           </thead>
           <tbody id="expensesTable">
 
@@ -421,75 +420,76 @@
       </div>
 
       <div class="setting-row">
-          <div class="company-info">
-            <h1>Company Info</h1>
-            <div class = "setting-imgs">
-            <img src="images/company.png" id = "company-logo">
-            </div>
-            <div class="info-row">
-              <h3>Company Name</h3>
-              <p>Tusqa</p>
-            </div>
-            <div class="info-row">
-              <h3>Email</h3>
-              <p>contact@tusqa.com</p>
-            </div>
-            <div class="info-row">
-              <h3>Address</h3>
-
-              <p>Madina</p>
-            </div>
-            <div class="info-row">
-              <h3>Tax ID</h3>
-
-              <p>1007</p>
-            </div>
+        <div class="company-info">
+          <h1>Company Info</h1>
+          <div class="setting-imgs">
+            <img src="images/company.png" id="company-logo">
           </div>
-          <div class = "user-info">
-                        <h1>User Info</h1>
- <div class = "setting-imgs">
-            <img src="images/company.png" id = "company-logo">
-            </div>            <div class="info-row">
-              <h3>Name</h3>
-              <p>Mike</p>
-            </div>
-            <div class="info-row">
-              <h3>Email</h3>
-              <p>contact@tusqa.com</p>
-            </div>
-            <div class="info-row">
-              <h3>Address</h3>
-
-              <p>jeddah</p>
-            </div>
-            <div class="info-row">
-              <h3>Role</h3>
-
-              <p>Manager</p>
-            </div>
+          <div class="info-row">
+            <h3>Company Name</h3>
+            <p>Tusqa</p>
           </div>
-          <div class = "security">
-                        <h1>Security</h1>
-            <div class = "info-row">
-            <h3>Username</h3>
-            <p>Mike123</p>
-            </div>
-<div class = "info-row">
-            <h3>Pass</h3>
-            <p>123@213</p>
-            </div>
+          <div class="info-row">
+            <h3>Email</h3>
+            <p>contact@tusqa.com</p>
+          </div>
+          <div class="info-row">
+            <h3>Address</h3>
+
+            <p>Madina</p>
+          </div>
+          <div class="info-row">
+            <h3>Tax ID</h3>
+
+            <p>1007</p>
           </div>
         </div>
-        <div class = "setting-footer">
-          <div class = "footer-one">
-           <h3 id = "version">Verison - 2.5 -</h3>
+        <div class="user-info">
+          <h1>User Info</h1>
+          <div class="setting-imgs">
+            <img src="images/company.png" id="company-logo">
           </div>
-          <div class = "footer-two">
-           <h3>Terms & Conditions</h3>
+          <div class="info-row">
+            <h3>Name</h3>
+            <p>Mike</p>
+          </div>
+          <div class="info-row">
+            <h3>Email</h3>
+            <p>contact@tusqa.com</p>
+          </div>
+          <div class="info-row">
+            <h3>Address</h3>
+
+            <p>jeddah</p>
+          </div>
+          <div class="info-row">
+            <h3>Role</h3>
+
+            <p>Manager</p>
+          </div>
+        </div>
+        <div class="security">
+          <h1>Security</h1>
+          <div class="info-row">
+            <h3>Username</h3>
+            <p>Mike123</p>
+          </div>
+          <div class="info-row">
+            <h3>Pass</h3>
+            <p>123@213</p>
           </div>
         </div>
       </div>
+      <div class="setting-footer">
+        <div class="footer-one">
+          <h3 id="version">Verison - 2.5 -</h3>
+        </div>
+        <div class="footer-two">
+          <h3>Terms & Conditions</h3>
+        </div>
+      </div>
     </div>
+  </div>
 
   <!--/-->
 
@@ -597,7 +597,7 @@
               <p data-key="totalSales">Total Sales</p>
             </div>
             <div class="total-sales">
-              <h2>1000$</h2>
+              <h2>$<span id="total-expenses">0</span></h2>
               <p data-key="expenses">Expenses</p>
             </div>
             <div class="profit">

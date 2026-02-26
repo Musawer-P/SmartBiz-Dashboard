@@ -15,13 +15,15 @@ function renderSalesReports() {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${sale.product}</td>
-      <td>${sale.soldQty}</td>
-      <td>$${sale.sellPrice.toFixed(2)}</td>
-      <td>$${sale.profit.toFixed(2)}</td>
-      <td>${new Date(sale.timestamp).toLocaleDateString()}</td>
-    `;
+  <td>${index + 1}</td>
+  <td>${sale.product}</td>
+  <td>${sale.stockQty}</td>
+  <td>${sale.soldQty}</td>
+  <td>$${sale.mainPrice.toFixed(2)}</td>
+  <td>$${sale.sellPrice.toFixed(2)}</td>
+  <td>$${sale.profit.toFixed(2)}</td>
+  <td>${new Date(sale.timestamp).toLocaleDateString()}</td>
+`;
 
     tbody.appendChild(row);
 
