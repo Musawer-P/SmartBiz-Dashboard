@@ -130,226 +130,247 @@ new Chart(barCtx, {
 
 
 
-const openDivVendor = document.querySelector(".openModal-vendor");
-const modalVendor = document.getElementById("modalOverlay-vendor");
-const xBtnVendor = document.getElementById("x-vendor");
 
-openDivVendor.addEventListener("click", () => {
-  modalVendor.style.display = "flex";
-});
+    const openDivVendor = document.querySelector(".openModal-vendor");
+    const modalVendor = document.getElementById("modalOverlay-vendor");
+    const xBtnVendor = document.getElementById("x-vendor");
 
-xBtnVendor.addEventListener("click", () => {
-  modalVendor.style.display = "none";
-});
+    openDivVendor.addEventListener("click", () => {
+      modalVendor.style.display = "flex";
+    });
 
-modalVendor.addEventListener("click", (e) => {
-  if (e.target === modalVendor) {
-    modalVendor.style.display = "none";
-  }
-});
+    xBtnVendor.addEventListener("click", () => {
+      modalVendor.style.display = "none";
+    });
 
+    modalVendor.addEventListener("click", (e) => {
+      if (e.target === modalVendor) {
+        modalVendor.style.display = "none";
+      }
+    });
 
 
 
-const openDiv = document.querySelector(".openModal-product");
-const modal = document.getElementById("modalOverlay");
-const xBtn = document.getElementById("x");
 
-openDiv.addEventListener("click", () => {
-  modal.style.display = "flex";
-});
+    const openDiv = document.querySelector(".openModal-product");
+    const modal = document.getElementById("modalOverlay");
+    const xBtn = document.getElementById("x");
 
-xBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+    openDiv.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
 
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-});
+    xBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
 
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
 
-const openDivCustomer = document.querySelector(".openModal-customer");
-const modalCustomer = document.getElementById("modalOverlay-customer");
-const xBtnCustomer = document.getElementById("x-customer");
 
-openDivCustomer.addEventListener("click", () => {
-  modalCustomer.style.display = "flex";
-});
+    const openDivCustomer = document.querySelector(".openModal-customer");
+    const modalCustomer = document.getElementById("modalOverlay-customer");
+    const xBtnCustomer = document.getElementById("x-customer");
 
-xBtnCustomer.addEventListener("click", () => {
-  modalCustomer.style.display = "none";
-});
+    openDivCustomer.addEventListener("click", () => {
+      modalCustomer.style.display = "flex";
+    });
 
-modalCustomer.addEventListener("click", (e) => {
-  if (e.target === modalCustomer) {
-    modalCustomer.style.display = "none";
-  }
-});
+    xBtnCustomer.addEventListener("click", () => {
+      modalCustomer.style.display = "none";
+    });
 
+    modalCustomer.addEventListener("click", (e) => {
+      if (e.target === modalCustomer) {
+        modalCustomer.style.display = "none";
+      }
+    });
 
 
 
-const openDivReport = document.querySelector(".openModal-sales-reports");
-const modalReport = document.getElementById("modalOverlay-reports");
-const xBtnReport = document.getElementById("x-reports");
 
-openDivReport.addEventListener("click", () => {
-  modalReport.style.display = "flex";
-});
+    const openDivReport = document.querySelector(".openModal-sales-reports");
+    const modalReport = document.getElementById("modalOverlay-reports");
+    const xBtnReport = document.getElementById("x-reports");
 
-xBtnReport.addEventListener("click", () => {
-  modalReport.style.display = "none";
-});
+    openDivReport.addEventListener("click", () => {
+      modalReport.style.display = "flex";
+    });
 
-modalReport.addEventListener("click", (e) => {
-  if (e.target === modalReport) {
-    modalReport.style.display = "none";
-  }
-});
+    xBtnReport.addEventListener("click", () => {
+      modalReport.style.display = "none";
+    });
 
+    modalReport.addEventListener("click", (e) => {
+      if (e.target === modalReport) {
+        modalReport.style.display = "none";
+      }
+    });
 
 
 
 
 
-const openDivPayemnt = document.querySelector(".openModal-payments");
-const modalPayemnt = document.getElementById("modalOverlay-payments");
-const xBtnPayemnt = document.getElementById("x-payments");
 
-openDivPayemnt.addEventListener("click", () => {
-  modalPayemnt.style.display = "flex";
-});
+    const openDivPayemnt = document.querySelector(".openModal-payments");
+    const modalPayemnt = document.getElementById("modalOverlay-payments");
+    const xBtnPayemnt = document.getElementById("x-payments");
 
-xBtnPayemnt.addEventListener("click", () => {
-  modalPayemnt.style.display = "none";
-});
+    openDivPayemnt.addEventListener("click", () => {
+      modalPayemnt.style.display = "flex";
+    });
 
-modalPayemnt.addEventListener("click", (e) => {
-  if (e.target === modalPayemnt) {
-    modalPayemnt.style.display = "none";
-  }
-});
+    xBtnPayemnt.addEventListener("click", () => {
+      modalPayemnt.style.display = "none";
+    });
 
+    modalPayemnt.addEventListener("click", (e) => {
+      if (e.target === modalPayemnt) {
+        modalPayemnt.style.display = "none";
+      }
+    });
 
 
-const openDivchart = document.querySelector(".openModal-chart");
-const modalchart = document.getElementById("modalOverlay-chart");
-const xBtnchart = document.getElementById("x-chart");
 
-openDivchart.addEventListener("click", () => {
-  modalchart.style.display = "flex";
-});
+    const openDivchart = document.querySelector(".openModal-chart");
+    const modalchart = document.getElementById("modalOverlay-chart");
+    const xBtnchart = document.getElementById("x-chart");
 
-xBtnchart.addEventListener("click", () => {
-  modalchart.style.display = "none";
-});
+    openDivchart.addEventListener("click", () => {
+      modalchart.style.display = "flex";
+    });
 
-modalchart.addEventListener("click", (e) => {
-  if (e.target === modalchart) {
-    modalchart.style.display = "none";
-  }
-});
+    xBtnchart.addEventListener("click", () => {
+      modalchart.style.display = "none";
+    });
 
+    modalchart.addEventListener("click", (e) => {
+      if (e.target === modalchart) {
+        modalchart.style.display = "none";
+      }
+    });
 
-const openDivads = document.querySelector(".openModal-ads");
-const modalads = document.getElementById("modalOverlay-ads");
-const xBtnads = document.getElementById("x-ads");
 
-openDivads.addEventListener("click", () => {
-  modalads.style.display = "flex";
-});
+    const openDivads = document.querySelector(".openModal-ads");
+    const modalads = document.getElementById("modalOverlay-ads");
+    const xBtnads = document.getElementById("x-ads");
 
-xBtnads.addEventListener("click", () => {
-  modalads.style.display = "none";
-});
+    openDivads.addEventListener("click", () => {
+      modalads.style.display = "flex";
+    });
 
-modalads.addEventListener("click", (e) => {
-  if (e.target === modalads) {
-    modalads.style.display = "none";
-  }
-});
+    xBtnads.addEventListener("click", () => {
+      modalads.style.display = "none";
+    });
 
+    modalads.addEventListener("click", (e) => {
+      if (e.target === modalads) {
+        modalads.style.display = "none";
+      }
+    });
 
 
 
 
-const openDivsetting = document.querySelector(".openModal-setting");
-const modalsetting = document.getElementById("modalOverlay-setting");
-const xBtnsetting = document.getElementById("x-setting");
 
-openDivsetting.addEventListener("click", () => {
-  modalsetting.style.display = "flex";
-});
+    const openDivsetting = document.querySelector(".openModal-setting");
+    const modalsetting = document.getElementById("modalOverlay-setting");
+    const xBtnsetting = document.getElementById("x-setting");
 
-xBtnsetting.addEventListener("click", () => {
-  modalsetting.style.display = "none";
-});
+    openDivsetting.addEventListener("click", () => {
+      modalsetting.style.display = "flex";
+    });
 
-modalsetting.addEventListener("click", (e) => {
-  if (e.target === modalsetting) {
-    modalsetting.style.display = "none";
-  }
-});
+    xBtnsetting.addEventListener("click", () => {
+      modalsetting.style.display = "none";
+    });
 
+    modalsetting.addEventListener("click", (e) => {
+      if (e.target === modalsetting) {
+        modalsetting.style.display = "none";
+      }
+    });
 
 
 
 
-const openDivexpenses = document.querySelector(".openModal-expenses");
-const modalexpenses = document.getElementById("modalOverlay-expenses");
-const xBtnexpenses = document.getElementById("x-expenses");
 
-openDivexpenses.addEventListener("click", () => {
-  modalexpenses.style.display = "flex";
-});
+    const openDivexpenses = document.querySelector(".openModal-expenses");
+    const modalexpenses = document.getElementById("modalOverlay-expenses");
+    const xBtnexpenses = document.getElementById("x-expenses");
 
-xBtnexpenses.addEventListener("click", () => {
-  modalexpenses.style.display = "none";
-});
+    openDivexpenses.addEventListener("click", () => {
+      modalexpenses.style.display = "flex";
+    });
 
-modalexpenses.addEventListener("click", (e) => {
-  if (e.target === modalexpenses) {
-    modalexpenses.style.display = "none";
-  }
-});
+    xBtnexpenses.addEventListener("click", () => {
+      modalexpenses.style.display = "none";
+    });
 
+    modalexpenses.addEventListener("click", (e) => {
+      if (e.target === modalexpenses) {
+        modalexpenses.style.display = "none";
+      }
+    });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const bestSellerContainer = document.querySelector(".best-seller-cards");
+    
 
-  let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
+    const openDivrecords = document.querySelector(".openModal-records");
+    const modalrecords = document.getElementById("modalOverlay-records");
+    const xBtnrecords = document.getElementById("x-records");
 
-  if (salesReports.length === 0) {
-    bestSellerContainer.innerHTML = "<p>No sales yet</p>";
-    return;
-  }
+    openDivrecords.addEventListener("click", () => {
+      modalrecords.style.display = "flex";
+    });
 
-  const productMap = {};
+    xBtnrecords.addEventListener("click", () => {
+      modalrecords.style.display = "none";
+    });
 
-  salesReports.forEach(sale => {
-    if (!productMap[sale.product]) {
-      productMap[sale.product] = {
-        name: sale.product,
-        soldQty: 0,
-        sellPrice: sale.sellPrice
-      };
-    }
-    productMap[sale.product].soldQty += Number(sale.soldQty || 0);
-  });
+    modalrecords.addEventListener("click", (e) => {
+      if (e.target === modalrecords) {
+        modalrecords.style.display = "none";
+      }
+    });
 
-  const productsArray = Object.values(productMap).sort((a, b) => b.soldQty - a.soldQty);
 
-  const topProducts = productsArray.slice(0, 5);
+    document.addEventListener("DOMContentLoaded", () => {
+      const bestSellerContainer = document.querySelector(".best-seller-cards");
 
-  bestSellerContainer.innerHTML = "";
+      let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
 
-  topProducts.forEach(product => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+      if (salesReports.length === 0) {
+        bestSellerContainer.innerHTML = "<p>No sales yet</p>";
+        return;
+      }
 
-    card.innerHTML = `
+      const productMap = {};
+
+      salesReports.forEach(sale => {
+        if (!productMap[sale.product]) {
+          productMap[sale.product] = {
+            name: sale.product,
+            soldQty: 0,
+            sellPrice: sale.sellPrice
+          };
+        }
+        productMap[sale.product].soldQty += Number(sale.soldQty || 0);
+      });
+
+      const productsArray = Object.values(productMap).sort((a, b) => b.soldQty - a.soldQty);
+
+      const topProducts = productsArray.slice(0, 5);
+
+      bestSellerContainer.innerHTML = "";
+
+      topProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
             <div class="top">
                 <span class="name">${product.name}</span>
                 <span class="qty">Sold Qty: ${product.soldQty}</span>
@@ -357,9 +378,31 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="profit">$${Number(product.sellPrice).toFixed(2)}</div>
         `;
 
-    bestSellerContainer.appendChild(card);
-  });
-});
+        bestSellerContainer.appendChild(card);
+      });
+    });
+
+
+    const globeIcon2 = document.getElementById("globeIcon2");
+    const languageMenu = document.getElementById("languageMenu");
+
+    globeIcon2.addEventListener("click", (e) => {
+      e.stopPropagation();
+      languageMenu.style.display = languageMenu.style.display === "block" ? "none" : "block";
+    });
+
+    languageMenu.querySelectorAll("p").forEach(p => {
+      p.addEventListener("click", () => {
+        // Trigger your existing changeLanguage function
+        changeLanguage(p.dataset.lang);
+        languageMenu.style.display = "none";
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", () => {
+      languageMenu.style.display = "none";
+    });
 
 
 // SECURITY SETTINGS

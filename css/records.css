@@ -1,25 +1,16 @@
-body{
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
-  color: white;
-}
-.body {
+
+
+.records-main {
   width: 100%;
   padding-left: 30px;
-  height: 100vh;
   overflow-y: auto;
 }
 
-.suppliers,
-.products,
-.customers {
-    display: none;
-}
-
-.suppliers,
-.products,
-.customers {
-    animation: fade 0.3s ease-in-out;
+.records-suppliers,
+.records-products,
+.records-customers {
+    display: none;  
+      animation: fade 0.3s ease-in-out;
 }
 
 @keyframes fade {
@@ -27,24 +18,32 @@ body{
     to { opacity: 1; }
 }
 
-.header{
+.records-header{
     display: flex;
     text-align: center;
     justify-content: space-between;
     gap: 10px;
     width: 95%;
 }
-.one,.two,.three{
+.records-one,.records-two,.records-three{
     border: 1px solid rgba(255, 255, 255, 0.432);
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;
     cursor: pointer;
 }
-#main-h1{
+.records-one h2,.records-two h2,.records-three h2{
+  color: white;
+  text-decoration: none;
+}
+.records-one:hover,.records-two:hover,.records-three:hover{
+background-color: rgba(255, 255, 255, 0.788);
+color: black;
+}
+#records-main-h1{
     font-weight: 1;
     width: fit-content;
 }
-.date-input{
+.records-date-input{
     margin-bottom: 30px;
 display: flex;
 width: 95%;
@@ -53,7 +52,7 @@ justify-content: center;
 gap: 10px;
 }
 
-#from,#to{
+#records-from,#records-to{
 padding: 10px;
 width: 100%;
 background-color: #ffffff25;

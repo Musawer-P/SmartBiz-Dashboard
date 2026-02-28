@@ -12,6 +12,7 @@
   <title>SmartBiz Dashboard</title>
 </head>
 
+
 <body>
 
   <!--Modal Product-->
@@ -443,6 +444,13 @@
 
             <p>1007</p>
           </div>
+            <select onchange="setCurrency(this.value)" id = "currency">
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="GBP">GBP</option>
+    <option value="AFN">AFN</option>
+  </select>
+
         </div>
         <div class="user-info">
           <h1>User Info</h1>
@@ -493,12 +501,85 @@
 
   <!--/-->
 
-  <select onchange="setCurrency(this.value)">
-    <option value="USD">USD</option>
-    <option value="EUR">EUR</option>
-    <option value="GBP">GBP</option>
-    <option value="AFN">AFN</option>
-  </select>
+  <!--Modal Records-->
+  <div id="modalOverlay-records">
+    <div id="modalBox-records">
+      <div class="modal-header-records">
+        <h3>Records</h3>
+        <p id="x-records">x</p>
+      </div>
+      <div class = "records-main">
+        <h1 id = "main-h1">All Records</h1>
+        <div class = "records-date-input">
+            <input type = "datetime-local" id = "from">
+            <input type = "datetime-local" id = "to">
+        </div>
+    <div class="records-header">
+        <div class="records-one">
+          <a href = "suppliers-records.html"><h2>Suppliers</h2></a>
+            
+        </div>
+        <div class="records-two">
+            <a href = "products-records.html"><h2>Products</h2></a>
+        </div>
+        <div class="records-three">
+             <a href = "customers-records.html"><h2>Customers</h2></a>
+        </div>
+
+    </div>
+
+    <div class="records-mian">
+        <div class="records-suppliers">
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Items</th>
+                </thead>
+                                <tbody></tbody>
+
+            </table>
+        </div>
+
+
+        <div class="records-products">
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Category</th>
+                    <th>Barcode</th>
+                    <th>Real Price</th>
+                    <th>Sale Price</th>
+                    <th>Payment</th>
+                    <th>Supplier</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class = "records-customers">
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>E mail</th>
+                    <th>Address</th>
+                    <th>Gender</th>
+                    <th>Discount</th>
+                    <th>Account</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <!--/-->
 
   <h3 data-amount="2500"></h3>
   <p data-amount="180.75"></p>
@@ -530,15 +611,16 @@
     <div class="search-bar">
       <i class="fa fa-search" id="search-icon"></i>
       <i class="fas fa-headset">
-        <select onchange="changeLanguage(this.value)">
-          <option value="">Language</option>
-          <option value="fa">فارسی</option>
-          <option value="ar">العربية</option>
-          <option value="en">English</option>
-        </select>
       </i>
+      <div class="language-dropdown">
+        <i class="fas fa-globe" id="globeIcon2" style="cursor:pointer;"></i>
+        <div class="dropdown-menu" id="languageMenu" style="display:none;">
+          <p data-lang="en">English</p>
+          <p data-lang="ar">العربية</p>
+          <p data-lang="fa">فارسی</p>
+        </div>
+      </div>
       <i class="far fa-bell"></i>
-      <i class="fas fa-globe"></i>
 
 
     </div>
@@ -571,7 +653,7 @@
       </div>
       <div class="setting-sidebar">
         <i class="fas fa-file-alt"></i>
-        <p class="openModal-setting" data-key="records">Records</p>
+        <p class="openModal-records" data-key="records">Records</p>
       </div>
 
 
