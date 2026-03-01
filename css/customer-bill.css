@@ -1,0 +1,101 @@
+   body{
+            padding: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .main{
+            width: 100%;
+            margin: 0 auto;
+        }
+        .logo{
+            display: flex;
+        flex-direction: column;
+            justify-content: center;
+            align-items: center;
+       
+        }
+        #logo{
+            margin-bottom: 0px;
+            width: 150px;
+            text-align: center;
+            padding: 0px;
+
+        }
+        h1{
+            margin-top: 0px;
+        }
+        .row{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            
+        }
+        .row h3 {
+            font-size: 16px;
+                        margin-top: 0px;
+        }
+        .row p{
+            margin-top: 0px;
+        }
+
+        .customer-info{
+            margin-top: 10px;
+        }
+        .info-row{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            
+        }
+        .info-row h3 {
+            font-size: 16px;
+                        margin-top: 0px;
+        }
+        .info-row p{
+            margin-top: 0px;
+        }
+
+
+        .cc-row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid black;
+            margin-bottom: 0px;
+        }
+         .cs-row{
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-top: 0px;
+        }
+        table{
+            margin-top: 10px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: start;
+        }
+        table tr{
+            border-bottom: 1px solid black;
+        }
+        table td{
+            padding: 15px 0px;
+        }
+        table th{
+                        text-align: start;
+                        padding: 13px 0px;
+
+        }
+
+        .footer{
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+        .footer h3{
+font-size: 25px;
+        }
+        .footer p {
+font-size: 25px;
+        }
