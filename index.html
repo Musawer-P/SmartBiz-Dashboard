@@ -1074,10 +1074,28 @@ color: white;
 border-radius: 30px;
 }
 
+.payment-btn{
+display: flex;
+justify-content: space-between;
+width: 100%;
+gap: 20px;
+}
+.pay{
+width: 100%;
+}
+#supplier-pay-btn ,#customer-pay-btn{
+padding: 7px 10px;
+width: 100%;
+border: none;
+cursor: pointer;
+}
 </style>
 
 <body>
 
+
+  <!--Supplier-customer-pay-modals-->
+  <!--/-->
   <!--Modal Product-->
 
   <div id="modalOverlay">
@@ -1317,8 +1335,30 @@ border-radius: 30px;
           <p>100$</p>
         </div>
       </div>
+      
+
+
+      <div class="payment-btn">
+       
+  <div class = "pay">
+        <button type = "button" id = "supplier-pay-btn">
+          Pay
+        </button>
+      </div>
+       
+  <div class = "pay">
+        <button type = "button" id = "customer-pay-btn">
+          Pay
+        </button>
+      </div>
+      </div>
+      
+
+
+
     </div>
   </div>
+
 
   <!--/-->
 
