@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href = "css/login.css" rel = "stylesheet">
     <title>Login</title>
 </head>
 <body>
-    <div class = "login">
-        <form id="loginForm">
-  <input id="email" type="email">
-  <input id="password" type="password">
-  <button id="loginBtn">Login</button>
-  <p class="login-error"></p>
-</form>
 
+    <div class = "main">
+        <header>
+            <h1>Login Page</h1>
+        </header>
+        <div class = "login-div">
+            <div class = "login-form">
+                <form>
+                <div class = "img"><img src = "images/main-logo-white.png"></div>
+                <div class = "input">
+                    <input type = "text" id = "user" placeholder = "User Name">
+                    <input type = "password" id = "pass" placeholder = "Password">
+                </div>
+                  <p class="login-error"></p>
+                <div class = "btn">
+                    <button type = "submit" id = "login-btn">Login</button>
+                </div>
+                </form>
+            </div>
+            <div class = "animation">
+
+            </div>
+        </div>
     </div>
+<script src = "js/login.js"></script>
 </body>
 </html>

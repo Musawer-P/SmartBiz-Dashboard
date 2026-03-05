@@ -1,8 +1,9 @@
-function smartbizLogout() {
-  localStorage.removeItem("smartbiz_logged_in");
-  localStorage.removeItem("smartbiz_user");
+const logoutBtn = document.querySelector("#logout");
+
+logoutBtn.addEventListener("click", function () {
+
+  localStorage.removeItem("loggedIn");
+
   window.location.href = "login.html";
-}
 
-
-
+});
