@@ -130,158 +130,152 @@ new Chart(barCtx, {
   }
 });
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    function setupPaymentSystem(tableId, buttonId, totalId, storageKey) {
+function setupPaymentSystem(tableId, buttonId, totalId) {
 
-      
-        const table = document.getElementById(tableId);
-        const tableBody = table.querySelector("tbody");
-        const totalElement = document.getElementById(totalId);
-        const payBtn = document.getElementById(buttonId);
+const table = document.getElementById(tableId);
+const tbody = table.querySelector("tbody");
+const payBtn = document.getElementById(buttonId);
+const totalBox = document.getElementById(totalId);
 
-        if (!table || !tableBody || !totalElement || !payBtn) return;
-
-        // LOAD FROM LOCALSTORAGE
-        const savedData = localStorage.getItem(storageKey);
-        if (savedData) {
-            tableBody.innerHTML = savedData;
-        }
-
-        calculateTotal();
-
-        // ======================
-        // ADD PAYMENT
-        // ======================
-        payBtn.addEventListener("click", function () {
-            let payAmount = prompt("Enter payment amount:");
-            if (payAmount === null) return;
-
-            payAmount = parseFloat(payAmount);
-            if (isNaN(payAmount) || payAmount <= 0) {
-                alert("Invalid amount!");
-                return;
-            }
-
-            const newRow = `
-                <tr>
-                    <td>${tableBody.rows.length + 1}</td>
-                    <td class="amount">${payAmount}</td>
-                    <td><p>Cash</p></td>
-                    <td>
-                        <button class="edit-btn-payment">Edit</button>
-                        <button class="delete-btn-payment">Delete</button>
-                    </td>
-                </tr>
-            `;
-
-            tableBody.insertAdjacentHTML("beforeend", newRow);
-            save();
-            calculateTotal();
-        });
-
-        // ======================
-        // EDIT & DELETE (EVENT DELEGATION)
-        // ======================
-        tableBody.addEventListener("click", function (e) {
-            const row = e.target.closest("tr");
-            if (!row) return;
-
-            // DELETE
-            if (e.target.classList.contains("delete-btn-payment")) {
-                row.remove();
-                reorderRows();
-                save();
-                calculateTotal();
-            }
-
-            // EDIT
-            if (e.target.classList.contains("edit-btn-payment")) {
-                const amountCell = row.querySelector(".amount");
-                let currentAmount = parseFloat(amountCell.textContent);
-                let newAmount = prompt("Edit amount:", currentAmount);
-
-                if (newAmount === null) return;
-
-                newAmount = parseFloat(newAmount);
-                if (isNaN(newAmount) || newAmount <= 0) {
-                    alert("Invalid amount!");
-                    return;
-                }
-
-                amountCell.textContent = newAmount;
-                save();
-                calculateTotal();
-            }
-        });
-
-        // ======================
-        // CALCULATE TOTAL
-        // ======================
-        function calculateTotal() {
-            let total = 0;
-
-            tableBody.querySelectorAll("tr").forEach(row => {
-                const status = row.querySelector("td:nth-child(3) p").textContent.trim().toLowerCase();
-                const rawAmount = row.querySelector(".amount").textContent.replace("$", "").trim();
-                const amount = parseFloat(rawAmount) || 0;
-
-                if (status === "loan") total -= amount;
-                else total += amount;
-            });
-
-            totalElement.textContent = total + "$";
-
-            totalElement.classList.remove("negative", "positive", "zero");
-            if (total < 0) totalElement.classList.add("negative");
-            else if (total > 0) totalElement.classList.add("positive");
-            else totalElement.classList.add("zero");
-        }
-
-        // ======================
-        // SAVE
-        // ======================
-        function save() {
-            localStorage.setItem(storageKey, tableBody.innerHTML);
-        }
-
-        // ======================
-        // REORDER BILL NUMBERS
-        // ======================
-        function reorderRows() {
-            tableBody.querySelectorAll("tr").forEach((row, index) => {
-                row.children[0].textContent = index + 1;
-            });
-        }
+if (!table || !tbody || !payBtn || !totalBox) return;
 
 
-        
-    }
+// PAY BUTTON
+payBtn.addEventListener("click", function () {
 
-    // SUPPLIER TABLE
-    setupPaymentSystem(
-        "payment-table",
-        "pay-btn",
-        "total-amount",
-        "supplierPayments"
-    );
+let amount = prompt("Enter payment amount");
 
-    // CUSTOMER TABLE
-    setupPaymentSystem(
-        "payment-table-c",
-        "pay-btn-c",
-        "total-amount-c",
-        "customerPayments"
-    );
+if (amount === null) return;
+
+amount = parseFloat(amount);
+
+if (isNaN(amount) || amount <= 0) {
+alert("Invalid amount");
+return;
+}
+
+const row = `
+<tr>
+<td></td>
+<td class="amount">${amount}</td>
+<td><p>Cash</p></td>
+<td>
+<button class="edit-btn-payment">Edit</button>
+<button class="delete-btn-payment">Delete</button>
+</td>
+</tr>
+`;
+
+tbody.insertAdjacentHTML("beforeend", row);
+
+reorderRows();
+calculateTotal();
 
 });
 
-  
+
+// EDIT + DELETE BUTTONS
+tbody.addEventListener("click", function(e){
+
+const row = e.target.closest("tr");
+if(!row) return;
 
 
-    const openDivVendor = document.querySelector(".openModal-vendor");
+// DELETE
+if(e.target.classList.contains("delete-btn-payment")){
+
+row.remove();
+reorderRows();
+calculateTotal();
+
+}
+
+
+// EDIT
+if(e.target.classList.contains("edit-btn-payment")){
+
+const amountCell = row.querySelector(".amount");
+
+let currentAmount = parseFloat(amountCell.textContent);
+
+let newAmount = prompt("Edit amount:", currentAmount);
+
+if(newAmount === null) return;
+
+newAmount = parseFloat(newAmount);
+
+if(isNaN(newAmount) || newAmount <= 0){
+alert("Invalid amount");
+return;
+}
+
+amountCell.textContent = newAmount;
+
+calculateTotal();
+
+}
+
+});
+
+
+// TOTAL CALCULATION
+function calculateTotal(){
+
+let total = 0;
+
+tbody.querySelectorAll("tr").forEach(row => {
+
+const status = row.querySelector("td:nth-child(3) p").textContent.trim().toLowerCase();
+const amount = parseFloat(row.querySelector(".amount").textContent) || 0;
+
+if(status === "loan"){
+total -= amount;
+}else{
+total += amount;
+}
+
+});
+
+totalBox.textContent = total + "$";
+
+
+// COLOR CHANGE
+totalBox.classList.remove("negative","positive","zero");
+
+if(total < 0){
+totalBox.classList.add("negative");
+}
+else if(total > 0){
+totalBox.classList.add("positive");
+}
+else{
+totalBox.classList.add("zero");
+}
+
+}
+
+
+// BILL NUMBER REORDER
+function reorderRows(){
+
+tbody.querySelectorAll("tr").forEach((row,index)=>{
+row.children[0].textContent = index + 1;
+});
+
+}
+
+calculateTotal();
+
+}
+
+setupPaymentSystem("payment-table","pay-btn","total-amount");
+setupPaymentSystem("payment-table-c","pay-btn-c","total-amount-c");
+
+});
+
+   const openDivVendor = document.querySelector(".openModal-vendor");
     const modalVendor = document.getElementById("modalOverlay-vendor");
     const xBtnVendor = document.getElementById("x-vendor");
 

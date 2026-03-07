@@ -15,7 +15,6 @@
 <body>
 
 
-
   <!--Modal Product-->
 
   <div id="modalOverlay">
@@ -181,58 +180,71 @@
       <div class="payment-row">
         <div class="payment-customer">
           <h3>Supplier</h3>
-         <table id="payment-table">
-  <thead>
-    <tr>
-      <th>Bill No</th>
-      <th>Amount</th>
-      <th>Status</th>
-            <th>Action</th>
+        
+<table id="payment-table">
+<thead>
+<tr>
+<th>Bill No</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td class="amount">200</td>
-      <td><p>Loan</p></td>
-       <td>
-        <button class="edit-btn-payment">Edit</button>
-        <button class="delete-btn-payment">Delete</button>
-      </td>
-    </tr>
-  </tbody>
+<tbody>
+<tr>
+<td>1</td>
+<td class="amount">200</td>
+<td><p>Loan</p></td>
+<td>
+  <button class="edit-btn-payment">Edit</button>
+<button class="delete-btn-payment">Delete</button>
+</td>
+</tr>
+</tbody>
+
 </table>
 
 <button id="pay-btn">Pay</button>
-
-<div class="total-payments">
+<div class = "total-payments">
   <h3>Total</h3>
-  <p id="total-amount" class="total-box">0$</p>
+<p id="total-amount">0$</p>
 </div>
-
-        </div>
+</div>
         <div class="payment-customer">
           <h3>Customers</h3>
-          <table id="payment-table-c">
-            <thead>
-              <th>Bill No</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </thead>
-            <tr>
-              <td>1</td>
-              <td class = "amount">200$</td>
-              <td>
-                <p>Loan</p>
-              </td>
-            </tr>
-          </table>
-          <button id="pay-btn-c">Pay</button>
+          
+ <table id="payment-table-c">
 
-<div class="total-payments">
+<thead>
+<tr>
+<th>Bill No</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td class="amount">200</td>
+<td><p>Loan</p></td>
+<td>
+  <button class="edit-btn-payment">Edit</button>
+
+<button class="delete-btn-payment">Delete</button>
+</td>
+</tr>
+</tbody>
+
+</table>
+
+<button id="pay-btn-c">Pay</button>
+<div class = "total-payments">
   <h3>Total</h3>
-  <p id="total-amount-c" class="total-box">0$</p>
+<p id="total-amount-c">0$</p>
+</div>
 </div>
         </div>
 
@@ -773,8 +785,8 @@
 
   <script src="js/main.js"></script>
   <script src="js/data.js"></script>
+  <script src = "js/payment.js"></script>
   <script src="js/ads.js"></script>
-  <script src="js/payment.js"></script>
   <script src="js/customer.js"></script>
   <script src="js/product.js"></script>
   <script src="js/sales.js"></script>
@@ -786,6 +798,8 @@
   <script src="js/language.js"></script>
   <script src="js/expenses-records.js"></script>
   <script src="js/expenses.js"></script>
+    <script src="js/logout.js"></script>
+
 
 
 
