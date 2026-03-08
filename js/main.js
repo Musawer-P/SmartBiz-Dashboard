@@ -130,6 +130,8 @@ new Chart(barCtx, {
   }
 });
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
 function setupPaymentSystem(tableId, buttonId, totalId) {
@@ -553,7 +555,6 @@ setupPaymentSystem("payment-table-c","pay-btn-c","total-amount-c");
     if (localStorage.getItem("loggedIn") !== "true") {
   window.location.href = "login.html";
 }
-
 
 // SECURITY SETTINGS
 document.querySelectorAll(".security-setting p").forEach(item => {

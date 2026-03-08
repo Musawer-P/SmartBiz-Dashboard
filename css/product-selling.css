@@ -22,18 +22,25 @@ h1{
 
   border-radius: 20px;
 }
-#p-price{
+.p-price{
   text-align: center;
   font-size: 25px;
   margin-top: 5px;
   color: rgba(5, 5, 5, 0.808);
 }
-#p-img{
-  width: 200px;
+.img{
+  display: flex;
+  justify-content: center;
+}
+img{
+  text-align: center;
+  width: 150px;
 }
 .product-desc{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0px 20px;
   background-color: #020a30ee;
   border-radius: 40px;
   color: white;
@@ -137,5 +144,12 @@ width: 100%;
 .row{
   width: 100%;
   display: flex;
+
+}
+
+.products-container{
+  display: flex;
+  justify-content: start;
+  gap: 20px;
 
 }

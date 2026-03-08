@@ -1,31 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const tableBody = document.getElementById("productsTable");
+const tableBody = document.getElementById("productsTable");
+
+function loadProducts() {
 
   const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  if (products.length === 0) {
-    tableBody.innerHTML =
-      "<tr><td colspan='9'>No products found</td></tr>";
-    return;
-  }
-
   tableBody.innerHTML = "";
 
-  products.forEach(product => {
-    const row = document.createElement("tr");
+  products.forEach(item => {
 
-    row.innerHTML = `
-      <td>${product.name}</td>
-      <td>${product.qty}</td>
-      <td>${product.category}</td>
-      <td>${product.barcode}</td>
-      <td>${product.realPrice}</td>
-      <td>${product.salePrice}</td>
-      <td>${product.payment}</td>
-      <td>${product.supplier}</td>
-      <td>Edit</td>
+    tableBody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.qty}</td>
+        <td>${item.category}</td>
+        <td>${item.barcode}</td>
+        <td>${item.realPrice}</td>
+        <td>${item.salePrice}</td>
+        <td>${item.payment}</td>
+        <td>${item.supplier}</td>
+        <td><button>Edit</button></td>
+      </tr>
     `;
 
-    tableBody.appendChild(row);
   });
-});
+
+}
+
+loadProducts();
