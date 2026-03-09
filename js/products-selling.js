@@ -1,6 +1,4 @@
-// ---------------------------
 // LOAD PRODUCTS FROM STORAGE
-// ---------------------------
 const container = document.querySelector(".products-container");
 const storedProducts = JSON.parse(localStorage.getItem("products")) || [];
 
@@ -27,9 +25,8 @@ storedProducts.forEach(item => {
   `;
 });
 
-// ---------------------------
+
 // SELECT PRODUCTS AFTER LOAD
-// ---------------------------
 const productCards = document.querySelectorAll(".product-cart");
 const cartTable = document.querySelector("#cart-table tbody");
 const totalDisplay = document.getElementById("cart-total");
@@ -42,9 +39,7 @@ const submitBtn = document.getElementById("payment-submit");
 let cart = {};
 let selectedPayment = "";
 
-// ---------------------------
 // ADD TO CART
-// ---------------------------
 productCards.forEach(product => {
   product.addEventListener("click", () => {
     const name = product.dataset.name;
@@ -59,10 +54,8 @@ productCards.forEach(product => {
     renderCart();
   });
 });
-
-// ---------------------------
 // RENDER CART
-// ---------------------------
+
 function renderCart() {
   cartTable.innerHTML = "";
   let total = 0;
@@ -85,9 +78,8 @@ function renderCart() {
   amountDisplay.textContent = "Amount: " + total.toFixed(2) + " $";
 }
 
-// ---------------------------
 // PAYMENT SELECT
-// ---------------------------
+
 cashBtn.addEventListener("click", () => {
   selectedPayment = "Cash";
   cashBtn.style.background = "green";
@@ -100,9 +92,9 @@ creditBtn.addEventListener("click", () => {
   cashBtn.style.background = "";
 });
 
-// ---------------------------
+
 // SUBMIT CART
-// ---------------------------
+
 submitBtn.addEventListener("click", () => {
 
   if (Object.keys(cart).length === 0) {

@@ -223,53 +223,64 @@ calculateTotal();
 
 
 // TOTAL CALCULATION
-function calculateTotal(){
+window.calculateTotal = function() {
+    // ---------------------------
+    // Supplier table total
+    // ---------------------------
+    let supplierTotal = 0;
+    document.querySelectorAll("#payment-table tbody tr").forEach(row => {
+        const status = row.querySelector("td:nth-child(3) p")?.textContent.trim().toLowerCase();
+        const amount = parseFloat(row.querySelector(".amount")?.textContent) || 0;
 
-let total = 0;
+        if(status === "loan") supplierTotal -= amount;
+        else supplierTotal += amount;
+    });
 
-tbody.querySelectorAll("tr").forEach(row => {
+    const supplierTotalBox = document.getElementById("total-amount");
+    if(supplierTotalBox){
+        supplierTotalBox.textContent = supplierTotal.toFixed(2) + "$";
+        supplierTotalBox.classList.remove("negative","positive","zero");
+        if(supplierTotal < 0) supplierTotalBox.classList.add("negative");
+        else if(supplierTotal > 0) supplierTotalBox.classList.add("positive");
+        else supplierTotalBox.classList.add("zero");
+    }
 
-const status = row.querySelector("td:nth-child(3) p").textContent.trim().toLowerCase();
-const amount = parseFloat(row.querySelector(".amount").textContent) || 0;
+    // ---------------------------
+    // Customer table total
+    // ---------------------------
+    let customerTotal = 0;
+    document.querySelectorAll("#payment-table-c tbody tr").forEach(row => {
+        const status = row.querySelector("td:nth-child(4) p")?.textContent.trim().toLowerCase();
+        const amount = parseFloat(row.querySelector(".amount")?.textContent) || 0;
 
-if(status === "loan"){
-total -= amount;
-}else{
-total += amount;
-}
+        if(status === "get-loan") customerTotal -= amount;
+        else customerTotal += amount;
+    });
 
-});
+    const customerTotalBox = document.getElementById("total-amount-c");
+    if(customerTotalBox){
+        customerTotalBox.textContent = customerTotal.toFixed(2) + "$";
+        customerTotalBox.classList.remove("negative","positive","zero");
+        if(customerTotal < 0) customerTotalBox.classList.add("negative");
+        else if(customerTotal > 0) customerTotalBox.classList.add("positive");
+        else customerTotalBox.classList.add("zero");
+    }
+};
 
-totalBox.textContent = total + "$";
+window.reorderRows = function() {
+    // Supplier table
+    document.querySelectorAll("#payment-table tbody tr").forEach((row,index)=>{
+        row.children[0].textContent = index + 1;
+    });
 
+    // Customer table
+    document.querySelectorAll("#payment-table-c tbody tr").forEach((row,index)=>{
+        row.children[0].textContent = index + 1;
+    });
+};
 
-// COLOR CHANGE
-totalBox.classList.remove("negative","positive","zero");
-
-if(total < 0){
-totalBox.classList.add("negative");
-}
-else if(total > 0){
-totalBox.classList.add("positive");
-}
-else{
-totalBox.classList.add("zero");
-}
-
-}
-
-
-// BILL NUMBER REORDER
-function reorderRows(){
-
-tbody.querySelectorAll("tr").forEach((row,index)=>{
-row.children[0].textContent = index + 1;
-});
-
-}
-
+// Call it once to initialize totals
 calculateTotal();
-
 }
 
 setupPaymentSystem("payment-table","pay-btn","total-amount");
@@ -555,7 +566,6 @@ setupPaymentSystem("payment-table-c","pay-btn-c","total-amount-c");
     if (localStorage.getItem("loggedIn") !== "true") {
   window.location.href = "login.html";
 }
-
 // SECURITY SETTINGS
 document.querySelectorAll(".security-setting p").forEach(item => {
   item.addEventListener("click", () => {
