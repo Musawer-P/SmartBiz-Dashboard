@@ -62,7 +62,7 @@
 
       <div class = "payment-btn">
         <button type = "submit" id = "cash">Cash</button>
-        <button type = "submit" id = "credit">Credit</button>
+        <button type = "submit" id = "loan">Loan</button>
       </div>
       <div class = "payment-footer">
 <div class="cart-total">
@@ -71,14 +71,41 @@
       </div>
     </div>
 </div>
+
 </div>
 </div>
+<table id="payment-table-c">
+
+<thead>
+<tr>
+<th>Bill No</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td class="amount"></td>
+<td><p></p></td>
+<td>
+  <button class="edit-btn-payment">Edit</button>
+
+<button class="delete-btn-payment">Delete</button>
+</td>
+</tr>
+</tbody>
+
+</table>
 
 
 
+<script src="js/products-selling.js"></script>
+<script src="js/customer-loan.js"></script>
+  <script src="js/customer-select.js"></script>
 
-  <!-- JS -->  <script src="js/customer-select.js"></script>
-  <script src="js/products-selling.js"></script>
 <script src="js/dashboard.js"></script>   <!-- Today Sales -->
 <script src="js/sales.js"></script>       <!-- Sales Reports -->
 <script src="js/bills.js"></script>       <!-- Bills -->

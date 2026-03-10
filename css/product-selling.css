@@ -103,7 +103,7 @@ table td{
   gap: 5px;
 
 }
-#cash , #credit{
+#cash , #loan{
   width: 100%;
   padding: 5px 10px;
   border: none;
@@ -115,8 +115,8 @@ table td{
 #cash{
   background-color: #13f35e;
 }
-#credit{
-  background-color: #135af3;
+#loan{
+  background-color: #ee1f1f;
 }
 .payment-footer{
   display: flex;

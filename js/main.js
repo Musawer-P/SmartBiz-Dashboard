@@ -132,162 +132,6 @@ new Chart(barCtx, {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-
-function setupPaymentSystem(tableId, buttonId, totalId) {
-
-const table = document.getElementById(tableId);
-const tbody = table.querySelector("tbody");
-const payBtn = document.getElementById(buttonId);
-const totalBox = document.getElementById(totalId);
-
-if (!table || !tbody || !payBtn || !totalBox) return;
-
-
-// PAY BUTTON
-payBtn.addEventListener("click", function () {
-
-let amount = prompt("Enter payment amount");
-
-if (amount === null) return;
-
-amount = parseFloat(amount);
-
-if (isNaN(amount) || amount <= 0) {
-alert("Invalid amount");
-return;
-}
-
-const row = `
-<tr>
-<td></td>
-<td class="amount">${amount}</td>
-<td><p>Cash</p></td>
-<td>
-<button class="edit-btn-payment">Edit</button>
-<button class="delete-btn-payment">Delete</button>
-</td>
-</tr>
-`;
-
-tbody.insertAdjacentHTML("beforeend", row);
-
-reorderRows();
-calculateTotal();
-
-});
-
-
-// EDIT + DELETE BUTTONS
-tbody.addEventListener("click", function(e){
-
-const row = e.target.closest("tr");
-if(!row) return;
-
-
-// DELETE
-if(e.target.classList.contains("delete-btn-payment")){
-
-row.remove();
-reorderRows();
-calculateTotal();
-
-}
-
-
-// EDIT
-if(e.target.classList.contains("edit-btn-payment")){
-
-const amountCell = row.querySelector(".amount");
-
-let currentAmount = parseFloat(amountCell.textContent);
-
-let newAmount = prompt("Edit amount:", currentAmount);
-
-if(newAmount === null) return;
-
-newAmount = parseFloat(newAmount);
-
-if(isNaN(newAmount) || newAmount <= 0){
-alert("Invalid amount");
-return;
-}
-
-amountCell.textContent = newAmount;
-
-calculateTotal();
-
-}
-
-});
-
-
-// TOTAL CALCULATION
-window.calculateTotal = function() {
-    // ---------------------------
-    // Supplier table total
-    // ---------------------------
-    let supplierTotal = 0;
-    document.querySelectorAll("#payment-table tbody tr").forEach(row => {
-        const status = row.querySelector("td:nth-child(3) p")?.textContent.trim().toLowerCase();
-        const amount = parseFloat(row.querySelector(".amount")?.textContent) || 0;
-
-        if(status === "loan") supplierTotal -= amount;
-        else supplierTotal += amount;
-    });
-
-    const supplierTotalBox = document.getElementById("total-amount");
-    if(supplierTotalBox){
-        supplierTotalBox.textContent = supplierTotal.toFixed(2) + "$";
-        supplierTotalBox.classList.remove("negative","positive","zero");
-        if(supplierTotal < 0) supplierTotalBox.classList.add("negative");
-        else if(supplierTotal > 0) supplierTotalBox.classList.add("positive");
-        else supplierTotalBox.classList.add("zero");
-    }
-
-    // ---------------------------
-    // Customer table total
-    // ---------------------------
-    let customerTotal = 0;
-    document.querySelectorAll("#payment-table-c tbody tr").forEach(row => {
-        const status = row.querySelector("td:nth-child(4) p")?.textContent.trim().toLowerCase();
-        const amount = parseFloat(row.querySelector(".amount")?.textContent) || 0;
-
-        if(status === "get-loan") customerTotal -= amount;
-        else customerTotal += amount;
-    });
-
-    const customerTotalBox = document.getElementById("total-amount-c");
-    if(customerTotalBox){
-        customerTotalBox.textContent = customerTotal.toFixed(2) + "$";
-        customerTotalBox.classList.remove("negative","positive","zero");
-        if(customerTotal < 0) customerTotalBox.classList.add("negative");
-        else if(customerTotal > 0) customerTotalBox.classList.add("positive");
-        else customerTotalBox.classList.add("zero");
-    }
-};
-
-window.reorderRows = function() {
-    // Supplier table
-    document.querySelectorAll("#payment-table tbody tr").forEach((row,index)=>{
-        row.children[0].textContent = index + 1;
-    });
-
-    // Customer table
-    document.querySelectorAll("#payment-table-c tbody tr").forEach((row,index)=>{
-        row.children[0].textContent = index + 1;
-    });
-};
-
-// Call it once to initialize totals
-calculateTotal();
-}
-
-setupPaymentSystem("payment-table","pay-btn","total-amount");
-setupPaymentSystem("payment-table-c","pay-btn-c","total-amount-c");
-
-});
-
    const openDivVendor = document.querySelector(".openModal-vendor");
     const modalVendor = document.getElementById("modalOverlay-vendor");
     const xBtnVendor = document.getElementById("x-vendor");
@@ -566,6 +410,10 @@ setupPaymentSystem("payment-table-c","pay-btn-c","total-amount-c");
     if (localStorage.getItem("loggedIn") !== "true") {
   window.location.href = "login.html";
 }
+
+
+
+
 // SECURITY SETTINGS
 document.querySelectorAll(".security-setting p").forEach(item => {
   item.addEventListener("click", () => {

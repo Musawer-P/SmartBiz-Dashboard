@@ -1,4 +1,4 @@
-  body {
+    body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
     color: white;
@@ -1084,7 +1084,7 @@ gap: 20px;
 .pay{
 width: 100%;
 }
-#pay-btn ,#pay-btn-c{
+#pay-btn,#get-btn ,#pay-btn-c,#get-btn-c{
 padding: 7px 10px;
 width: 100%;
 border: none;
@@ -1120,4 +1120,9 @@ cursor: pointer;
   justify-content: space-between;
   align-items: center;
 
+}
+.btn-div{
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
 }
