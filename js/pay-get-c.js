@@ -2,23 +2,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const tbody = document.querySelector("#payment-table-c tbody");
     const totalBox = document.getElementById("total-amount-c");
 
-    // --- 1. LOAD ALL DATA (Manual + From Selling Page) ---
-    function loadData() {
-        if (!tbody) return;
-        tbody.innerHTML = ""; 
-        // This gets the data saved by your product-selling.js
-        const savedPayments = JSON.parse(localStorage.getItem("payment-customer")) || [];
-        
-        savedPayments.forEach(pay => {
-            const displayName = pay.customer || "Unknown Customer";
-            // Every item gets passed to renderRow, which adds the buttons
-            renderRow(pay.id, displayName, pay.amount, pay.status);
-        });
-        calculateTotal();
-    }
+    // LOAD DATA 
+function loadData() {
+    if (!tbody) return;
+    tbody.innerHTML = ""; 
+    
+    const savedPayments = JSON.parse(localStorage.getItem("payment-customer")) || [];
 
-    // --- 2. RENDER ROW (This adds the Edit/Delete buttons to EVERYTHING) ---
+    savedPayments.forEach(pay => {
+        const displayName = pay.customer || "Unknown Customer";
+        renderRow(pay.id, displayName, pay.amount, pay.status);
+    });
+
+    reorderRows();
+    calculateTotal(); 
+}
+    // RENDER ROW (Draws the row on the screen) 
     function renderRow(id, name, amount, status) {
+        if (!tbody) return;
         const row = document.createElement("tr");
         row.setAttribute("data-id", id);
         
@@ -30,69 +31,83 @@ document.addEventListener("DOMContentLoaded", function () {
             <td class="amount">${parseFloat(amount).toFixed(2)}</td>
             <td style="color: ${statusColor}; font-weight: bold;">${status}</td>
             <td>
-                <!-- These buttons will now appear for sales from product-selling too -->
                 <button class="edit-btn-payment">Edit</button>
                 <button class="delete-btn-payment">Delete</button>
             </td>
         `;
         tbody.appendChild(row);
-        reorderRows();
+        reorderRows(); // Updates the 1, 2, 3 numbering
     }
 
-    // --- 3. MATH & TOTAL COLORS ---
-    function calculateTotal() {
+    // MATH & TOTAL 
+     function calculateTotal() {
         if (!totalBox) return;
         let total = 0;
         const savedPayments = JSON.parse(localStorage.getItem("payment-customer")) || [];
+
         savedPayments.forEach(pay => {
-            if (pay.status === "loan") total += parseFloat(pay.amount);
-            else total -= parseFloat(pay.amount);
+           
+            if (pay.status === "loan") total -= parseFloat(pay.amount);
+            else total += parseFloat(pay.amount);
         });
+
         totalBox.textContent = total.toFixed(2) + " $";
-        if (total > 0) totalBox.style.backgroundColor = "red"; 
-        else if (total < 0) totalBox.style.backgroundColor = "green";
-        else totalBox.style.backgroundColor = "#333";
+        totalBox.style.color = "white";
+        
+        if (total < 0) {
+            totalBox.style.backgroundColor = "red"; 
+        } 
+        else if (total > 0) {
+            totalBox.style.backgroundColor = "green";
+        } 
+        else {
+            totalBox.style.backgroundColor = "#333";
+        }
     }
 
-    // --- 4. MANUAL BUTTON ACTIONS (PAY & GET) ---
-    function addNewEntry(statusType) {
-        const customerName = prompt("Enter Customer Name:");
-        if (!customerName) return;
-        let amountInput = prompt(`Enter ${statusType} amount:`);
-        if (amountInput === null) return;
-        let amount = parseFloat(amountInput);
-        if (isNaN(amount) || amount <= 0) return alert("Invalid amount.");
+    // MANUAL ACTIONS (Pay & Get Buttons)
+   function addNewEntry(statusType) {
+    const customerName = prompt("Enter Customer Name:");
+    if (!customerName) return;
 
-        const newEntry = {
-            id: Date.now(),
-            customer: customerName,
-            amount: amount,
-            status: statusType
-        };
-
-        const currentData = JSON.parse(localStorage.getItem("payment-customer")) || [];
-        currentData.push(newEntry);
-        localStorage.setItem("payment-customer", JSON.stringify(currentData));
-
-        renderRow(newEntry.id, newEntry.customer, newEntry.amount, newEntry.status);
-        calculateTotal();
+    let amountInput = prompt(`Enter ${statusType} amount:`);
+    if (amountInput === null) return;
+    
+    let amount = parseFloat(amountInput);
+    if (isNaN(amount) || amount <= 0) {
+        alert("Invalid amount.");
+        return;
     }
 
+    const newEntry = {
+        id: Date.now(),
+        customer: customerName,
+        amount: amount,
+        status: statusType
+    };
+
+    let currentData = JSON.parse(localStorage.getItem("payment-customer")) || [];
+    currentData.push(newEntry);
+
+    localStorage.setItem("payment-customer", JSON.stringify(currentData));
+
+    loadData(); // redraw table
+}
+    // Assign Buttons
     const payBtn = document.getElementById("pay-btn-c"); 
     const getBtn = document.getElementById("get-btn-c"); 
     if (payBtn) payBtn.onclick = () => addNewEntry("paid");
     if (getBtn) getBtn.onclick = () => addNewEntry("loan");
 
-    // --- 5. CLICK ACTIONS FOR EDIT & DELETE ---
+    // EDIT & DELETE LOGIC 
     if (tbody) {
         tbody.addEventListener("click", (e) => {
             const row = e.target.closest("tr");
             if (!row) return;
             const id = Number(row.getAttribute("data-id"));
 
-            // DELETE
             if (e.target.classList.contains("delete-btn-payment")) {
-                if(!confirm("Delete this record?")) return;
+                if(!confirm("Are you sure you want to delete this record?")) return;
                 let currentData = JSON.parse(localStorage.getItem("payment-customer")) || [];
                 currentData = currentData.filter(item => item.id !== id);
                 localStorage.setItem("payment-customer", JSON.stringify(currentData));
@@ -101,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 calculateTotal();
             }
 
-            // EDIT
             if (e.target.classList.contains("edit-btn-payment")) {
                 const amountCell = row.querySelector(".amount");
                 let newAmount = prompt("Edit amount:", amountCell.textContent);
@@ -120,11 +134,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // ROW NUMBERING (1, 2, 3...) 
     function reorderRows() {
-        tbody.querySelectorAll("tr").forEach((row, index) => {
-            if (row.cells[0]) row.cells[0].textContent = index + 1;
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach((row, index) => {
+            const billNoCell = row.querySelector(".bill-no");
+            if (billNoCell) {
+                billNoCell.textContent = index + 1;
+            }
         });
     }
 
-    loadData();
+    loadData(); // Runs once when you open/refresh the page
 });

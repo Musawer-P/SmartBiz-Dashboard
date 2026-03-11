@@ -103,6 +103,22 @@ submitBtn.addEventListener("click", () => {
     alert("Select payment method!");
     return;
   }
+// Inside your product-selling.js submitBtn listener:
+if (selectedPayment.toLowerCase() === "loan") {
+    const select = document.getElementById("customer-select");
+    const customerName = select.options[select.selectedIndex].text;
+
+    const loanRecord = {
+        id: Date.now(), // <--- THIS SAVES THE UNIQUE ID
+        customer: customerName,
+        amount: totalCartAmount.toFixed(2),
+        status: "loan"
+    };
+
+    let payments = JSON.parse(localStorage.getItem("payment-customer")) || [];
+    payments.push(loanRecord);
+    localStorage.setItem("payment-customer", JSON.stringify(payments));
+}
 
   let bills = JSON.parse(localStorage.getItem("bills")) || [];
   let todaySales = JSON.parse(localStorage.getItem("todaySales")) || [];

@@ -49,6 +49,7 @@ document.getElementById("submitBtn").addEventListener("click", () => {
         // ADD TO UI TABLE
         addLoanToPaymentTable(loanRecord.id, loanRecord.vendor, loanRecord.amount, loanRecord.status);
     }
+    calculateTotal();
 
     // C. RESET FORM (Done AFTER processing logic)
     ["p-name", "p-qty", "p-category", "p-barcode", "p-real-price", "p-sale-price"].forEach(id => {

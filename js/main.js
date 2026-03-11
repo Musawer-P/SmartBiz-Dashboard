@@ -411,9 +411,6 @@ new Chart(barCtx, {
   window.location.href = "login.html";
 }
 
-
-
-
 // SECURITY SETTINGS
 document.querySelectorAll(".security-setting p").forEach(item => {
   item.addEventListener("click", () => {

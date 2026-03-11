@@ -14,7 +14,1158 @@
 
 <body>
 
+  <style>
+     body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
+    color: white;
+  }
 
+  .body {
+    width: 100%;
+    padding-left: 30px;
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  .kpi-h2 h2 {
+    font-weight: 1;
+    color: #dbdbdbce;
+    padding-left: 10px;
+
+  }
+
+  .body::-webkit-scrollbar,
+  #modalBox-reports::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .body::-webkit-scrollbar-track,
+  #modalBox-reports::-webkit-scrollbar-track {
+    background: #1e1e1e11;
+    border-radius: 10px;
+  }
+
+  .body::-webkit-scrollbar-thumb,
+  #modalBox-reports::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .body::-webkit-scrollbar-thumb:hover,
+  #modalBox-reports::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+  .header {
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+  }
+
+  .head-option {
+    background: rgba(0, 0, 0, 0);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+    padding: 0px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #search {
+    background-color: rgba(240, 248, 255, 0);
+    color: white;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.438);
+    outline: none;
+    border-radius: 0px;
+    width: 100%;
+  }
+
+  #search-btn {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgba(255, 255, 255, 0.74);
+    padding: 7px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .one-section-header {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 0px;
+  }
+
+  .second-section-header {
+    width: 40%;
+  }
+
+  .search-bar {
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+
+  }
+
+  .head-option p {
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.027);
+    border: 1px solid rgba(255, 255, 255, 0.116);
+    color: rgba(255, 255, 255, 0.918);
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .head-option i {
+    color: rgba(255, 255, 255, 0.918);
+  }
+
+  .merge-p-s {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  #profile-img {
+    border: 1px solid white;
+    padding: 3px;
+    width: 50px;
+    border-radius: 50px;
+  }
+
+  .setting p {
+    margin: 0px;
+    background-color: rgba(66, 66, 66, 0);
+    color: white;
+    border: 1px solid white;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+
+  }
+
+  .setting p:hover {
+    background-color: rgb(223, 45, 45);
+    border: 1px solid rgb(223, 45, 45);
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .sidebar {
+    padding-left: 15px;
+    margin-top: 50px;
+    width: 15%;
+
+  }
+
+  .gap {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.308);
+    margin-top: 50px;
+
+    display: grid;
+    place-items: center;
+    height: 60vh;
+
+  }
+
+  .home,
+  .products,
+  .sales-orders,
+  .chart,
+  .setting-sidebar,
+  .supplier {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+
+  #search-icon {
+    cursor: pointer;
+  }
+
+  .sidebar p {
+    font-size: 18px;
+  }
+
+  i {
+    font-size: 18px;
+  }
+
+  .first-row {
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+
+    border: 1px solid rgba(255, 255, 255, 0.219);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .active-orders,
+  .total-sales,
+  .profit {
+    padding: 10px;
+    border-radius: 0px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+
+  }
+
+  .active-orders p,
+  .total-sales p,
+  .profit p {
+    color: #73ade4d5;
+  }
+
+  .combine {
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 50px;
+
+  }
+
+  .main-first-row {
+    width: 50%;
+  }
+
+  .top-products {
+
+    width: 45%;
+
+  }
+
+  .top-products h2 {
+    padding-left: 10px;
+    text-align: start;
+    font-weight: 1;
+    color: #dbdbdbce;
+  }
+
+  .second-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .line-chart h2 {
+    font-weight: 1;
+    color: #dbdbdbce;
+
+  }
+
+  .bar-chart h2 {
+    font-weight: 1;
+    color: #dbdbdbce;
+  }
+
+  th {
+    padding: 10px;
+    padding-bottom: 20px;
+
+
+  }
+
+  .data-table {
+    height: 300px;
+    overflow-y: auto;
+  }
+
+  .data-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .data-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .data-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .data-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+
+
+  .sales-table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .third-row {
+    padding: 10px;
+  }
+
+
+
+  .sales-table tr {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+  }
+
+  #payment-table,#payment-table-c {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+  }
+
+  #payment-table tr,#payment-table-c tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+  }
+
+
+#payment-table td,#payment-table-c td{
+  padding: 13px;
+}
+  #table-header {
+    font-size: 27px;
+    color: #dbdbdb63;
+    font-weight: 1;
+  }
+
+  #best-seller-table {
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  #best-seller-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+  }
+
+  .best-seller-cards {
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+
+    border: 1px solid rgba(255, 255, 255, 0.219);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cards per row */
+    gap: 16px;
+    padding: 10px;
+  }
+
+  .card {
+    background: #27417931;
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card .top {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .card .name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .card .qty {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+
+  .card .profit {
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 700;
+    color: #22c55e;
+  }
+
+  .p-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  /*Modal*/
+  /* Overlay */
+  #modalOverlay,
+  #modalOverlay-vendor,
+  #modalOverlay-customer,
+  #modalOverlay-reports,
+  #modalOverlay-payments,
+  #modalOverlay-chart,
+  #modalOverlay-ads,
+  #modalOverlay-setting,
+  #modalOverlay-expenses,
+    #modalOverlay-records {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  /* Modal box */
+  #modalBox,
+  #modalBox-vendor,
+  #modalBox-customer,
+  #modalBox-reports,
+  #modalBox-payments,
+  #modalBox-chart,
+  #modalBox-ads,
+  #modalBox-setting,
+  #modalBox-expenses,
+      #modalBox-records
+ {
+    width: 80%;
+    background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+    padding: 25px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Inputs */
+  #modalBox input,
+  #modalBox-vendor input,
+  #modalBox-customer input,
+  #modalBox-reports input,
+  #modalBox-payments input,
+  #modalBox-chart input,
+  #modalBox-ads input,
+  #modalBox-setting input,
+  #modalBox-expenses input,
+    #modalBox-records input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    border-bottom: 3px solid rgba(24, 25, 90, 0.952);
+    outline: none;
+  }
+
+  /* Button */
+  #submitBtn,
+  #submitBtn-vendor,
+  #submitBtn-customer,
+  #submitBtn-reports,
+  #submitBtn-payments,
+  #submitBtn-chart,
+  #submitBtn-ads,
+  #submitBtn-setting,
+  #submitBtn-expenses,
+    #submitBtn-records {
+    padding: 12px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4facfe00;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /*/*/
+  .modal-btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0px;
+    margin-top: 30px;
+
+  }
+
+  #cash-btn:hover {
+    background-color: #22c55e;
+    border-color: #22c55e;
+  }
+
+  #loan-btn:hover {
+    background-color: rgb(240, 29, 29);
+    border-color: rgb(240, 29, 29);
+
+  }
+
+  #bank-btn:hover {
+    background-color: #0a3cff;
+    border-color: #0a3cff;
+
+  }
+
+  .modal-header,
+  .modal-header-vendor,
+  .modal-header-customer,
+  .modal-header-reports,
+  .modal-header-payments,
+  .modal-header-chart,
+  .modal-header-ads,
+  .modal-header-setting,
+  .modal-header-expenses,
+  .modal-header-records {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header-reports h3 {
+    font-size: 30px;
+  }
+
+  #x,
+  #x-vendor,
+  #x-customer,
+  #x-reports,
+  #x-payments,
+  #x-chart,
+  #x-ads,
+  #x-setting,
+  #x-expenses,
+    #x-records {
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  #x:hover,
+  #x-vendor:hover,
+  #x-customer:hover,
+  #x-reports:hover,
+  #x-payments:hover,
+  #x-chart:hover,
+  #x-ads:hover,
+  #x-setting:hover,
+  #x-expenses:hover ,
+    #x-records:hover {
+    color: rgb(240, 29, 29);
+  }
+
+
+
+  .vendor-select {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(24, 25, 90, 0.952);
+    color: #f5f5f5;
+    border: 1px solid #ffffff00;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+
+    /* remove default style */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  .vendor-select option {
+    background: #fcfcfc;
+    color: #131313;
+  }
+
+  .vendor-select-div {
+    width: 50%;
+  }
+
+  .payment-type {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .payment-type button {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 33%;
+
+  }
+
+  .payment-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .payment-customer {
+    width: 100%;
+  }
+
+  .payment-customer h3 {
+    width: fit-content;
+    padding-left: 10px;
+    border-left: 4px solid rgba(24, 25, 90, 0.952);
+  }
+
+  .modalBox-payments {
+    height: 500px;
+    overflow-y: auto;
+  }
+
+  #loan-td {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: rgb(240, 29, 29);
+  }
+
+  #cash-td {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: #22c55e;
+
+  }
+
+  #clear-td {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: #0a3cff;
+  }
+
+  .payment-total {
+    display: flex;
+    gap: 50px;
+  }
+
+  .total {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .total p {
+    background-color: rgb(240, 29, 29);
+    padding: 5px;
+    border-radius: 5px;
+
+  }
+
+  .sales-chart-input {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ads-input-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ads-table {
+    width: 100%;
+    height: 220px;
+    overflow-x: auto;
+  }
+
+  #ads-table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+  }
+
+  #ads-table th {
+    padding: 15px;
+
+  }
+
+  #ads-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+  }
+
+
+  .ads-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .ads-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .ads-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .ads-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+
+
+
+
+  .expenses-table {
+    width: 100%;
+    height: 220px;
+    overflow-x: auto;
+  }
+
+  #expenses-table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+  }
+
+  #expenses-table th {
+    padding: 15px;
+
+  }
+
+  #expenses-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+
+  }
+
+
+  .expenses-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .expenses-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .expenses-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .expenses-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+
+
+
+
+
+
+  /* setting css */
+
+  .profile-setting,
+  .security-setting,
+  .company-setting,
+  .help-setting {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  /* ===== SECTION TITLES (first p optional highlight) ===== */
+  .profile-setting p,
+  .security-setting p,
+  .company-setting p,
+  .help-setting p {
+    margin: 10px 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  /* Hover effect */
+  .profile-setting p:hover,
+  .security-setting p:hover,
+  .company-setting p:hover,
+  .help-setting p:hover {
+    background: #f5f7fb;
+    transform: translateX(4px);
+  }
+
+  /* ===== PROFILE PHOTO ===== */
+  .photo-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .photo-div img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e5e7eb;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .photo-div img:hover {
+    transform: scale(1.05);
+  }
+
+  /* ===== COMPANY LOGO ===== */
+  .company-setting img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    margin: 12px 0;
+    border-radius: 10px;
+    border: 2px dashed #d1d5db;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  /* ===== DANGER ACTIONS ===== */
+  .security-setting p:last-child {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  .security-setting p:last-child:hover {
+    background: #fee2e2;
+  }
+
+  /* ===== HELP LINKS ===== */
+  .help-setting p {
+    color: #2563eb;
+  }
+
+  .help-setting p:hover {
+    text-decoration: underline;
+  }
+
+  .expenses-input-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .expense-btn-div {
+    display: flex;
+  }
+
+
+  .setting-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  #company-logo {
+    width: 100px;
+  }
+
+  .setting-imgs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.144);
+  }
+
+  .setting-footer {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.253);
+    margin-top: 50px;
+  }
+
+  .setting-footer h3 {
+    font-weight: 1;
+  }
+
+
+  .edit-btn,.edit-btn-c {
+    padding: 5px 15px;
+    background-color: rgb(43, 86, 226);
+    color: white;
+    border: none;
+    cursor: pointer;
+    ;
+  }
+.edit-btn-payment {
+    padding: 5px 15px;
+    background-color: rgb(43, 86, 226);
+    color: white;
+    border: none;
+    cursor: pointer;
+    ;
+  }
+  .delete-btn,.delete-btn-c {
+    padding: 5px 15px;
+    background-color: rgb(248, 52, 52);
+    color: white;
+    border: none;
+    cursor: pointer;
+
+
+  }
+.delete-btn-payment {
+    padding: 5px 15px;
+    background-color: rgb(248, 52, 52);
+    color: white;
+    border: none;
+    cursor: pointer;
+
+
+  }
+
+  .language-dropdown {
+    position: relative;
+    display: flex;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    text-align: center;
+    top: 30px;
+    left: -35px;
+    background: rgba(255, 255, 255, 0.568);
+    /* slight white tint */
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid #cccccc3a;
+    color: white;
+    border-radius: 6px;
+    padding: 5px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-width: 80px;
+  }
+
+  .dropdown-menu p {
+    margin: 0;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .dropdown-menu p:hover {
+    background: #0000001c;
+  }
+  #currency{
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    outline: none;
+    cursor: pointer;
+  }
+  #currency option{
+    padding: 10px;
+  }
+
+
+
+.records-main {
+  width: 100%;
+  padding-left: 30px;
+  overflow-y: auto;
+}
+
+.records-suppliers,
+.records-products,
+.records-customers {
+    display: none;  
+      animation: fade 0.3s ease-in-out;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.records-header{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 95%;
+}
+.records-one,.records-two,.records-three{
+    border: 1px solid rgba(255, 255, 255, 0.432);
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.records-one h2,.records-two h2,.records-three h2{
+  color: white;
+  text-decoration: none;
+}
+.records-one:hover,.records-two:hover,.records-three:hover{
+background-color: rgba(255, 255, 255, 0.788);
+color: black;
+}
+#records-main-h1{
+    font-weight: 1;
+    width: fit-content;
+}
+.records-date-input{
+    margin-bottom: 30px;
+display: flex;
+width: 95%;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+#records-from,#records-to{
+padding: 10px;
+width: 100%;
+background-color: #ffffff25;
+border: 1px solid rgba(255, 255, 255, 0.432);
+color: white;
+border-radius: 30px;
+}
+
+.payment-btn{
+display: flex;
+justify-content: space-between;
+width: 100%;
+gap: 20px;
+}
+.pay{
+width: 100%;
+}
+#pay-btn,#get-btn ,#pay-btn-c,#get-btn-c{
+padding: 7px 10px;
+width: 100%;
+border: none;
+cursor: pointer;
+}
+.total-box {
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+#total-amount,#total-amount-c{
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.negative {
+  background: #d83333;
+  color: #ffdddd;
+}
+
+.positive {
+  background: #34ad34;
+  color: #ddffdd;
+}
+
+.zero {
+  background: #f2f2f2;
+  color: #333;
+}
+.total-payments{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.btn-div{
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.payment-div{
+  height: 300px;
+  overflow-y: auto;
+}
+
+
+  .payment-div::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .payment-div::-webkit-scrollbar-track {
+    background: #3333334b;
+  }
+
+  .payment-div::-webkit-scrollbar-thumb {
+    background: #cecece46;
+    border-radius: 15px;
+  }
+
+  .payment-div::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+  </style>
   <!--Modal Product-->
 
   <div id="modalOverlay">
@@ -180,10 +1331,11 @@
       <div class="payment-row">
         <div class="payment-customer">
           <h3>Supplier</h3>
-        
+        <div class = "payment-div">
 <table id="payment-table">
 <thead>
 <tr>
+  <th>#</th>
 <th>Vendor</th>
 <th>Amount</th>
 <th>Status</th>
@@ -196,6 +1348,7 @@
 </tbody>
 
 </table>
+</div>
 <div class = "btn-div">
 <button id="pay-btn">Pay Loan</button>
 <button id="get-btn">Get Loan</button>
@@ -207,12 +1360,14 @@
 </div>
         <div class="payment-customer">
           <h3>Customers</h3>
-          
+               <div class = "payment-div">
+   
  <table id="payment-table-c">
 
 <thead>
 <tr>
-<th>Bill No</th>
+<th>#</th>
+<th>Customer</th>
 <th>Amount</th>
 <th>Status</th>
 <th>Action</th>
@@ -220,20 +1375,11 @@
 </thead>
 
 <tbody>
-<tr>
-<td>1</td>
-<td class="amount">200</td>
-<td><p>Loan</p></td>
-<td>
-  <button class="edit-btn-payment">Edit</button>
 
-<button class="delete-btn-payment">Delete</button>
-</td>
-</tr>
 </tbody>
 
 </table>
-
+</div>
 <div class = "btn-div">
 <button id="pay-btn-c">Pay Loan</button>
 <button id="get-btn-c">Get Loan</button>
@@ -778,15 +1924,297 @@
 
   </div>
 
+<script>
+  
 
+   const openDivVendor = document.querySelector(".openModal-vendor");
+    const modalVendor = document.getElementById("modalOverlay-vendor");
+    const xBtnVendor = document.getElementById("x-vendor");
+
+    openDivVendor.addEventListener("click", () => {
+      modalVendor.style.display = "flex";
+    });
+
+    xBtnVendor.addEventListener("click", () => {
+      modalVendor.style.display = "none";
+    });
+
+    modalVendor.addEventListener("click", (e) => {
+      if (e.target === modalVendor) {
+        modalVendor.style.display = "none";
+      }
+    });
+
+
+
+
+    const openDiv = document.querySelector(".openModal-product");
+    const modal = document.getElementById("modalOverlay");
+    const xBtn = document.getElementById("x");
+
+    openDiv.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    xBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+
+    const openDivCustomer = document.querySelector(".openModal-customer");
+    const modalCustomer = document.getElementById("modalOverlay-customer");
+    const xBtnCustomer = document.getElementById("x-customer");
+
+    openDivCustomer.addEventListener("click", () => {
+      modalCustomer.style.display = "flex";
+    });
+
+    xBtnCustomer.addEventListener("click", () => {
+      modalCustomer.style.display = "none";
+    });
+
+    modalCustomer.addEventListener("click", (e) => {
+      if (e.target === modalCustomer) {
+        modalCustomer.style.display = "none";
+      }
+    });
+
+
+
+
+    const openDivReport = document.querySelector(".openModal-sales-reports");
+    const modalReport = document.getElementById("modalOverlay-reports");
+    const xBtnReport = document.getElementById("x-reports");
+
+    openDivReport.addEventListener("click", () => {
+      modalReport.style.display = "flex";
+    });
+
+    xBtnReport.addEventListener("click", () => {
+      modalReport.style.display = "none";
+    });
+
+    modalReport.addEventListener("click", (e) => {
+      if (e.target === modalReport) {
+        modalReport.style.display = "none";
+      }
+    });
+
+
+
+
+
+
+    const openDivPayemnt = document.querySelector(".openModal-payments");
+    const modalPayemnt = document.getElementById("modalOverlay-payments");
+    const xBtnPayemnt = document.getElementById("x-payments");
+
+    openDivPayemnt.addEventListener("click", () => {
+      modalPayemnt.style.display = "flex";
+    });
+
+    xBtnPayemnt.addEventListener("click", () => {
+      modalPayemnt.style.display = "none";
+    });
+
+    modalPayemnt.addEventListener("click", (e) => {
+      if (e.target === modalPayemnt) {
+        modalPayemnt.style.display = "none";
+      }
+    });
+
+
+
+    const openDivchart = document.querySelector(".openModal-chart");
+    const modalchart = document.getElementById("modalOverlay-chart");
+    const xBtnchart = document.getElementById("x-chart");
+
+    openDivchart.addEventListener("click", () => {
+      modalchart.style.display = "flex";
+    });
+
+    xBtnchart.addEventListener("click", () => {
+      modalchart.style.display = "none";
+    });
+
+    modalchart.addEventListener("click", (e) => {
+      if (e.target === modalchart) {
+        modalchart.style.display = "none";
+      }
+    });
+
+
+    const openDivads = document.querySelector(".openModal-ads");
+    const modalads = document.getElementById("modalOverlay-ads");
+    const xBtnads = document.getElementById("x-ads");
+
+    openDivads.addEventListener("click", () => {
+      modalads.style.display = "flex";
+    });
+
+    xBtnads.addEventListener("click", () => {
+      modalads.style.display = "none";
+    });
+
+    modalads.addEventListener("click", (e) => {
+      if (e.target === modalads) {
+        modalads.style.display = "none";
+      }
+    });
+
+
+
+
+
+    const openDivsetting = document.querySelector(".openModal-setting");
+    const modalsetting = document.getElementById("modalOverlay-setting");
+    const xBtnsetting = document.getElementById("x-setting");
+
+    openDivsetting.addEventListener("click", () => {
+      modalsetting.style.display = "flex";
+    });
+
+    xBtnsetting.addEventListener("click", () => {
+      modalsetting.style.display = "none";
+    });
+
+    modalsetting.addEventListener("click", (e) => {
+      if (e.target === modalsetting) {
+        modalsetting.style.display = "none";
+      }
+    });
+
+
+
+
+
+    const openDivexpenses = document.querySelector(".openModal-expenses");
+    const modalexpenses = document.getElementById("modalOverlay-expenses");
+    const xBtnexpenses = document.getElementById("x-expenses");
+
+    openDivexpenses.addEventListener("click", () => {
+      modalexpenses.style.display = "flex";
+    });
+
+    xBtnexpenses.addEventListener("click", () => {
+      modalexpenses.style.display = "none";
+    });
+
+    modalexpenses.addEventListener("click", (e) => {
+      if (e.target === modalexpenses) {
+        modalexpenses.style.display = "none";
+      }
+    });
+
+    
+
+    const openDivrecords = document.querySelector(".openModal-records");
+    const modalrecords = document.getElementById("modalOverlay-records");
+    const xBtnrecords = document.getElementById("x-records");
+
+    openDivrecords.addEventListener("click", () => {
+      modalrecords.style.display = "flex";
+    });
+
+    xBtnrecords.addEventListener("click", () => {
+      modalrecords.style.display = "none";
+    });
+
+    modalrecords.addEventListener("click", (e) => {
+      if (e.target === modalrecords) {
+        modalrecords.style.display = "none";
+      }
+    });
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const bestSellerContainer = document.querySelector(".best-seller-cards");
+
+      let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
+
+      if (salesReports.length === 0) {
+        bestSellerContainer.innerHTML = "<p>No sales yet</p>";
+        return;
+      }
+
+      const productMap = {};
+
+      salesReports.forEach(sale => {
+        if (!productMap[sale.product]) {
+          productMap[sale.product] = {
+            name: sale.product,
+            soldQty: 0,
+            sellPrice: sale.sellPrice
+          };
+        }
+        productMap[sale.product].soldQty += Number(sale.soldQty || 0);
+      });
+
+      const productsArray = Object.values(productMap).sort((a, b) => b.soldQty - a.soldQty);
+
+      const topProducts = productsArray.slice(0, 5);
+
+      bestSellerContainer.innerHTML = "";
+
+      topProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+            <div class="top">
+                <span class="name">${product.name}</span>
+                <span class="qty">Sold Qty: ${product.soldQty}</span>
+            </div>
+            <div class="profit">$${Number(product.sellPrice).toFixed(2)}</div>
+        `;
+
+        bestSellerContainer.appendChild(card);
+      });
+    });
+
+
+    const globeIcon2 = document.getElementById("globeIcon2");
+    const languageMenu = document.getElementById("languageMenu");
+
+    globeIcon2.addEventListener("click", (e) => {
+      e.stopPropagation();
+      languageMenu.style.display = languageMenu.style.display === "block" ? "none" : "block";
+    });
+
+    languageMenu.querySelectorAll("p").forEach(p => {
+      p.addEventListener("click", () => {
+        // Trigger your existing changeLanguage function
+        changeLanguage(p.dataset.lang);
+        languageMenu.style.display = "none";
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", () => {
+      languageMenu.style.display = "none";
+    });
+
+
+
+    if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "login.html";
+}
+
+</script>
 <script src="js/sales.js"></script>
-<script src="js/pay-get.js"></script>
-<script src="js/pay-get-c.js"></script>
-
-<script src="js/payment-supplier.js"></script>
 <script src="js/payment-customer.js"></script>
-
+<script src="js/pay-get-c.js"></script>
+<script src="js/payment-supplier.js"></script>
 <script src="js/product.js"></script>
+<script src="js/pay-get.js"></script>
+
+
 
   <script src="js/main.js"></script>
   <script src="js/data.js"></script>

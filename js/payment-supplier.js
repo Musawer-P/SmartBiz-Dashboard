@@ -1,14 +1,14 @@
-// 1. Load data from 'payment-supplier' on refresh
+// 1. Load data and calculate total on refresh
 window.addEventListener("DOMContentLoaded", () => {
     const payments = JSON.parse(localStorage.getItem("payment-supplier")) || [];
     const tbody = document.querySelector("#payment-table tbody");
     if (tbody) {
         tbody.innerHTML = ""; 
         payments.forEach(pay => {
-            // Note: your storage uses 'vendor', so we pass that
             addLoanToPaymentTable(pay.id, pay.vendor, pay.amount, pay.status);
         });
-        reorderRows(); // Number them after loading all
+        reorderRows();
+        calculateTotal(); // <--- Added this to show total on refresh
     }
 });
 
@@ -20,7 +20,6 @@ function addLoanToPaymentTable(id, vendorName, amount, statusTxt) {
     const row = document.createElement("tr");
     row.setAttribute("data-id", id);
 
-    // Column 1 is empty <td> to be filled by reorderRows()
     row.innerHTML = `
         <td class="row-number"></td> 
         <td>${vendorName || "Unknown"}</td> 
@@ -32,21 +31,47 @@ function addLoanToPaymentTable(id, vendorName, amount, statusTxt) {
         </td>
     `;
     tbody.appendChild(row);
-    reorderRows(); // Update numbers immediately
+    reorderRows();
+    calculateTotal(); // <--- Added this to update total when a new row is added
 }
 
-// 3. Function to handle Row Numbers (1, 2, 3...)
+// 3. THE NEW TOTAL FUNCTION (This was missing)
+function calculateTotal() {
+    const totalBox = document.getElementById("total-amount"); // Make sure this ID exists in HTML
+    if (!totalBox) return;
+
+    const payments = JSON.parse(localStorage.getItem("payment-supplier")) || [];
+    let total = 0;
+
+    payments.forEach(pay => {
+        // Match your logic: get-loan means you owe money (-)
+        if (pay.status === "get-loan") {
+            total -= parseFloat(pay.amount);
+        } else {
+            total += parseFloat(pay.amount);
+        }
+    });
+
+    totalBox.textContent = total.toFixed(2) + " $";
+    
+    // Optional: Color logic for the box
+    if (total < 0) totalBox.style.backgroundColor = "red";
+    else if (total > 0) totalBox.style.backgroundColor = "green";
+    else totalBox.style.backgroundColor = "#333";
+    
+    totalBox.style.color = "white";
+}
+
+// 4. Function to handle Row Numbers
 function reorderRows() {
     const rows = document.querySelectorAll("#payment-table tbody tr");
     rows.forEach((row, index) => {
-        // Targets ONLY the first cell (index 0)
         if (row.cells && row.cells[0]) {
             row.cells[0].textContent = index + 1;
         }
     });
 }
-
-// 4. Handle Edit and Delete
+// 5. Handle Edit and Delete with Live Total
 const paymentTable = document.querySelector("#payment-table");
 if (paymentTable) {
     paymentTable.addEventListener("click", (e) => {
@@ -54,30 +79,34 @@ if (paymentTable) {
         if (!row) return;
         const id = Number(row.getAttribute("data-id"));
 
-        // --- DELETE LOGIC ---
+        // --- DELETE WITH ALERT ---
         if (e.target.classList.contains("delete-btn-payment")) {
-            row.remove();
-            let payments = JSON.parse(localStorage.getItem("payment-supplier")) || [];
-            payments = payments.filter(p => p.id !== id);
-            localStorage.setItem("payment-supplier", JSON.stringify(payments));
-            reorderRows(); // Re-number after deleting
+            // Added confirmation alert here
+            if (confirm("Are you sure you want to delete this record?")) {
+                row.remove();
+                let payments = JSON.parse(localStorage.getItem("payment-supplier")) || [];
+                payments = payments.filter(p => p.id !== id);
+                localStorage.setItem("payment-supplier", JSON.stringify(payments));
+                reorderRows();
+                calculateTotal(); // Update total after delete
+            }
         }
         
-        // --- EDIT LOGIC ---
+        // --- EDIT ---
         if (e.target.classList.contains("edit-btn-payment")) {
-            e.stopImmediatePropagation();
             const amountCell = row.querySelector(".amount");
             let newAmount = prompt("Enter new amount:", amountCell.textContent);
             
-            if (newAmount !== null && newAmount.trim() !== "" && !isNaN(newAmount)) {
+            if (newAmount !== null && !isNaN(newAmount)) {
                 const finalAmount = parseFloat(newAmount);
-                amountCell.textContent = finalAmount.toFixed(2);
                 
                 let payments = JSON.parse(localStorage.getItem("payment-supplier")) || [];
                 const index = payments.findIndex(p => p.id === id);
                 if (index !== -1) {
                     payments[index].amount = finalAmount;
                     localStorage.setItem("payment-supplier", JSON.stringify(payments));
+                    amountCell.textContent = finalAmount.toFixed(2);
+                    calculateTotal(); // Update total after edit
                 }
             }
         }
