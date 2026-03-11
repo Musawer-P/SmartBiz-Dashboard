@@ -1,4 +1,4 @@
-    body {
+ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
     color: white;
@@ -322,12 +322,7 @@
     padding: 10px;
   }
 
-  td {
-    padding: 15px;
-    font-size: 17px;
 
-
-  }
 
   .sales-table tr {
     padding: 10px;
@@ -346,6 +341,10 @@
 
   }
 
+
+#payment-table td,#payment-table-c td{
+  padding: 13px;
+}
   #table-header {
     font-size: 27px;
     color: #dbdbdb63;
@@ -931,7 +930,7 @@
   }
 
 
-  .edit-btn {
+  .edit-btn,.edit-btn-c {
     padding: 5px 15px;
     background-color: rgb(43, 86, 226);
     color: white;
@@ -947,7 +946,7 @@
     cursor: pointer;
     ;
   }
-  .delete-btn {
+  .delete-btn,.delete-btn-c {
     padding: 5px 15px;
     background-color: rgb(248, 52, 52);
     color: white;
@@ -1126,3 +1125,26 @@ cursor: pointer;
   display: flex;
   gap: 10px;
 }
+
+.payment-div{
+  height: 300px;
+  overflow-y: auto;
+}
+
+
+  .payment-div::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .payment-div::-webkit-scrollbar-track {
+    background: #3333334b;
+  }
+
+  .payment-div::-webkit-scrollbar-thumb {
+    background: #cecece46;
+    border-radius: 15px;
+  }
+
+  .payment-div::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
