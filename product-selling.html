@@ -39,6 +39,26 @@
     <select id="customer-select">
   <option value="">Select Customer</option>
 </select>
+
+<!-- Loyalty Panel: Place this inside your Checkout Page -->
+<div id="loyalty-panel" class="loyalty-card" style="display: none;">
+    <h4><span id="selected-customer-name">Customer</span>'s Rewards</h4>
+    <div id="tier-badge" class="badge">BRONZE</div>
+    
+    <div class="loyalty-stats">
+        <p>Lifetime Spend: <strong id="lifetime-spend">$0</strong></p>
+        <!-- The Progress Bar for Portfolio impact -->
+        <div class="progress-container">
+            <div id="loyalty-progress" class="progress-bar"></div>
+        </div>
+        <small id="loyalty-msg">Spend $XX more for Silver!</small>
+    </div>
+    
+    <div class="discount-alert" id="discount-banner">
+         <span id="discount-pct">0</span>% Loyalty Discount Applied!
+    </div>
+</div>
+
     <div class = "cart-table">
       <table id = "cart-table">
         <thead>
@@ -105,6 +125,7 @@
 <script src="js/products-selling.js"></script>
 <script src="js/customer-loan.js"></script>
   <script src="js/customer-select.js"></script>
+<script src="js/customer-discount.js"></script>   <!-- Today Sales -->
 
 <script src="js/dashboard.js"></script>   <!-- Today Sales -->
 <script src="js/sales.js"></script>       <!-- Sales Reports -->
