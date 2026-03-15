@@ -33,6 +33,52 @@
         </table>
     </div>
     </div>
+
+<!-- Edit Product Modal -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Edit Product</h2>
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+    </div>
+    <form id="editForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label>Qty</label>
+        <input type="number" id="qty" required>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <input type="text" id="category">
+      </div>
+      <div class="form-group">
+        <label>Barcode</label>
+        <input type="text" id="barcode">
+      </div>
+      <div class="form-group">
+        <label>Real Price</label>
+        <input type="number" id="realPrice">
+      </div>
+      <div class="form-group">
+        <label>Sale Price</label>
+        <input type="number" id="salePrice">
+      </div>
+      <div class="form-group">
+        <label>Payment</label>
+        <input type="text" id="payment">
+      </div>
+      <div class="form-group">
+        <label>Supplier</label>
+        <input type="text" id="supplier">
+      </div>
+      <button type="button" class="save-btn" onclick="saveProduct()">Save</button>
+    </form>
+  </div>
+</div>
+
     <script src = "js/products-records.js">
     </script>
 </body>
