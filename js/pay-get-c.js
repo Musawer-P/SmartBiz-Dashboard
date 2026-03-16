@@ -23,7 +23,7 @@ function loadData() {
         const row = document.createElement("tr");
         row.setAttribute("data-id", id);
         
-        const statusColor = (status === "loan") ? "red" : "green";
+        const statusColor = (status === "get-loan") ? "red" : "green";
 
         row.innerHTML = `
             <td class="bill-no"></td>
@@ -47,7 +47,7 @@ function loadData() {
 
         savedPayments.forEach(pay => {
            
-            if (pay.status === "loan") total -= parseFloat(pay.amount);
+            if (pay.status === "get-loan") total -= parseFloat(pay.amount);
             else total += parseFloat(pay.amount);
         });
 
@@ -97,7 +97,7 @@ function loadData() {
     const payBtn = document.getElementById("pay-btn-c"); 
     const getBtn = document.getElementById("get-btn-c"); 
     if (payBtn) payBtn.onclick = () => addNewEntry("paid");
-    if (getBtn) getBtn.onclick = () => addNewEntry("loan");
+    if (getBtn) getBtn.onclick = () => addNewEntry("get-loan");
 
     // EDIT & DELETE LOGIC 
     if (tbody) {

@@ -15,7 +15,7 @@ function renderCustomerLoanTable() {
         const row = document.createElement("tr");
         row.setAttribute("data-id", record.id);
 
-        const statusColor = (record.status === "loan") ? "red" : "green";
+        const statusColor = (record.status === "get-loan") ? "red" : "green";
 
         row.innerHTML = `
             <td class="row-number">${index + 1}</td> 
@@ -43,7 +43,7 @@ function calculateTotalAmount() {
     let total = 0;
 
     payments.forEach(pay => {
-        if (pay.status === "loan") total += parseFloat(pay.amount);
+        if (pay.status === "get-loan") total += parseFloat(pay.amount);
         else total -= parseFloat(pay.amount);
     });
 

@@ -88,7 +88,7 @@ cashBtn.addEventListener("click", () => {
 });
 
 loanBtn.addEventListener("click", () => {
-  selectedPayment = "loan";
+  selectedPayment = "get-loan";
   loanBtn.style.background = "red";
   cashBtn.style.background = "";
 });
@@ -103,22 +103,16 @@ submitBtn.addEventListener("click", () => {
     alert("Select payment method!");
     return;
   }
-// Inside your product-selling.js submitBtn listener:
-if (selectedPayment.toLowerCase() === "loan") {
-    const select = document.getElementById("customer-select");
-    const customerName = select.options[select.selectedIndex].text;
 
-    const loanRecord = {
-        id: Date.now(), // <--- THIS SAVES THE UNIQUE ID
-        customer: customerName,
-        amount: totalCartAmount.toFixed(2),
-        status: "loan"
-    };
+  const select = document.getElementById("customer-select");
+  const customerValue = select ? select.value : "";
+  const customerName = select ? select.options[select.selectedIndex].text : "";
 
-    let payments = JSON.parse(localStorage.getItem("payment-customer")) || [];
-    payments.push(loanRecord);
-    localStorage.setItem("payment-customer", JSON.stringify(payments));
-}
+  // 1. Check if customer is selected for loans
+  if (selectedPayment.toLowerCase() === "get-loan" && !customerValue) {
+    alert("Please select a customer for the loan!");
+    return;
+  }
 
   let bills = JSON.parse(localStorage.getItem("bills")) || [];
   let todaySales = JSON.parse(localStorage.getItem("todaySales")) || [];
@@ -126,7 +120,7 @@ if (selectedPayment.toLowerCase() === "loan") {
   
   let totalCartAmount = 0; 
 
-  // Process Sales Data
+  // 2. Process Sales Data & Calculate Total
   for (let item in cart) {
     const soldQty = cart[item].qty;
     const sellPrice = cart[item].price;
@@ -137,7 +131,6 @@ if (selectedPayment.toLowerCase() === "loan") {
 
     const productData = {
       product: item,
-      stockQty: "-",
       soldQty,
       mainPrice,
       sellPrice,
@@ -151,48 +144,33 @@ if (selectedPayment.toLowerCase() === "loan") {
     salesReports.push(productData);
   }
 
-  // --- SAVE LOAN DATA USING DROPDOWN ---
-  if (selectedPayment.toLowerCase() === "loan") {
-    const select = document.getElementById("customer-select");
-    const customerName = select.options[select.selectedIndex].text;
-    const customerValue = select.value;
-
-    if (!customerValue) {
-        alert("Please select a customer for the loan!");
-        return; // Prevent saving if no customer selected
-    }
-
+  // 3. SAVE TO payment-customer (ONLY IF LOAN)
+  if (selectedPayment.toLowerCase() === "get-loan") {
+    let payments = JSON.parse(localStorage.getItem("payment-customer")) || [];
+    
     const loanRecord = {
         id: Date.now(),
         customer: customerName,
         amount: totalCartAmount.toFixed(2),
-        status: "loan"
+        status: "get-loan"
     };
 
-    let payments = JSON.parse(localStorage.getItem("payment-customer")) || [];
     payments.push(loanRecord);
     localStorage.setItem("payment-customer", JSON.stringify(payments));
   }
 
-  // Save all reports
+  // 4. Save all other reports
   localStorage.setItem("bills", JSON.stringify(bills));
   localStorage.setItem("todaySales", JSON.stringify(todaySales));
   localStorage.setItem("salesReports", JSON.stringify(salesReports));
 
-  // Reset UI
+  // 5. Reset UI
   cart = {};
   selectedPayment = "";
   cashBtn.style.background = "";
   loanBtn.style.background = "";
-  if(document.getElementById("customer-select")) {
-      document.getElementById("customer-select").value = "";
-  }
+  if(select) select.value = "";
 
   renderCart();
-
-  if (typeof renderBills === "function") renderBills();
-  if (typeof renderTodaySales === "function") renderTodaySales();
-  if (typeof renderSalesReports === "function") renderSalesReports();
-
-  alert("Sale saved successfully!");
+  alert("Sale and Loan recorded successfully!");
 });
