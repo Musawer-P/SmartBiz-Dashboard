@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bill.css" rel = "stylesheet">
     <title>Bill</title>
 </head>
 <body>
@@ -19,17 +20,25 @@
 
 <div id="bill-section">
   <h3>Your Bill</h3>
-  <table id="bill-table">
+ <table id="bill-table">
     <thead>
       <tr>
-        <th>Item</th>
-        <th>Price</th>
+        <th>Item & Method</th>
+        <th>Qty & Price</th>
+        <th>Total</th>
+        <th>Time</th>
       </tr>
     </thead>
     <tbody id="bill-table-body">
+        <!-- JS will inject rows here -->
     </tbody>
-  </table>
-  <p><strong>Total: $<span id="total-price">0</span></strong></p>
+</table>
+<div class="total-section">
+    <h3>Grand Total: <span id="bill-total">0.00 $</span></h3>
+    <button onclick="clearBills()">Clear History</button>
 </div>
+
+</div>
+<script src = "js/bill.js"></script>
 </body>
 </html>
