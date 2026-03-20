@@ -1,122 +1,51 @@
-const form = document.getElementById("settingsForm");
-const status = document.getElementById("status");
-const photoInput = document.getElementById("photo");
-const preview = document.getElementById("preview");
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("settingsForm");
+    const statusMsg = document.getElementById("status-msg");
 
-let userSettings = {
-  username: "",
-  email: "",
-  password: "",
-  photo: ""
-};
-
-// Preview uploaded photo
-photoInput.addEventListener("change", () => {
-  const file = photoInput.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      preview.src = reader.result;
-      preview.style.display = "block";
-      userSettings.photo = reader.result;
+    // Load existing data on startup
+    const savedData = JSON.parse(localStorage.getItem("smartbiz_settings")) || {
+        compName: "Tusqa",
+        compEmail: "contact@tusqa.com",
+        compAddress: "Madina",
+        currency: "USD",
+        fullName: "Mike",
+        username: "admin", // Default
+        password: "123"    // Default
     };
-    reader.readAsDataURL(file);
-  }
+
+    // Fill inputs with saved data
+    document.getElementById("comp-name").value = savedData.compName;
+    document.getElementById("comp-email").value = savedData.compEmail;
+    document.getElementById("comp-address").value = savedData.compAddress;
+    document.getElementById("currency").value = savedData.currency;
+    document.getElementById("user-fullname").value = savedData.fullName;
+    document.getElementById("set-username").value = savedData.username;
+    document.getElementById("set-password").value = savedData.password;
+
+    // 2. Save Data
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const updatedData = {
+            compName: document.getElementById("comp-name").value,
+            compEmail: document.getElementById("comp-email").value,
+            compAddress: document.getElementById("comp-address").value,
+            currency: document.getElementById("currency").value,
+            fullName: document.getElementById("user-fullname").value,
+            username: document.getElementById("set-username").value,
+            password: document.getElementById("set-password").value
+        };
+
+        localStorage.setItem("smartbiz_settings", JSON.stringify(updatedData));
+        
+        statusMsg.innerText = "Settings Saved!";
+        statusMsg.style.color = "green";
+
+        setTimeout(() => { statusMsg.innerText = ""; }, 3000);
+    });
+
+    // Close Modal Logic
+    document.getElementById("x-setting").onclick = () => {
+        document.getElementById("modalOverlay-setting").style.display = "none";
+    };
 });
-
-// Save settings
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  userSettings.username = document.getElementById("username").value;
-  userSettings.email = document.getElementById("email").value;
-  userSettings.password = document.getElementById("password").value;
-
-  // Basic validation
-  if (!userSettings.username || !userSettings.email) {
-    status.textContent = "Username and Email are required.";
-    status.style.color = "red";
-    return;
-  }
-
-  // Simulate saving (replace with backend API)
-  localStorage.setItem("userSettings", JSON.stringify(userSettings));
-
-  status.textContent = "Settings updated successfully!";
-  status.style.color = "green";
-
-  // Clear password field
-  document.getElementById("password").value = "";
-});
-
-
-
-
-
-
-// ROLE DEFINITIONS
-const ROLE_PERMISSIONS = {
-  admin: [
-    "dashboard_view",
-    "users_manage",
-    "settings_manage",
-    "products_manage",
-    "sales_manage",
-    "reports_view",
-    "payments_manage"
-  ],
-
-  manager: [
-    "dashboard_view",
-    "products_manage",
-    "sales_manage",
-    "reports_view"
-  ],
-
-  staff: [
-    "dashboard_view",
-    "sales_manage"
-  ]
-};
-
-// SET CURRENT USER ROLE 
-function setUserRole(role) {
-  if (!ROLE_PERMISSIONS[role]) {
-    console.error("Invalid role");
-    return;
-  }
-  localStorage.setItem("smartbiz_user_role", role);
-}
-
-//GET CURRENT USER ROL
-function getUserRole() {
-  return localStorage.getItem("smartbiz_user_role");
-}
-
-// CHECK PERMISSION
-function hasPermission(permission) {
-  const role = getUserRole();
-  if (!role) return false;
-
-  return ROLE_PERMISSIONS[role].includes(permission);
-}
-
-//BLOCK UNAUTHORIZED ACTION 
-function requirePermission(permission) {
-  if (!hasPermission(permission)) {
-    alert("Access denied");
-    throw new Error("Permission denied");
-  }
-}
-
-// APPLY PERMISSIONS TO UI
-function applyRolePermissions() {
-  document.querySelectorAll("[data-permission]").forEach(el => {
-    const permission = el.dataset.permission;
-    if (!hasPermission(permission)) {
-      el.style.display = "none";
-    }
-  });
-}
-
-document.addEventListener("DOMContentLoaded", applyRolePermissions);
