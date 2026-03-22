@@ -57,6 +57,29 @@ document.getElementById("submitBtn").addEventListener("click", () => {
     });
     selectedPayment = ""; 
     alert("Product added successfully ✅");
+
+    // D. HANDLE STOCK TABLE LOGIC
+let stock = JSON.parse(localStorage.getItem("stock")) || [];
+
+// Check if product already exists in stock
+let stockItem = stock.find(s => s.name === name);
+
+if (stockItem) {
+    stockItem.totalStock += qty;
+    stockItem.availableQty += qty;
+} else {
+    stock.push({
+        id: product.id,
+        name: name,
+        totalStock: qty,      // Total ever added
+        soldQty: 0,           // Starts at 0
+        availableQty: qty,    // Current physical stock
+        realPrice: realPrice,
+        salePrice: salePrice,
+        date: product.date
+    });
+}
+localStorage.setItem("stock", JSON.stringify(stock));
 });
 
 

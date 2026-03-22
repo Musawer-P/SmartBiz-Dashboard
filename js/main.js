@@ -130,7 +130,6 @@ new Chart(barCtx, {
   }
 });
 
-
    const openDivVendor = document.querySelector(".openModal-vendor");
     const modalVendor = document.getElementById("modalOverlay-vendor");
     const xBtnVendor = document.getElementById("x-vendor");
@@ -336,6 +335,23 @@ new Chart(barCtx, {
       }
     });
 
+ const openDivstock = document.querySelector(".openModal-stock");
+    const modalstock = document.getElementById("modalOverlay-stock");
+    const xBtnstock = document.getElementById("x-stock");
+
+    openDivstock.addEventListener("click", () => {
+      modalstock.style.display = "flex";
+    });
+
+    xBtnstock.addEventListener("click", () => {
+      modalstock.style.display = "none";
+    });
+
+    modalstock.addEventListener("click", (e) => {
+      if (e.target === modalstock) {
+        modalstock.style.display = "none";
+      }
+    });
 
    document.addEventListener("DOMContentLoaded", () => {
   const bestSellerContainer = document.querySelector(".best-seller-cards");
@@ -417,21 +433,6 @@ new Chart(barCtx, {
     if (localStorage.getItem("loggedIn") !== "true") {
   window.location.href = "login.html";
 }
-
-// SECURITY SETTINGS
-document.querySelectorAll(".security-setting p").forEach(item => {
-  item.addEventListener("click", () => {
-    if (item.innerText.includes("Delete")) {
-      const confirmDelete = confirm("Are you sure you want to delete your account?");
-      if (confirmDelete) {
-        alert("Account deleted (connect backend)");
-      }
-    } else {
-      alert("Change password (open password modal)");
-    }
-  });
-});
-
 
 // SECURITY SETTINGS
 document.querySelectorAll(".security-setting p").forEach(item => {

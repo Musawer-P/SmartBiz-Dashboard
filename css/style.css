@@ -1,4 +1,4 @@
- body {
+body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
     color: white;
@@ -312,7 +312,7 @@
 
 
 
-  .sales-table {
+  .sales-table,.stock-table {
     text-align: center;
     width: 100%;
     border-collapse: collapse;
@@ -324,7 +324,7 @@
 
 
 
-  .sales-table tr {
+  .sales-table tr ,.stock-table tr {
     padding: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.308);
   }
@@ -428,7 +428,8 @@
   #modalOverlay-ads,
   #modalOverlay-setting,
   #modalOverlay-expenses,
-    #modalOverlay-records {
+    #modalOverlay-records,
+    #modalOverlay-stock {
     position: fixed;
     top: 0;
     left: 0;
@@ -451,7 +452,8 @@
   #modalBox-ads,
   #modalBox-setting,
   #modalBox-expenses,
-      #modalBox-records
+      #modalBox-records,
+      #modalBox-stock
  {
     width: 80%;
     background: rgba(255, 255, 255, 0.1);
@@ -476,7 +478,8 @@
   #modalBox-ads input,
   #modalBox-setting input,
   #modalBox-expenses input,
-    #modalBox-records input {
+    #modalBox-records input,
+    #modalBox-stock input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -496,7 +499,8 @@
   #submitBtn-ads,
   #submitBtn-setting,
   #submitBtn-expenses,
-    #submitBtn-records {
+    #submitBtn-records,
+    #submitBtn-stock {
     padding: 12px 10px;
     border: none;
     border-radius: 8px;
@@ -541,7 +545,8 @@
   .modal-header-ads,
   .modal-header-setting,
   .modal-header-expenses,
-  .modal-header-records {
+  .modal-header-records,
+  .modal-header-stock {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -560,7 +565,8 @@
   #x-ads,
   #x-setting,
   #x-expenses,
-    #x-records {
+    #x-records,
+    #x-stock {
     font-size: 25px;
     cursor: pointer;
   }
@@ -574,7 +580,8 @@
   #x-ads:hover,
   #x-setting:hover,
   #x-expenses:hover ,
-    #x-records:hover {
+    #x-records:hover,
+    #x-stock:hover {
     color: rgb(240, 29, 29);
   }
 

@@ -103,8 +103,7 @@ loanBtn.addEventListener("click", () => {
   loanBtn.style.color = "white";
   cashBtn.style.background = "";
 });
-
-// 7. SUBMIT SALE (The Big Logic)
+// 7. SUBMIT SALE (The Unified Logic with Profit & UI Reset)
 submitBtn.addEventListener("click", () => {
   if (Object.keys(cart).length === 0) { alert("Cart is empty!"); return; }
   if (!selectedPayment) { alert("Select payment method!"); return; }
@@ -116,36 +115,47 @@ submitBtn.addEventListener("click", () => {
     return;
   }
 
-  // Load current databases
-  let bills = JSON.parse(localStorage.getItem("bills")) || [];
+  // A. Load ALL current databases
   let products = JSON.parse(localStorage.getItem("products")) || [];
+  let stock = JSON.parse(localStorage.getItem("stock")) || [];
+  let bills = JSON.parse(localStorage.getItem("bills")) || [];
   let totalCartAmount = 0;
 
-  // Process items in cart
+  // B. Process items in cart
   for (let itemName in cart) {
     const soldQty = cart[itemName].qty;
     const sellPrice = cart[itemName].price;
     const itemTotal = sellPrice * soldQty;
     totalCartAmount += itemTotal;
 
-    // A. Update Stock in "products"
+    // 1. Update "products" array (for UI cards)
     const productIdx = products.findIndex(p => p.name === itemName);
     if (productIdx !== -1) {
       products[productIdx].qty = parseInt(products[productIdx].qty) - soldQty;
     }
 
-    // B. Create Sale Record
-    const saleData = {
+    // 2. Update "stock" array (for Stock Table) & Profit
+    let stockItem = stock.find(s => s.name === itemName);
+    if (stockItem) {
+        stockItem.soldQty = (Number(stockItem.soldQty) || 0) + soldQty;
+        stockItem.availableQty = (Number(stockItem.availableQty) || 0) - soldQty;
+        
+        // PROFIT LOGIC: (Sell Price - Real Price) * Sold Qty
+        const realPrice = Number(stockItem.realPrice) || 0;
+        const currentProfit = (sellPrice - realPrice) * soldQty;
+        stockItem.profit = (Number(stockItem.profit) || 0) + currentProfit;
+    }
+
+    // 3. Create Bill Record
+    bills.push({
       product: itemName,
       soldQty: soldQty,
       sellPrice: sellPrice,
       total: itemTotal,
       payment: selectedPayment,
       customer: customerName,
-      timestamp: new Date().toISOString()
-    };
-
-    bills.push(saleData);
+      timestamp: new Date().toLocaleString()
+    });
   }
 
   // C. Save Loan Record if applicable
@@ -161,20 +171,27 @@ submitBtn.addEventListener("click", () => {
     localStorage.setItem("payment-customer", JSON.stringify(loans));
   }
 
-  // D. Update LocalStorage
-  localStorage.setItem("bills", JSON.stringify(bills));
+  // D. Save ALL changes
   localStorage.setItem("products", JSON.stringify(products));
+  localStorage.setItem("stock", JSON.stringify(stock));
+  localStorage.setItem("bills", JSON.stringify(bills));
 
-  // 8. RESET EVERYTHING
-  alert("Transaction Successful!");
+  // 8. RESET EVERYTHING (Including Buttons)
+  alert("Transaction Successful! ✅");
+  
   cart = {};
   selectedPayment = "";
+  
+  // RESET BUTTON STYLES (Make them not active)
   cashBtn.style.background = "";
+  cashBtn.style.color = "";
   loanBtn.style.background = "";
+  loanBtn.style.color = "";
+  
   if(customerSelect) customerSelect.value = "";
   
   renderCart();
-  loadProducts(); // Refresh the product display to show new stock levels
+  loadProducts(); 
 });
 
 // INITIALIZE

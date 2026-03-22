@@ -169,6 +169,49 @@
 
   <!--/-->
 
+
+  
+  <!--Modal stock Reports-->
+
+  <div id="modalOverlay-stock">
+    <div id="modalBox-stock" style=" height: 500px;
+    overflow-y: auto;">
+      <div class="modal-header-stock">
+        <h3>Stock Reports</h3>
+        <p id="x-stock">x</p>
+      </div>
+      
+
+      <table class="stock-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Stock Qty</th>
+            <th>Sold Qty</th>
+            <th>Available Qty</th>
+            <th>Main Price</th>
+            <th>Sell Price</th>
+            <th>Profit</th>
+            <th>Sold Date</th>
+          </tr>
+        </thead>
+
+        <tbody id="stock-table">
+
+        </tbody>
+
+
+
+      </table>
+     
+
+
+
+    </div>
+  </div>
+
+  <!--/-->
   <!--Modal Payments-->
   <div id="modalOverlay-payments">
     <div id="modalBox-payments">
@@ -400,7 +443,6 @@
   <!--/-->
 
   <!--Modal setting-->
-  <!--Modal setting-->
 <div id="modalOverlay-setting">
   <div id="modalBox-setting">
     <div class="modal-header-setting">
@@ -620,6 +662,11 @@
 
         <p class="openModal-sales-reports" data-key="sales">Sales</p>
       </div>
+       <div class="sales-orders">
+        <i class="fas fa-warehouse"></i>
+
+        <p class="openModal-stock" data-key="sales">Stock</p>
+      </div>
       <div class="chart">
         <i class="fas fa-chart-line"></i>
         <p class="openModal-chart" data-key="chart">Chart</p>
@@ -769,11 +816,13 @@
 <script src="js/pay-get-c.js"></script>
 <script src="js/payment-supplier.js"></script>
 <script src="js/product.js"></script>
+<script src="js/stock.js"></script>
 <script src="js/pay-get.js"></script>
 
 
 
   <script src="js/main.js"></script>
+
   <script src="js/data.js"></script>
   <script src = "js/payment.js"></script>
   <script src="js/ads.js"></script>
