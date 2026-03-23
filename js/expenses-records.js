@@ -1,70 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.getElementById("expensesTable");
-    const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    const submitBtn = document.getElementById("submitBtn-expenses");
+    
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
     function renderTable() {
+        if (!tableBody) return;
         tableBody.innerHTML = "";
         let totalAmount = 0;
 
-        if (expenses.length === 0) {
-            tableBody.innerHTML =
-                "<tr><td colspan='4'>No expenses found</td></tr>";
-            document.getElementById("total-expenses").textContent = "0.00";
-            return;
-        }
-
         expenses.forEach((expense, index) => {
-            const row = document.createElement("tr");
-
             totalAmount += Number(expense.amount) || 0;
-
-            row.innerHTML = `
-              <td>${expense.name}</td>
-              <td>${expense.amount}</td>
-              <td>${expense.startDate}</td>
-              <td>
-                <button class="edit-btn" data-index="${index}">Edit</button>
-                <button class="delete-btn" data-index="${index}">Delete</button>
-              </td>
-            `;
-
-            tableBody.appendChild(row);
+            const row = `
+              <tr>
+                <td>${expense.name}</td>
+                <td>${expense.amount}</td>
+                <td>${expense.startDate}</td>
+                <td>
+                  <button onclick="editExpense(${index})" id = "editExpense">Edit</button>
+                  <button onclick="deleteExpense(${index})" id = "deleteExpense">Delete</button>
+                </td>
+              </tr>`;
+            tableBody.insertAdjacentHTML('beforeend', row);
         });
 
-        // Update total
-        document.getElementById("total-expenses").textContent =
-            totalAmount.toFixed(2);
+        const totalElem = document.getElementById("total-expenses");
+        if (totalElem) totalElem.textContent = totalAmount.toFixed(2);
+    }
 
-        // Delete functionality
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", () => {
-                const index = button.getAttribute("data-index");
-                expenses.splice(index, 1); // Remove from array
-                localStorage.setItem("expenses", JSON.stringify(expenses));
-                renderTable();
-            });
-        });
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            // Using the new unique IDs
+            const nameInput = document.getElementById('exp-name');
+            const amountInput = document.getElementById('exp-amount');
+            const dateInput = document.getElementById('exp-startDate');
 
-        // Edit functionality
-        document.querySelectorAll(".edit-btn").forEach(button => {
-            button.addEventListener("click", () => {
-                const index = button.getAttribute("data-index");
-                const expense = expenses[index];
+            const newExpense = {
+                name: nameInput.value.trim(), // trim() removes accidental spaces
+                amount: amountInput.value,
+                startDate: dateInput.value
+            };
 
-                // Prompt user for new values
-                const newName = prompt("Enter new name:", expense.name);
-                const newAmount = prompt("Enter new amount:", expense.amount);
-                const newDate = prompt("Enter new start date:", expense.startDate);
+            if (!newExpense.name || !newExpense.amount) {
+                alert("Please enter Name and Amount");
+                return;
+            }
 
-                if (newName !== null) expense.name = newName;
-                if (newAmount !== null) expense.amount = newAmount;
-                if (newDate !== null) expense.startDate = newDate;
-
-                localStorage.setItem("expenses", JSON.stringify(expenses));
-                renderTable();
-            });
+            expenses.push(newExpense);
+            localStorage.setItem("expenses", JSON.stringify(expenses));
+            
+            // This line makes it show WITHOUT refreshing
+            renderTable(); 
+            
+            // Clear inputs
+            nameInput.value = "";
+            amountInput.value = "";
+            dateInput.value = "";
         });
     }
 
-    renderTable(); // Initial render
+    // Move functions to window so the HTML 'onclick' can see them
+    window.deleteExpense = (index) => {
+        expenses.splice(index, 1);
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        renderTable();
+    };
+
+    window.editExpense = (index) => {
+        const exp = expenses[index];
+        const n = prompt("New Name:", exp.name);
+        const a = prompt("New Amount:", exp.amount);
+        if (n !== null) exp.name = n;
+        if (a !== null) exp.amount = a;
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        renderTable();
+    };
+
+    renderTable(); // Load table on start
 });

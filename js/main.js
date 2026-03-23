@@ -129,8 +129,7 @@ new Chart(barCtx, {
     }
   }
 });
-
-   const openDivVendor = document.querySelector(".openModal-vendor");
+  const openDivVendor = document.querySelector(".openModal-vendor");
     const modalVendor = document.getElementById("modalOverlay-vendor");
     const xBtnVendor = document.getElementById("x-vendor");
 

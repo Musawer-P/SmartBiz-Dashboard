@@ -1,85 +1,123 @@
-let editRow = null;
+const submitBtn = document.getElementById('submitBtn-ads');
+const adsTableBody = document.querySelector('#ads-table tbody');
 
-const submitBtn = document.getElementById("submitBtn-vendor");
+let adsData = JSON.parse(localStorage.getItem('adsData')) || [];
+let editIndex = null;
 
-submitBtn.addEventListener("click", function () {
-    const campaignName = document.getElementById("campaign-name").value;
-    const platform = document.getElementById("platform").value;
-    const startDate = document.getElementById("start-date").value;
-    const budget = document.getElementById("budget").value;
-    const period = document.getElementById("period").value;
-    const endDate = document.getElementById("end-date").value;
+// 1. Handle Form Submission
+if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+        const name = document.getElementById('campaign-name').value;
+        const platform = document.getElementById('platform').value;
 
-    if (!campaignName || !platform || !budget) {
-        alert("Please fill required fields");
-        return;
-    }
+        if (!name || !platform) {
+            alert("Please fill in the Campaign Name and Platform");
+            return;
+        }
 
-    const table = document.getElementById("ads-table").querySelector("tbody");
+        const newData = {
+            name: name,
+            platform: platform,
+            start: document.getElementById('start-date').value,
+            budget: document.getElementById('budget').value,
+            period: document.getElementById('period').value,
+            end: document.getElementById('end-date').value,
+            status: "Active" 
+        };
 
-    // EDIT MODE
-    if (editRow) {
-        editRow.cells[0].innerText = campaignName;
-        editRow.cells[1].innerText = platform;
-        editRow.cells[2].innerText = budget;
-        editRow.cells[3].innerText = period;
-        editRow.cells[4].innerText = startDate;
-        editRow.cells[5].innerText = endDate;
+        if (editIndex !== null) {
+            newData.status = adsData[editIndex].status || "Active";
+            adsData[editIndex] = newData;
+            editIndex = null;
+            submitBtn.innerText = "Submit";
+        } else {
+            adsData.push(newData);
+        }
 
-        editRow = null;
-        submitBtn.innerText = "Submit";
-    } 
-    // ADD MODE
-    else {
-        const row = table.insertRow();
-
-        row.innerHTML = `
-            <td>${campaignName}</td>
-            <td>${platform}</td>
-            <td>${budget}</td>
-            <td>${period}</td>
-            <td>${startDate}</td>
-            <td>${endDate}</td>
-            <td>
-                <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
-            </td>
-        `;
-    }
-
-    clearInputs();
-});
-
-// CLEAR INPUTS
-function clearInputs() {
-    document.getElementById("campaign-name").value = "";
-    document.getElementById("platform").value = "";
-    document.getElementById("start-date").value = "";
-    document.getElementById("budget").value = "";
-    document.getElementById("period").value = "";
-    document.getElementById("end-date").value = "";
+        saveAndRender();
+        clearInputs();
+    });
 }
 
-// TABLE ACTIONS (Edit / Delete)
-document.getElementById("ads-table").addEventListener("click", function (e) {
-    const target = e.target;
-    const row = target.closest("tr");
+// 2. Cycle Status
+window.toggleStatus = (index) => {
+    const current = adsData[index].status || "Active";
+    let next;
+    if (current === "Active") next = "Stopped";
+    else if (current === "Stopped") next = "Waiting";
+    else next = "Active";
 
-    // DELETE
-    if (target.classList.contains("delete-btn")) {
-        row.remove();
+    adsData[index].status = next;
+    saveAndRender();
+};
+
+// 3. Save and Render
+function saveAndRender() {
+    localStorage.setItem('adsData', JSON.stringify(adsData));
+    renderTable();
+}
+
+// 4. Draw Table (Fixed with safety checks)
+function renderTable() {
+    // If this console log says "null", your HTML <tbody> is missing or the ID is wrong
+    console.log("Table Body Found:", adsTableBody); 
+    
+    if (!adsTableBody) return;
+    adsTableBody.innerHTML = '';
+
+    adsData.forEach((ad, index) => {
+        // Safety: If old data has no status, default to Active
+        const currentStatus = ad.status || "Active";
+        const statusClass = currentStatus.toLowerCase();
+        
+        const row = `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${ad.name}</td>
+                <td>${ad.platform}</td>
+                <td>${ad.start}</td>
+                <td>${ad.budget}</td>
+                <td>${ad.period}</td>
+                <td>${ad.end}</td>
+                <td>
+                    <span class="status-btn ${statusClass}" onclick="toggleStatus(${index})" style="cursor:pointer; padding:5px; border-radius:4px;">
+                        ${currentStatus}
+                    </span>
+                </td>
+                <td>
+                    <button onclick="editAd(${index})" id = "edit-ads">Edit</button>
+                    <button onclick="deleteAd(${index})" id = "delete-ads">Delete</button>
+                </td>
+            </tr>
+        `;
+        adsTableBody.insertAdjacentHTML('beforeend', row);
+    });
+}
+
+// 5. Action Functions
+window.deleteAd = (index) => {
+    if (confirm("Delete this record?")) {
+        adsData.splice(index, 1);
+        saveAndRender();
     }
+};
 
-    // EDIT
-    if (target.classList.contains("edit-btn")) {
-        document.getElementById("campaign-name").value = row.cells[0].innerText;
-        document.getElementById("platform").value = row.cells[1].innerText;
-        document.getElementById("budget").value = row.cells[2].innerText;
-        document.getElementById("period").value = row.cells[3].innerText;
-        document.getElementById("start-date").value = row.cells[4].innerText;
-        document.getElementById("end-date").value = row.cells[5].innerText;
+window.editAd = (index) => {
+    const ad = adsData[index];
+    document.getElementById('campaign-name').value = ad.name;
+    document.getElementById('platform').value = ad.platform;
+    document.getElementById('start-date').value = ad.start;
+    document.getElementById('budget').value = ad.budget;
+    document.getElementById('period').value = ad.period;
+    document.getElementById('end-date').value = ad.end;
+    
+    editIndex = index;
+    submitBtn.innerText = "Update Ad";
+};
 
-        editRow = row;
-        submitBtn.innerText = "Update";
-    }
-});
+function clearInputs() {
+    document.querySelectorAll('.ads-input-div input').forEach(input => input.value = '');
+}
+
+// Initial Run
+renderTable();
