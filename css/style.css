@@ -1108,15 +1108,44 @@ cursor: pointer;
   border-radius: 5px;
 }
 .negative {
+
   background: #d83333;
   color: #ffdddd;
 }
+#delete-ads{
+    background: #d83333;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 2px;
 
-.positive {
+}
+#deleteExpense{
+   background: #d83333;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 2px;
+}
+.positive ,#edit-ads {
+  border: none;
   background: #34ad34;
   color: #ddffdd;
 }
+#edit-ads{
+  background: #34ad34;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 2px;
 
+}
+#editExpense{
+    background: #34ad34;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 2px;
+    color: white;
+}
 .zero {
   background: #f2f2f2;
   color: #333;
@@ -1155,3 +1184,19 @@ cursor: pointer;
   .payment-div::-webkit-scrollbar-thumb:hover {
     background: #777;
   }
+  table td{
+    padding: 10px;
+  }
+.status-btn {
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+}
+.status-btn.active { background-color: #28a745; }
+.status-btn.stopped { background-color: #dc3545; }
+.status-btn.waiting { background-color: #ffc107; color: #000; }

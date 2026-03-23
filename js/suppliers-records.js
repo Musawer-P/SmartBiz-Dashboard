@@ -1,30 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const tableBody = document.getElementById("supplierTable");
+const fromInput = document.getElementById("from");
+const toInput = document.getElementById("to");
+const tableBody = document.getElementById("supplierTable");
 
-    const suppliers = JSON.parse(localStorage.getItem("suppliers")) || [];
+function loadSuppliers() {
+  const suppliers = JSON.parse(localStorage.getItem("suppliers")) || [];
+  const fromDate = fromInput.value;
+  const toDate = toInput.value;
 
-    if (suppliers.length === 0) {
-        tableBody.innerHTML =
-            "<tr><td colspan='9'>No suppliers found</td></tr>";
-        return;
-    }
+  tableBody.innerHTML = "";
 
-    tableBody.innerHTML = "";
+  const filtered = suppliers.filter(item => {
+    if (fromDate && item.date < fromDate) return false;
+    if (toDate && item.date > toDate) return false;
+    return true;
+  });
 
-    suppliers.forEach(supplier => {
-        const row = document.createElement("tr");
+  filtered.forEach((item, index) => {
+    tableBody.innerHTML += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${item.name}</td>
+        <td>${item.number}</td>
+        <td>${item.date}</td>
+        <td><button onclick="deleteSupplier(${item.id})">Delete</button></td>
+      </tr>`;
+  });
+}
 
-        row.innerHTML = `
-      <td>${supplier.name}</td>
-      <td>${supplier.number}</td>
-      <td>${supplier.email}</td>
-      <td>${supplier.address}</td>
-      <td>Pay</td>
-      <td>Loan</td>
-      <td>Account</td>
-      <td>Edit</td>
-    `;
+window.deleteSupplier = (id) => {
+    let suppliers = JSON.parse(localStorage.getItem("suppliers")) || [];
+    suppliers = suppliers.filter(s => s.id !== id);
+    localStorage.setItem("suppliers", JSON.stringify(suppliers));
+    loadSuppliers();
+};
 
-        tableBody.appendChild(row);
-    });
-});
+[fromInput, toInput].forEach(el => el?.addEventListener("change", loadSuppliers));
+loadSuppliers();

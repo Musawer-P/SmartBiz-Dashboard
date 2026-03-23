@@ -1,55 +1,29 @@
 document.getElementById("submitBtn-customer").addEventListener("click", () => {
-  const customer = {
-    id: Date.now(),
-    name: document.getElementById("customer-name").value,
-    number: document.getElementById("p-number").value,
-    email: document.getElementById("email").value,
-    address: document.getElementById("address").value,
-    gender: document.getElementById("gender").value,
-    discount: document.getElementById("discount").value
-  };
+    // 1. Capture values using your specific HTML IDs
+    const customer = {
+        id: Date.now(),
+        name: document.getElementById("customer-name").value,
+        number: document.getElementById("customer-p-number").value, // Matches ID
+        email: document.getElementById("customer-email").value,
+        address: document.getElementById("customer-address").value,
+        gender: document.getElementById("customer-gender").value,
+        discount: document.getElementById("customer-discount").value,
+        date: new Date().toISOString().split('T')[0] // Saves as YYYY-MM-DD for filtering
+    };
 
+    // 2. Validation
+    if (!customer.name) {
+        alert("Please enter a name");
+        return;
+    }
 
-  let customers = JSON.parse(localStorage.getItem("customers")) || [];
-  customers.push(customer);
-  localStorage.setItem("customers", JSON.stringify(customers));
+    // 3. Save to LocalStorage
+    let customers = JSON.parse(localStorage.getItem("customers")) || [];
+    customers.push(customer);
+    localStorage.setItem("customers", JSON.stringify(customers));
 
-  alert("Customer added successfully ✅");
+    alert("Customer added successfully ✅");
+
+    // 4. Clear the form
+    document.querySelectorAll(".p-row input").forEach(input => input.value = "");
 });
-
-const fromInput = document.getElementById("from");
-const toInput = document.getElementById("to");
-const tableBody = document.getElementById("customersTable")
-
-function loadSuppliers() {
-  const suppliers = JSON.parse(localStorage.getItem("customers")) || [];
-
-  const fromDate = fromInput.value ? new Date(fromInput.value) : null;
-  const toDate = toInput.value ? new Date(toInput.value) : null;
-
-  tableBody.innerHTML = "";
-
-  const filtered = suppliers.filter(item => {
-    const itemDate = new Date(item.date);
-
-    if (fromDate && itemDate < fromDate) return false;
-    if (toDate && itemDate > toDate) return false;
-
-    return true;
-  });
-
-  filtered.forEach(item => {
-    tableBody.innerHTML += `
-      <tr>
-        <td>${item.name}</td>
-        <td>${item.amount}</td>
-        <td>${item.date}</td>
-      </tr>
-    `;
-  });
-}
-
-fromInput.addEventListener("change", loadSuppliers);
-toInput.addEventListener("change", loadSuppliers);
-
-loadSuppliers();

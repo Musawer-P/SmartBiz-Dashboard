@@ -1,29 +1,57 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const tableBody = document.getElementById("customersTable");
+const tableBody = document.getElementById("customersTable");
+const fromInput = document.getElementById("from-cust"); // Ensure this ID exists in Records HTML
+const toInput = document.getElementById("to-cust");     // Ensure this ID exists in Records HTML
 
-  const customers = JSON.parse(localStorage.getItem("customers")) || [];
+function loadCustomers() {
+    if (!tableBody) return;
+    const customers = JSON.parse(localStorage.getItem("customers")) || [];
+    
+    const fromDate = fromInput ? fromInput.value : "";
+    const toDate = toInput ? toInput.value : "";
 
-  if (customers.length === 0) {
-    tableBody.innerHTML =
-      "<tr><td colspan='9'>No customers found</td></tr>";
-    return;
-  }
+    tableBody.innerHTML = "";
 
-  tableBody.innerHTML = "";
+    // Filter by date if inputs exist
+    const filtered = customers.filter(item => {
+        if (fromDate && item.date < fromDate) return false;
+        if (toDate && item.date > toDate) return false;
+        return true;
+    });
 
-  customers.forEach(customer => {
-    const row = document.createElement("tr");
+    if (filtered.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='6'>No customers found</td></tr>";
+        return;
+    }
 
-    row.innerHTML = `
-      <td>${customer.name}</td>
-      <td>${customer.number}</td>
-      <td>${customer.email}</td>
-      <td>${customer.address}</td>
-      <td>${customer.gender}</td>
-      <td>${customer.discount}</td>
-      <td>Edit</td>
-    `;
+    filtered.forEach((item, index) => {
+        tableBody.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.number}</td>
+                <td>${item.address}</td>
+                <td>${item.discount}%</td>
+                <td>
+                    <button onclick="deleteCustomer(${item.id})">Delete</button>
+                </td>
+            </tr>
+        `;
+    });
+}
 
-    tableBody.appendChild(row);
-  });
-});
+// Global delete function
+window.deleteCustomer = (id) => {
+    if (confirm("Delete this customer?")) {
+        let customers = JSON.parse(localStorage.getItem("customers")) || [];
+        customers = customers.filter(c => c.id !== id);
+        localStorage.setItem("customers", JSON.stringify(customers));
+        loadCustomers();
+    }
+};
+
+// Listen for date changes
+if (fromInput) fromInput.addEventListener("change", loadCustomers);
+if (toInput) toInput.addEventListener("change", loadCustomers);
+
+// Initial Load
+loadCustomers();

@@ -103,15 +103,17 @@
       </div>
       <div class="p-row">
         <input type="text" placeholder="Name" id="customer-name" />
-        <input type="text" placeholder="P-Number" id="p-number" />
+        <input type="text" placeholder="P-Number" id="customer-p-number" />
       </div>
       <div class="p-row">
-        <input type="text" placeholder="Email" id="email" />
-        <input type="text" placeholder="Address" id="address" />
+        <input type="text" placeholder="Email" id="customer-email" />
+        <input type="text" placeholder="Address" id="customer-address" />
       </div>
       <div class="p-row">
-        <input type="text" placeholder="Gender" id="gender" />
-        <input type="text" placeholder="Discount" id="discount" />
+<select id="customer-gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>        <input type="text" placeholder="Discount" id="customer-discount" />
       </div>
 
       <div class="modal-btn">
@@ -170,7 +172,7 @@
   <!--/-->
 
 
-  
+
   <!--Modal stock Reports-->
 
   <div id="modalOverlay-stock">
@@ -180,7 +182,7 @@
         <h3>Stock Reports</h3>
         <p id="x-stock">x</p>
       </div>
-      
+
 
       <table class="stock-table">
         <thead>
@@ -204,7 +206,7 @@
 
 
       </table>
-     
+
 
 
 
@@ -222,68 +224,69 @@
       <div class="payment-row">
         <div class="payment-customer">
           <h3>Supplier</h3>
-        <div class = "payment-div">
-<table id="payment-table">
-<thead>
-<tr>
-  <th>#</th>
-<th>Vendor</th>
-<th>Amount</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
+          <div class="payment-div">
+            <table id="payment-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Vendor</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
 
-<tbody>
+              <tbody>
 
-</tbody>
+              </tbody>
 
-</table>
-</div>
-<div class = "btn-div">
-<button id="pay-btn">Pay Loan</button>
-<button id="get-btn">Get Loan</button>
-</div>
-<div class = "total-payments">
-  <h3>Total</h3>
-<p id="total-amount">0$</p>
-</div>
-</div>
+            </table>
+          </div>
+          <div class="btn-div">
+            <button id="pay-btn">Pay Loan</button>
+            <button id="get-btn">Get Loan</button>
+          </div>
+          <div class="total-payments">
+            <h3>Total</h3>
+            <p id="total-amount">0$</p>
+          </div>
+        </div>
         <div class="payment-customer">
           <h3>Customers</h3>
-               <div class = "payment-div">
-   
- <table id="payment-table-c">
+          <div class="payment-div">
 
-<thead>
-<tr>
-<th>#</th>
-<th>Customer</th>
-<th>Amount</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
+            <table id="payment-table-c">
 
-<tbody>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Customer</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
 
-</tbody>
+              <tbody>
 
-</table>
-</div>
-<div class = "btn-div">
-<button id="pay-btn-c">Pay Loan</button>
-<button id="get-btn-c">Get Loan</button>
-</div><div class = "total-payments">
-  <h3>Total</h3>
-<p id="total-amount-c">0$</p>
-</div>
-</div>
+              </tbody>
+
+            </table>
+          </div>
+          <div class="btn-div">
+            <button id="pay-btn-c">Pay Loan</button>
+            <button id="get-btn-c">Get Loan</button>
+          </div>
+          <div class="total-payments">
+            <h3>Total</h3>
+            <p id="total-amount-c">0$</p>
+          </div>
         </div>
-
       </div>
-    
+
     </div>
+
+  </div>
   </div>
 
 
@@ -341,7 +344,7 @@
 
         </div>
         <div class="modal-btn">
-          <button id="submitBtn-vendor">Submit</button>
+          <button id="submitBtn-ads">Submit</button>
           <i class="fas fa-arrow-right"></i>
         </div>
       </div>
@@ -357,38 +360,11 @@
             <th>Period</th>
             <th>Status</th>
             <th>End Date</th>
+                        <th>Action</th>
+
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Winter Sale</td>
-              <td>Facebook</td>
-              <td>2025-12-01</td>
-              <td>$500</td>
-              <td>30 days</td>
-              <td>Active</td>
-              <td>2025-12-31</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Summer Promo</td>
-              <td>Instagram</td>
-              <td>2025-06-15</td>
-              <td>$300</td>
-              <td>15 days</td>
-              <td>Completed</td>
-              <td>2025-06-30</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Back to School</td>
-              <td>Google Ads</td>
-              <td>2025-08-01</td>
-              <td>$400</td>
-              <td>20 days</td>
-              <td>Active</td>
-              <td>2025-08-21</td>
-            </tr>
+           
           </tbody>
         </table>
       </div>
@@ -409,20 +385,19 @@
         <p id="x-expenses">x</p>
       </div>
 
-      <div class="expenses-input-div">
-        <div class="expenses-input-row">
-          <input type="text" id="name" placeholder="Name" />
-          <input type="number" id="amount" placeholder="Amount" />
-
-        </div>
-        <div class="expense-btn-div">
-          <input type="datetime-local" id="startDate" />
-        </div>
-        <div class="modal-btn">
-          <button id="submitBtn-expenses">Submit</button>
-          <i class="fas fa-arrow-right"></i>
-        </div>
-      </div>
+     <div class="expenses-input-div">
+    <div class="expenses-input-row">
+        <input type="text" id="exp-name" placeholder="Name" />
+        <input type="number" id="exp-amount" placeholder="Amount" />
+    </div>
+    <div class="expense-btn-div">
+        <input type="datetime-local" id="exp-startDate" />
+    </div>
+    <div class="modal-btn">
+        <button id="submitBtn-expenses">Submit</button>
+        <i class="fas fa-arrow-right"></i>
+    </div>
+</div>
 
       <div class="expenses-table">
         <table id="expenses-table">
@@ -443,69 +418,69 @@
   <!--/-->
 
   <!--Modal setting-->
-<div id="modalOverlay-setting">
-  <div id="modalBox-setting">
-    <div class="modal-header-setting">
-      <h3>Settings</h3>
-      <p id="x-setting" style="cursor:pointer">x</p>
-    </div>
-
-    <form id="settingsForm">
-      <div class="setting-row">
-        <!-- Company Info -->
-        <div class="company-info">
-          <h1>Company Info</h1>
-          <div class="info-row">
-            <label>Company Name</label>
-            <input type="text" id="comp-name" value="Tusqa">
-          </div>
-          <div class="info-row">
-            <label>Company Email</label>
-            <input type="email" id="comp-email" value="contact@tusqa.com">
-          </div>
-          <div class="info-row">
-            <label>Address</label>
-            <input type="text" id="comp-address" value="Madina">
-          </div>
-          <select id="currency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="AFN">AFN</option>
-          </select>
-        </div>
-
-        <!-- User Info -->
-        <div class="user-info">
-          <h1>User Info</h1>
-          <div class="info-row">
-            <label>Full Name</label>
-            <input type="text" id="user-fullname" value="Mike">
-          </div>
-          <div class="info-row">
-            <label>Role</label>
-            <p id="display-role">Manager</p> <!-- Roles usually assigned by Admin -->
-          </div>
-        </div>
-
-        <!-- Security -->
-        <div class="security">
-          <h1>Security</h1>
-          <div class="info-row">
-            <label>Username</label>
-            <input type="text" id="set-username">
-          </div>
-          <div class="info-row">
-            <label>Password</label>
-            <input type="password" id="set-password">
-          </div>
-        </div>
+  <div id="modalOverlay-setting">
+    <div id="modalBox-setting">
+      <div class="modal-header-setting">
+        <h3>Settings</h3>
+        <p id="x-setting" style="cursor:pointer">x</p>
       </div>
 
-      <div class="setting-footer">
-        <p id="status-msg"></p>
-        <button type="submit" id="save-settings-btn">Save All Changes</button>
-      </div>
-    </form>
+      <form id="settingsForm">
+        <div class="setting-row">
+          <!-- Company Info -->
+          <div class="company-info">
+            <h1>Company Info</h1>
+            <div class="info-row">
+              <label>Company Name</label>
+              <input type="text" id="comp-name" value="Tusqa">
+            </div>
+            <div class="info-row">
+              <label>Company Email</label>
+              <input type="email" id="comp-email" value="contact@tusqa.com">
+            </div>
+            <div class="info-row">
+              <label>Address</label>
+              <input type="text" id="comp-address" value="Madina">
+            </div>
+            <select id="currency">
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="AFN">AFN</option>
+            </select>
+          </div>
+
+          <!-- User Info -->
+          <div class="user-info">
+            <h1>User Info</h1>
+            <div class="info-row">
+              <label>Full Name</label>
+              <input type="text" id="user-fullname" value="Mike">
+            </div>
+            <div class="info-row">
+              <label>Role</label>
+              <p id="display-role">Manager</p> <!-- Roles usually assigned by Admin -->
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div class="security">
+            <h1>Security</h1>
+            <div class="info-row">
+              <label>Username</label>
+              <input type="text" id="set-username">
+            </div>
+            <div class="info-row">
+              <label>Password</label>
+              <input type="password" id="set-password">
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-footer">
+          <p id="status-msg"></p>
+          <button type="submit" id="save-settings-btn">Save All Changes</button>
+        </div>
+      </form>
 
       <div class="setting-footer">
         <div class="footer-one">
@@ -516,7 +491,7 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 
   <!--/-->
 
@@ -527,74 +502,80 @@
         <h3>Records</h3>
         <p id="x-records">x</p>
       </div>
-      <div class = "records-main">
-        <h1 id = "main-h1">All Records</h1>
-        <div class = "records-date-input">
-            <input type = "datetime-local" id = "from">
-            <input type = "datetime-local" id = "to">
+      <div class="records-main">
+        <h1 id="main-h1">All Records</h1>
+        <div class="records-date-input">
+          <input type="datetime-local" id="from">
+          <input type="datetime-local" id="to">
         </div>
-    <div class="records-header">
-        <div class="records-one">
-          <a href = "suppliers-records.html"><h2>Suppliers</h2></a>
-            
-        </div>
-        <div class="records-two">
-            <a href = "products-records.html"><h2>Products</h2></a>
-        </div>
-        <div class="records-three">
-             <a href = "customers-records.html"><h2>Customers</h2></a>
+        <div class="records-header">
+          <div class="records-one">
+            <a href="suppliers-records.html">
+              <h2>Suppliers</h2>
+            </a>
+
+          </div>
+          <div class="records-two">
+            <a href="products-records.html">
+              <h2>Products</h2>
+            </a>
+          </div>
+          <div class="records-three">
+            <a href="customers-records.html">
+              <h2>Customers</h2>
+            </a>
+          </div>
+
         </div>
 
-    </div>
-
-    <div class="records-mian">
-        <div class="records-suppliers">
+        <div class="records-mian">
+          <div class="records-suppliers">
             <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Items</th>
-                </thead>
-                                <tbody></tbody>
+              <thead>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Items</th>
+              </thead>
+              <tbody></tbody>
 
             </table>
-        </div>
+          </div>
 
 
-        <div class="records-products">
+          <div class="records-products">
             <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Qty</th>
-                    <th>Category</th>
-                    <th>Barcode</th>
-                    <th>Real Price</th>
-                    <th>Sale Price</th>
-                    <th>Payment</th>
-                    <th>Supplier</th>
-                </thead>
-                <tbody></tbody>
+              <thead>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Category</th>
+                <th>Barcode</th>
+                <th>Real Price</th>
+                <th>Sale Price</th>
+                <th>Payment</th>
+                <th>Supplier</th>
+              </thead>
+              <tbody></tbody>
             </table>
-        </div>
+          </div>
 
-        <div class = "records-customers">
+          <div class="records-customers">
             <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>E mail</th>
-                    <th>Address</th>
-                    <th>Gender</th>
-                    <th>Discount</th>
-                    <th>Account</th>
-                </thead>
-                <tbody></tbody>
+              <thead>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>E mail</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Discount</th>
+                <th>Account</th>
+              </thead>
+              <tbody></tbody>
             </table>
+          </div>
         </div>
-    </div>
-    </div>
+      </div>
     </div>
   </div>
 
@@ -611,7 +592,7 @@
           <img src="assets/images/2.jpg" id="profile-img">
         </div>
         <div class="setting">
-          <p id = "logout">logout</p>
+          <p id="logout">logout</p>
 
         </div>
       </div>
@@ -662,7 +643,7 @@
 
         <p class="openModal-sales-reports" data-key="sales">Sales</p>
       </div>
-       <div class="sales-orders">
+      <div class="sales-orders">
         <i class="fas fa-warehouse"></i>
 
         <p class="openModal-stock" data-key="sales">Stock</p>
@@ -810,31 +791,26 @@
   </div>
 
 
-
-<script src="js/sales.js"></script>
-<script src="js/payment-customer.js"></script>
-<script src="js/pay-get-c.js"></script>
-<script src="js/payment-supplier.js"></script>
-<script src="js/product.js"></script>
-<script src="js/stock.js"></script>
-<script src="js/pay-get.js"></script>
-
-
-
+  <script src="js/sales.js"></script>
+  <script src="js/payment-customer.js"></script>
+  <script src="js/pay-get-c.js"></script>
+  <script src="js/payment-supplier.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/pay-get.js"></script>
+  <script src="js/ads.js"></script>
+  <script src="js/expenses-records.js"></script>
+  <script src="js/customer.js"></script>
+  <script src="js/supplier.js"></script>
   <script src="js/main.js"></script>
 
   <script src="js/data.js"></script>
-  <script src = "js/payment.js"></script>
-  <script src="js/ads.js"></script>
-  <script src="js/customer.js"></script>
-  <script src="js/supplier.js"></script>
+  <script src="js/payment.js"></script>
   <script src="js/setting.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/translation.js"></script>
   <script src="js/language.js"></script>
-  <script src="js/expenses-records.js"></script>
-  <script src="js/expenses.js"></script>
-    <script src="js/logout.js"></script>
+  <script src="js/logout.js"></script>
 
 
 
