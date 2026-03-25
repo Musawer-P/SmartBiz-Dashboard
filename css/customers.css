@@ -33,21 +33,20 @@ border-radius: 30px;
 
 
 
-#table {
+#customer-table {
   text-align: center;
   width: 95%;
   border-collapse: collapse;
 }
-#table th{
+#customer-table th{
     padding-bottom: 15px;
 }
-#table td {
+#customer-table td {
   padding: 20px;
   font-size: 17px;
 }
 
-#table tr {
+#customer-table tr {
   padding: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.308);
-  color: rgba(255, 255, 255, 0.349);
 }
