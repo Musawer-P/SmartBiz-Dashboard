@@ -22,7 +22,7 @@ justify-content: center;
 gap: 10px;
 }
 
-#from,#to{
+#from-cust,#to-cust{
 padding: 10px;
 width: 100%;
 background-color: #ffffff25;
@@ -49,4 +49,19 @@ border-radius: 30px;
 #customer-table tr {
   padding: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.308);
+}
+
+#edit-btn{
+  background-color: #22c55e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
+}
+#delete-btn{
+  background-color: #e62828;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
 }

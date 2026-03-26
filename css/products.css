@@ -147,3 +147,17 @@ form {
 .save-btn:hover {
   background-color: #1669c1;
 }
+#edit-btn{
+  background-color: #22c55e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
+}
+#delete-btn{
+  background-color: #e62828;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
+}

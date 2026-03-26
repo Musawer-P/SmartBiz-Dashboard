@@ -2,7 +2,12 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   overflow-x: hidden;
   padding: 20px;
+  padding-top: 0px;
 
+}
+#main-h1{
+  color:rgba(0, 0, 0, 0.801);
+  margin-bottom: 30px;
 }
 .main-row{
   display: flex;
@@ -20,6 +25,7 @@ h1{
 }
 .product-cart{
   width: fit-content;
+  max-width: 200px;
   border: 1px solid rgba(5, 5, 5, 0.356);
   padding: 10px;
   padding-bottom: 20px;
@@ -159,4 +165,12 @@ flex-wrap: wrap;
   height: 550px;
   overflow-y: auto;
 
+}
+
+#customer-select{
+  padding: 7px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.212);
+  outline: none;
 }

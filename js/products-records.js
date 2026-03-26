@@ -43,8 +43,8 @@ function loadProducts() {
         <td class="supplier">${item.supplier}</td>
         <td class="date">${item.date || 'No Date'}</td>
         <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn" style="color:red">Delete</button>
+          <button class="edit-btn" id = "edit-btn">Edit</button>
+          <button class="delete-btn" id = "delete-btn">Delete</button>
         </td>
       </tr>
     `;

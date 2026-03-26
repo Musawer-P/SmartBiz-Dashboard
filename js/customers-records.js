@@ -6,24 +6,31 @@ function loadCustomers() {
     if (!tableBody) return;
     const customers = JSON.parse(localStorage.getItem("customers")) || [];
     
-    const fromDate = fromInput ? fromInput.value : "";
-    const toDate = toInput ? toInput.value : "";
+    // Get values from inputs
+    const fromValue = fromInput ? fromInput.value : "";
+    const toValue = toInput ? toInput.value : "";
 
     tableBody.innerHTML = "";
 
-    // Filter Logic
+    // 1. IMPROVED FILTER LOGIC (Matches your first code)
     const filtered = customers.filter(item => {
-        if (fromDate && item.date < fromDate) return false;
-        if (toDate && item.date > toDate) return false;
+        if (!item.date) return true; 
+
+        // Convert dates to numbers (ms) for accurate range checking
+        const itemTime = new Date(item.date).getTime();
+        
+        if (fromValue && itemTime < new Date(fromValue).getTime()) return false;
+        if (toValue && itemTime > new Date(toValue).getTime()) return false;
+        
         return true;
     });
 
     if (filtered.length === 0) {
-        // Updated colspan to 10 to match the new column count
         tableBody.innerHTML = "<tr><td colspan='10' style='text-align:center'>No customers found</td></tr>";
         return;
     }
 
+    // 2. RENDER ROWS
     filtered.forEach((item, index) => {
         tableBody.innerHTML += `
             <tr>
@@ -37,14 +44,15 @@ function loadCustomers() {
                 <td>${item.account || 0}</td>
                 <td>${item.date || 'No Date'}</td> 
                 <td>
-                    <button onclick="editCustomer(${item.id})">Edit</button>
-                    <button onclick="deleteCustomer(${item.id})" style="color:red">Delete</button>
+                    <button onclick="editCustomer(${item.id})" id = "edit-btn">Edit</button>
+                    <button onclick="deleteCustomer(${item.id})" id = "delete-btn">Delete</button>
                 </td>
             </tr>
         `;
     });
 }
 
+// 3. EDIT FUNCTION (Matching prompt style)
 window.editCustomer = (id) => {
     let customers = JSON.parse(localStorage.getItem("customers")) || [];
     const index = customers.findIndex(c => c.id === id);
@@ -59,7 +67,8 @@ window.editCustomer = (id) => {
         const gender = prompt("Edit Gender:", c.gender);
         const discount = prompt("Edit Discount %:", c.discount);
         const account = prompt("Edit Account Balance:", c.account);
-        const date = prompt("Edit Date (YYYY-MM-DD):", c.date || "");
+        // Added the time-sensitive hint to the prompt
+        const date = prompt("Enter Date (YYYY-MM-DDTHH:MM):", c.date || "");
 
         if (name !== null) {
             customers[index] = {
@@ -82,8 +91,9 @@ window.deleteCustomer = (id) => {
     }
 };
 
-// Event listeners for the Date Filter
-if (fromInput) fromInput.addEventListener("change", loadCustomers);
-if (toInput) toInput.addEventListener("change", loadCustomers);
+// 4. REAL-TIME EVENT LISTENERS (Changed from 'change' to 'input')
+if (fromInput) fromInput.addEventListener("input", loadCustomers);
+if (toInput) toInput.addEventListener("input", loadCustomers);
 
+// Initial load
 loadCustomers();
