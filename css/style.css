@@ -1,4 +1,4 @@
-body {
+ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
     color: white;
@@ -65,7 +65,9 @@ body {
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
   }
 
   #search {
@@ -96,7 +98,7 @@ body {
   }
 
   .second-section-header {
-    width: 40%;
+    width: fit-content;
   }
 
   .search-bar {
@@ -108,6 +110,7 @@ body {
   }
 
   .head-option p {
+    text-align: center;
     padding: 7px;
     border: none;
     border-radius: 5px;
@@ -187,6 +190,10 @@ body {
     gap: 15px;
   }
 
+.home a{
+  text-decoration: none;
+  color: white;
+}
   .search-bar {
     display: flex;
     align-items: center;
@@ -329,6 +336,56 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.308);
   }
 
+
+  .sales-table{
+    height: 180px;
+    overflow-y: auto;
+
+  }
+
+
+  .sales-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .sales-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .sales-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .sales-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+  .stock-table{
+    height: 280px;
+    overflow-y: auto;
+
+  }
+
+
+  .stock-table::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .stock-table::-webkit-scrollbar-track {
+    background: #1e1e1e4b;
+  }
+
+  .stock-table::-webkit-scrollbar-thumb {
+    background: #55555588;
+    border-radius: 10px;
+  }
+
+  .stock-table::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+
   #payment-table,#payment-table-c {
     border-collapse: collapse;
     width: 100%;
@@ -414,6 +471,7 @@ body {
 
   .p-row {
     display: flex;
+    justify-content: space-between;
     gap: 10px;
   }
 
@@ -429,7 +487,8 @@ body {
   #modalOverlay-setting,
   #modalOverlay-expenses,
     #modalOverlay-records,
-    #modalOverlay-stock {
+    #modalOverlay-stock,
+    #modalOverlay-freight-cost {
     position: fixed;
     top: 0;
     left: 0;
@@ -453,7 +512,8 @@ body {
   #modalBox-setting,
   #modalBox-expenses,
       #modalBox-records,
-      #modalBox-stock
+      #modalBox-stock,
+      #modalBox-freight-cost
  {
     width: 80%;
     background: rgba(255, 255, 255, 0.1);
@@ -479,7 +539,8 @@ body {
   #modalBox-setting input,
   #modalBox-expenses input,
     #modalBox-records input,
-    #modalBox-stock input {
+    #modalBox-stock input,
+    #modalBox-freight-cost input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -489,6 +550,13 @@ body {
     outline: none;
   }
 
+  #customer-gender{
+    padding: 10px 0;
+    height: fit-content;
+    border-radius: 5px;
+    padding-left: 10px;
+    width: 100%;
+  }
   /* Button */
   #submitBtn,
   #submitBtn-vendor,
@@ -500,7 +568,8 @@ body {
   #submitBtn-setting,
   #submitBtn-expenses,
     #submitBtn-records,
-    #submitBtn-stock {
+    #submitBtn-stock,
+    #submitBtn-freight-cost {
     padding: 12px 10px;
     border: none;
     border-radius: 8px;
@@ -546,7 +615,8 @@ body {
   .modal-header-setting,
   .modal-header-expenses,
   .modal-header-records,
-  .modal-header-stock {
+  .modal-header-stock,
+  .modal-header-freight-cost {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -566,7 +636,8 @@ body {
   #x-setting,
   #x-expenses,
     #x-records,
-    #x-stock {
+    #x-stock,
+     #x-freight-cost {
     font-size: 25px;
     cursor: pointer;
   }
@@ -581,7 +652,8 @@ body {
   #x-setting:hover,
   #x-expenses:hover ,
     #x-records:hover,
-    #x-stock:hover {
+    #x-stock:hover,
+    #x-freight-cost:hover {
     color: rgb(240, 29, 29);
   }
 
@@ -917,6 +989,7 @@ body {
   .info-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.144);
@@ -929,9 +1002,20 @@ body {
     justify-content: center;
     gap: 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.253);
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
+  .setting-footer-btn {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    border-top: 1px solid rgba(255, 255, 255, 0.253);
+    margin-top: 50px;
+  }
   .setting-footer h3 {
     font-weight: 1;
   }
@@ -1200,3 +1284,57 @@ cursor: pointer;
 .status-btn.active { background-color: #28a745; }
 .status-btn.stopped { background-color: #dc3545; }
 .status-btn.waiting { background-color: #ffc107; color: #000; }
+
+#from-freight,#to-freight{
+padding: 10px;
+width: 100%;
+background-color: #ffffff25;
+border: 1px solid rgba(255, 255, 255, 0.432);
+color: white;
+border-radius: 30px;
+}
+
+#freight-cost-table{
+  width: 100%;
+  border-collapse:collapse;
+}
+#freight-cost-table tr{
+  border-bottom: 1px solid rgba(255, 255, 255, 0.116);
+
+}
+#freight-cost-table th{
+  text-align: start;
+}
+#edit-btn{
+  background-color: #22c55e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
+}
+#delete-btn{
+background-color: #e62828;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
+}
+
+#comp-name,#comp-email,#comp-address,#user-fullname,#role,#set-username,#set-password{
+  background-color: #ffffff21;
+  margin-top: 15px;
+  color: white;
+
+}
+
+#save-settings-btn{
+  padding: 5px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.setting-row{
+  height: 270px;
+  overflow-y: auto;
+  padding-right: 20px;
+}

@@ -1,97 +1,113 @@
-const tableBody = document.getElementById("freightTableBody");
-const fromInput = document.getElementById("from-freight");
-const toInput = document.getElementById("to-freight");
+document.addEventListener("DOMContentLoaded", () => {
+    const tableBody = document.getElementById("freightTableBody");
+    const submitBtn = document.getElementById("submitBtn-freight-cost");
+    const fromInput = document.getElementById("from-freight");
+    const toInput = document.getElementById("to-freight");
 
-// Load data on page start
-function loadFreightCosts() {
-    if (!tableBody) return;
-    const records = JSON.parse(localStorage.getItem("freight_costs")) || [];
-    
-    const fromValue = fromInput ? fromInput.value : "";
-    const toValue = toInput ? toInput.value : "";
+    // Load data from LocalStorage
+    let freightCosts = JSON.parse(localStorage.getItem("freight_costs")) || [];
 
-    tableBody.innerHTML = "";
+    // 1. Function to draw the table
+    function renderTable() {
+        if (!tableBody) return;
+        tableBody.innerHTML = "";
 
-    // 1. FILTER LOGIC (Time-Sensitive)
-    const filtered = records.filter(item => {
-        if (!item.date) return true; 
-        const itemTime = new Date(item.date).getTime();
-        
-        if (fromValue && itemTime < new Date(fromValue).getTime()) return false;
-        if (toValue && itemTime > new Date(toValue).getTime()) return false;
-        return true;
-    });
+        const fromValue = fromInput ? fromInput.value : "";
+        const toValue = toInput ? toInput.value : "";
 
-    if (filtered.length === 0) {
-        tableBody.innerHTML = "<tr><td colspan='6' style='text-align:center'>No records found</td></tr>";
-        return;
-    }
+        // Filter Logic (Time-Sensitive)
+        const filtered = freightCosts.filter(item => {
+            if (!item.date || (!fromValue && !toValue)) return true;
+            const itemTime = new Date(item.date).getTime();
+            if (fromValue && itemTime < new Date(fromValue).getTime()) return false;
+            if (toValue && itemTime > new Date(toValue).getTime()) return false;
+            return true;
+        });
 
-    // 2. RENDER ROWS
-    filtered.forEach((item, index) => {
-        tableBody.innerHTML += `
-            <tr data-id="${item.id}">
-                <td>${index + 1}</td>
-                <td>${item.description || ''}</td>
-                <td>$${item.amount || 0}</td>
-                <td>${item.carrier || ''}</td>
-                <td>${item.date || 'No Date'}</td>
-                <td>
-                    <button onclick="editFreight(${item.id})">Edit</button>
-                    <button onclick="deleteFreight(${item.id})" style="color:red">Delete</button>
-                </td>
-            </tr>
-        `;
-    });
-}
-
-// 3. SAVE / ADD FUNCTION
-function addFreight(description, amount, carrier, date) {
-    const records = JSON.parse(localStorage.getItem("freight_costs")) || [];
-    const newRecord = {
-        id: Date.now(), // Unique ID based on timestamp
-        description,
-        amount,
-        carrier,
-        date
-    };
-    records.push(newRecord);
-    localStorage.setItem("freight_costs", JSON.stringify(records));
-    loadFreightCosts();
-}
-
-// 4. EDIT FUNCTION
-window.editFreight = (id) => {
-    let records = JSON.parse(localStorage.getItem("freight_costs")) || [];
-    const index = records.findIndex(r => r.id === id);
-
-    if (index !== -1) {
-        const r = records[index];
-        const desc = prompt("Edit Description:", r.description);
-        const amt = prompt("Edit Amount:", r.amount);
-        const carr = prompt("Edit Carrier:", r.carrier);
-        const dt = prompt("Edit Date (YYYY-MM-DDTHH:MM):", r.date);
-
-        if (desc !== null) {
-            records[index] = { ...r, description: desc, amount: amt, carrier: carr, date: dt };
-            localStorage.setItem("freight_costs", JSON.stringify(records));
-            loadFreightCosts();
+        if (filtered.length === 0) {
+            tableBody.innerHTML = "<tr><td colspan='5' style='text-align:center'>No freight records found</td></tr>";
+            return;
         }
+
+        filtered.forEach((item, index) => {
+            const row = `
+              <tr>
+                <td>${index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.location}</td>
+                <td>${item.amount}</td>
+                <td>${item.date}</td>
+                <td>
+                  <button onclick="editFreight(${index})"id = "edit-btn">Edit</button>
+                  <button onclick="deleteFreight(${index})" id = "delete-btn">Delete</button>
+                </td>
+              </tr>
+            `;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        });
     }
-};
 
-// 5. DELETE FUNCTION
-window.deleteFreight = (id) => {
-    if (confirm("Delete this freight record?")) {
-        let records = JSON.parse(localStorage.getItem("freight_costs")) || [];
-        records = records.filter(r => r.id !== id);
-        localStorage.setItem("freight_costs", JSON.stringify(records));
-        loadFreightCosts();
+    // 2. Handle Submit Click (Matches your working style)
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            const nameVal = document.getElementById('expenseName').value;
+            const locVal = document.getElementById('location').value;
+            const amountVal = document.getElementById('amount').value;
+            const dateVal = document.getElementById('entryDate').value;
+
+            if (!nameVal || !amountVal) {
+                alert("Please enter Name and Amount.");
+                return;
+            }
+
+            const newEntry = {
+                name: nameVal,
+                location: locVal,
+                amount: amountVal,
+                date: dateVal
+            };
+
+            freightCosts.push(newEntry);
+            localStorage.setItem("freight_costs", JSON.stringify(freightCosts));
+            
+            renderTable(); 
+            clearInputs();
+        });
     }
-};
 
-// 6. EVENT LISTENERS
-if (fromInput) fromInput.addEventListener("input", loadFreightCosts);
-if (toInput) toInput.addEventListener("input", loadFreightCosts);
+    // 3. Global Functions for Buttons
+    window.deleteFreight = (index) => {
+        if (confirm("Delete this record?")) {
+            freightCosts.splice(index, 1);
+            localStorage.setItem("freight_costs", JSON.stringify(freightCosts));
+            renderTable();
+        }
+    };
 
-loadFreightCosts();
+    window.editFreight = (index) => {
+        const item = freightCosts[index];
+        const newName = prompt("Edit Name:", item.name);
+        const newLoc = prompt("Edit Location:", item.location);
+        const newAmount = prompt("Edit Amount:", item.amount);
+        
+        if (newName !== null) item.name = newName;
+        if (newLoc !== null) item.location = newLoc;
+        if (newAmount !== null) item.amount = newAmount;
+        
+        localStorage.setItem("freight_costs", JSON.stringify(freightCosts));
+        renderTable();
+    };
+
+    function clearInputs() {
+        document.getElementById('expenseName').value = "";
+        document.getElementById('location').value = "";
+        document.getElementById('amount').value = "";
+        document.getElementById('entryDate').value = "";
+    }
+
+    // Filter Listeners
+    if (fromInput) fromInput.addEventListener("input", renderTable);
+    if (toInput) toInput.addEventListener("input", renderTable);
+
+    renderTable();
+});

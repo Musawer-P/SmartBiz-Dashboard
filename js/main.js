@@ -1,3 +1,127 @@
+if (localStorage.getItem("loggedIn") !== "true") {
+  window.location.href = "login.html";
+}
+
+// DASHBOARD STATS (Top Cards)
+
+const stats = {
+  revenue: 12540,
+  expenses: 5340,
+  profit: 7200,
+  customers: 183
+};
+
+document.getElementById("revenue").innerText = `$${stats.revenue}`;
+document.getElementById("expenses").innerText = `$${stats.expenses}`;
+document.getElementById("profit").innerText = `$${stats.profit}`;
+document.getElementById("customers").innerText = stats.customers;
+
+
+// STATUS COLOR AUTO-DETECT
+
+document.querySelectorAll(".status").forEach(statusEl => {
+  const value = statusEl.innerText.toLowerCase();
+
+  if (value === "success") statusEl.classList.add("status-success");
+  else if (value === "failed") statusEl.classList.add("status-failed");
+  else statusEl.classList.add("status-pending");
+});
+
+
+// RECENT TRANSACTIONS (Table)
+
+const transactions = [
+  { name: "Invoice #1023", amount: 450, status: "Success" },
+  { name: "Invoice #1024", amount: 120, status: "Pending" },
+  { name: "Invoice #1025", amount: 300, status: "Failed" }
+];
+
+const tbody = document.getElementById("transactionsBody");
+
+transactions.forEach(t => {
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td>${t.name}</td>
+    <td>$${t.amount}</td>
+    <td><span class="status">${t.status}</span></td>
+  `;
+
+  tbody.appendChild(row);
+});
+
+
+// DATE & TIME (Header)
+
+function updateTime() {
+  const now = new Date();
+  document.getElementById("currentTime").innerText =
+    now.toLocaleDateString() + " • " + now.toLocaleTimeString();
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+
+
+// DARK / LIGHT MODE
+
+const themeBtn = document.getElementById("themeToggle");
+
+themeBtn?.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+});
+
+
+
+
+// Line Chart
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+
+new Chart(lineCtx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [{
+      label: 'Sales',
+      data: [12, 19, 8, 15, 22, 18],
+      borderWidth: 2,
+      tension: 0.4,
+      fill: false
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true }
+    }
+  }
+});
+
+
+
+
+
+// Bar Chart
+const barCtx = document.getElementById('barChart').getContext('2d');
+
+new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+    datasets: [{
+      label: 'Stock',
+      data: [30, 50, 20, 40],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true }
+    }
+  }
+});
+  
 const openDivVendor = document.querySelector(".openModal-vendor");
     const modalVendor = document.getElementById("modalOverlay-vendor");
     const xBtnVendor = document.getElementById("x-vendor");
@@ -319,3 +443,37 @@ const openDivVendor = document.querySelector(".openModal-vendor");
     if (localStorage.getItem("loggedIn") !== "true") {
   window.location.href = "login.html";
 }
+
+
+// SECURITY SETTINGS
+document.querySelectorAll(".security-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    if (item.innerText.includes("Delete")) {
+      const confirmDelete = confirm("Are you sure you want to delete your account?");
+      if (confirmDelete) {
+        alert("Account deleted (connect backend)");
+      }
+    } else {
+      alert("Change password (open password modal)");
+    }
+  });
+});
+
+// COMPANY SETTINGS 
+document.querySelectorAll(".company-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    if (item.innerText.trim() !== "") {
+      alert(`Edit company field: ${item.innerText}`);
+    }
+  });
+});
+
+// HELP SETTINGS
+document.querySelectorAll(".help-setting p").forEach(item => {
+  item.addEventListener("click", () => {
+    alert(`Open: ${item.innerText}`);
+  });
+});
+
+
+
