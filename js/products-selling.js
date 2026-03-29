@@ -15,10 +15,9 @@ let selectedPayment = "";
 // 2. LOAD & RENDER PRODUCTS FROM STORAGE
 function loadProducts() {
   const storedProducts = JSON.parse(localStorage.getItem("products")) || [];
-  container.innerHTML = ""; // Clear current view
+  container.innerHTML = ""; 
 
   storedProducts.forEach(item => {
-    // Only show products that have stock > 0
     if (item.qty > 0) {
       const productDiv = document.createElement("div");
       productDiv.className = "product-cart";
@@ -73,6 +72,7 @@ function addToCart(name, price, stock) {
 
 // 5. RENDER CART TABLE
 function renderCart() {
+  if (!cartTable) return;
   cartTable.innerHTML = "";
   let total = 0;
   for (let item in cart) {
@@ -85,80 +85,97 @@ function renderCart() {
     cartTable.appendChild(row);
     total += cart[item].price * cart[item].qty;
   }
-  totalDisplay.textContent = total.toFixed(2);
-  amountDisplay.textContent = "Amount: " + total.toFixed(2) + " $";
+  if (totalDisplay) totalDisplay.textContent = total.toFixed(2);
+  if (amountDisplay) amountDisplay.textContent = "Amount: " + total.toFixed(2) + " $";
 }
 
 // 6. PAYMENT SELECTION UI
-cashBtn.addEventListener("click", () => {
+cashBtn?.addEventListener("click", () => {
   selectedPayment = "Cash";
   cashBtn.style.background = "green";
   cashBtn.style.color = "white";
   loanBtn.style.background = "";
+  loanBtn.style.color = "";
 });
 
-loanBtn.addEventListener("click", () => {
+loanBtn?.addEventListener("click", () => {
   selectedPayment = "get-loan";
   loanBtn.style.background = "red";
   loanBtn.style.color = "white";
   cashBtn.style.background = "";
+  cashBtn.style.color = "";
 });
-// 7. SUBMIT SALE (The Unified Logic with Profit & UI Reset)
-submitBtn.addEventListener("click", () => {
+
+// 7. SUBMIT SALE (Updated for Sales Reports & Today Sales)
+submitBtn?.addEventListener("click", () => {
   if (Object.keys(cart).length === 0) { alert("Cart is empty!"); return; }
   if (!selectedPayment) { alert("Select payment method!"); return; }
 
-  const customerName = customerSelect ? customerSelect.options[customerSelect.selectedIndex].text : "Guest";
+  const customerName = customerSelect && customerSelect.selectedIndex !== -1 
+    ? customerSelect.options[customerSelect.selectedIndex].text 
+    : "Guest";
   
   if (selectedPayment === "get-loan" && (!customerSelect || customerSelect.value === "")) {
     alert("Please select a customer for the loan!");
     return;
   }
 
-  // A. Load ALL current databases
+  // Load current databases
   let products = JSON.parse(localStorage.getItem("products")) || [];
   let stock = JSON.parse(localStorage.getItem("stock")) || [];
   let bills = JSON.parse(localStorage.getItem("bills")) || [];
+  let salesReports = JSON.parse(localStorage.getItem("salesReports")) || [];
+  let todaySales = JSON.parse(localStorage.getItem("todaySales")) || [];
+  
   let totalCartAmount = 0;
 
-  // B. Process items in cart
+  // Process items in cart
   for (let itemName in cart) {
     const soldQty = cart[itemName].qty;
     const sellPrice = cart[itemName].price;
     const itemTotal = sellPrice * soldQty;
     totalCartAmount += itemTotal;
 
-    // 1. Update "products" array (for UI cards)
+    // Get stock info for "Main Price" and "Profit"
+    let stockItem = stock.find(s => s.name === itemName);
+    const mainPrice = stockItem ? Number(stockItem.realPrice || 0) : 0;
+    const currentStockQty = stockItem ? Number(stockItem.availableQty || 0) : 0;
+    const currentProfit = (sellPrice - mainPrice) * soldQty;
+
+    // 1. Update "products" array
     const productIdx = products.findIndex(p => p.name === itemName);
     if (productIdx !== -1) {
       products[productIdx].qty = parseInt(products[productIdx].qty) - soldQty;
     }
 
-    // 2. Update "stock" array (for Stock Table) & Profit
-    let stockItem = stock.find(s => s.name === itemName);
+    // 2. Update "stock" array
     if (stockItem) {
         stockItem.soldQty = (Number(stockItem.soldQty) || 0) + soldQty;
-        stockItem.availableQty = (Number(stockItem.availableQty) || 0) - soldQty;
-        
-        // PROFIT LOGIC: (Sell Price - Real Price) * Sold Qty
-        const realPrice = Number(stockItem.realPrice) || 0;
-        const currentProfit = (sellPrice - realPrice) * soldQty;
+        stockItem.availableQty = currentStockQty - soldQty;
         stockItem.profit = (Number(stockItem.profit) || 0) + currentProfit;
     }
 
-    // 3. Create Bill Record
-    bills.push({
+    // 3. Create the data object (Formatted for sales.js)
+    const saleEntry = {
       product: itemName,
+      stockQty: currentStockQty, // Stock before this sale
       soldQty: soldQty,
+      mainPrice: mainPrice,
       sellPrice: sellPrice,
+      profit: currentProfit,
       total: itemTotal,
       payment: selectedPayment,
       customer: customerName,
-      timestamp: new Date().toLocaleString()
-    });
+      timestamp: new Date().toISOString()
+    };
+
+    // Save to all 3 necessary tables
+    bills.push(saleEntry);
+    salesReports.push(saleEntry);
+    todaySales.push(saleEntry);
   }
 
-  // C. Save Loan Record if applicable
+  // Save Loan Record if applicable
   if (selectedPayment === "get-loan") {
     let loans = JSON.parse(localStorage.getItem("payment-customer")) || [];
     loans.push({
@@ -171,23 +188,21 @@ submitBtn.addEventListener("click", () => {
     localStorage.setItem("payment-customer", JSON.stringify(loans));
   }
 
-  // D. Save ALL changes
+  // SAVE ALL CHANGES
   localStorage.setItem("products", JSON.stringify(products));
   localStorage.setItem("stock", JSON.stringify(stock));
   localStorage.setItem("bills", JSON.stringify(bills));
+  localStorage.setItem("salesReports", JSON.stringify(salesReports));
+  localStorage.setItem("todaySales", JSON.stringify(todaySales));
 
-  // 8. RESET EVERYTHING (Including Buttons)
+  // 8. RESET UI
   alert("Transaction Successful! ✅");
-  
   cart = {};
   selectedPayment = "";
-  
-  // RESET BUTTON STYLES (Make them not active)
   cashBtn.style.background = "";
   cashBtn.style.color = "";
   loanBtn.style.background = "";
   loanBtn.style.color = "";
-  
   if(customerSelect) customerSelect.value = "";
   
   renderCart();
