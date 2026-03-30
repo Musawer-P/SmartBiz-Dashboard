@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
-  <link href="css/style.css" rel="styleshet">
-  <link href="css/responsive.css" rel="styleshet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>SmartBiz Dashboard</title>
 </head>
+
+
 
 <body>
 
@@ -635,6 +637,9 @@
   <h3 data-amount="2500"></h3>
   <p data-amount="180.75"></p>
 
+    <button class="menu-toggle" id="menuToggle">
+  <i class="fas fa-bars"></i>
+</button>
 
   <div class="header">
     <div class="one-section-header">
@@ -680,7 +685,9 @@
 
   </div>
   <div class="row">
-    <div class="sidebar">
+
+
+    <div class="sidebar" id = "sidebar">
       <div class="home">
         <a href="index.html">
           <i class="fas fa-home"></i></a>
@@ -829,19 +836,10 @@
       </div>
 
       <div class="footer">
-        <div class="system-active-status">
-          <h2 data-key="status">Status</h2>
-
-          <p data-key="active">Active</p>
-        </div>
         <div class="version">
           <h2 data-key="version">Version</h2>
 
-          <p>3.1</p>
-
-        </div>
-        <div class="help-center">
-          <a href="" data-key="helpCenter">Help Center</a>
+          <p> - 1.0</p>
         </div>
       </div>
     </div>
@@ -860,6 +858,7 @@
   <script src="js/supplier.js"></script>
   <script src="js/best-seller.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/responsive.js"></script>
   <script src="js/main.js"></script>
   <script src="js/freight-cost.js"></script>
   <script src="js/data.js"></script>

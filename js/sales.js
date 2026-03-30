@@ -91,7 +91,7 @@ function calculateNetProfit(currentGrossProfit) {
   if (totalExpensesUI) totalExpensesUI.textContent = totalExpenses.toFixed(2);
   if (pureProfitUI) {
     pureProfitUI.textContent = netProfit.toFixed(2);
-    pureProfitUI.style.color = netProfit >= 0 ? "green" : "red";
+    pureProfitUI.style.color = netProfit >= 0 ? "#2fdd63" : "#dd2f2f";
   }
 }
 

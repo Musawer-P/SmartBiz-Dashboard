@@ -1,4 +1,4 @@
-  body {
+ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
     color: white;
@@ -224,13 +224,15 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
     padding: 10px;
-    width: 100%;
+    padding-top: 0px;
+    width: fit-content;
   }
 
   .active-orders,
   .total-sales,
+  .total-sales-profit,
   .profit {
     padding: 10px;
     border-radius: 0px;
@@ -242,10 +244,16 @@
 
   .active-orders p,
   .total-sales p,
+  .total-sales-profit p,
   .profit p {
     color: #73ade4d5;
   }
-
+  .active-orders h2,
+  .total-sales h2,
+  .total-sales-profit h2,
+  .profit h2{
+font-size: 20px;
+  }
   .combine {
     width: 100%;
     display: flex;
@@ -1001,7 +1009,9 @@
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.144);
   }
-
+.footer{
+  display: flex;
+}
   .setting-footer {
     width: 100%;
     margin: 0 auto;
@@ -1411,4 +1421,10 @@
     height: 270px;
     overflow-y: auto;
     padding-right: 20px;
+  }
+  .version{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
   }

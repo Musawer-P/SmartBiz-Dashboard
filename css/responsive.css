@@ -1,0 +1,100 @@
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    text-align: center;
+    top: 10;
+    left: -250px; /* Start hidden off-screen */
+    width: 200px;
+    height: fit-content; /* Full screen height */
+ background: rgba(255, 255, 255, 0.1);
+    /* slight white tint */
+    border-radius: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    /* for Safari */
+
+    border: 1px solid rgba(255, 255, 255, 0.219);    transition: 0.4s ease;
+    z-index: 999;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .sidebar.active {
+    left: 0; /* Slide in */
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001; /* Stay above sidebar */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
+}
+/* Hide toggle button on large screens */
+@media (min-width: 1025px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+
+/* Mobile & Tablet Styles (Standard for screens under 1024px) */
+@media screen and (max-width: 1024px) {
+  .head-option {
+    position: fixed !important;
+    bottom: 0 !important;      /* Pins it to the very bottom */
+    left: 0 !important;
+    top: auto !important;     /* Disables any top positioning */
+    width: 100% !important;
+    height: 60px !important;   /* Height of the nav bar */
+    background: #ffffff;       /* Set your background color */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important; /* Spaces icons evenly */
+    align-items: center !important;
+    border-top: 1px solid #ddd;
+    z-index: 99999;            /* Keeps it above all content */
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  }
+
+  /* Hide the text Labels (Suppliers, Customers, etc.) */
+  .head-option p {
+    font-size: 0 !important;  /* Hides text */
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* Style the FontAwesome icons only */
+  .head-option p i {
+    font-size: 22px !important; /* Size of the icon */
+    display: inline-block !important;
+    color: #333;                /* Icon color */
+    line-height: 60px;          /* Centers icon vertically */
+  }
+
+  /* Push the body up so the bottom bar doesn't cover your content */
+  body {
+    padding-bottom: 70px !important;
+  }
+}
+
+/* Desktop Styles (Resets it to look normal on big screens) */
+@media screen and (min-width: 1025px) {
+  .head-option {
+    display: flex;
+    gap: 20px;
+    position: relative;
+  }
+}
