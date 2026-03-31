@@ -1,4 +1,34 @@
 const translations = {
+  en: {
+    logout: "Logout",
+    suppliers: "Suppliers",
+    customers: "Customers",
+    payments: "Payments",
+    reports: "Reports",
+    ads: "Ads",
+    home: "Home",
+    products: "Products",
+    sales: "Sales",
+    chart: "Chart",
+    setting: "Settings",
+    records: "Records",
+    addProduct: "Add Product",
+    addVendor: "Add Vendor",
+    addCustomer: "Add Customer",
+    salesReports: "Sales Reports",
+    orders: "Orders",
+    totalSales: "Total Sales",
+    expenses: "Expenses",
+    profit: "Profit",
+    bestSellers: "Best Sellers",
+    lineChart: "Line Chart",
+    barChart: "Bar Chart",
+    soldToday: "Sold Items Today",
+    status: "Status",
+    version: "Version",
+    active: "Active",
+    helpCenter: "Help Center"
+  },
   fa: {
     logout: "خروج",
     suppliers: "تأمین‌کنندگان",
@@ -29,7 +59,6 @@ const translations = {
     active: "فعال",
     helpCenter: "مرکز راهنما"
   },
-
   ar: {
     logout: "تسجيل الخروج",
     suppliers: "الموردون",
