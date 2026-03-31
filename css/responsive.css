@@ -4,7 +4,7 @@
     text-align: center;
     top: 10;
     left: -250px; /* Start hidden off-screen */
-    width: 200px;
+    width: 170px;
     height: fit-content; /* Full screen height */
  background: rgba(255, 255, 255, 0.1);
     /* slight white tint */
@@ -25,7 +25,6 @@
   }
 
   .menu-toggle {
-    position: fixed;
     top: 15px;
     left: 15px;
     z-index: 1001; /* Stay above sidebar */
@@ -33,11 +32,11 @@
     background: none;
     border: none;
     cursor: pointer;
+    color: white;
   }
   
   
 }
-/* Hide toggle button on large screens */
 @media (min-width: 1025px) {
   .menu-toggle {
     display: none;
@@ -45,49 +44,93 @@
 }
 
 
-/* Mobile & Tablet Styles (Standard for screens under 1024px) */
 @media screen and (max-width: 1024px) {
-  .head-option {
-    position: fixed !important;
-    bottom: 0 !important;      /* Pins it to the very bottom */
-    left: 0 !important;
-    top: auto !important;     /* Disables any top positioning */
-    width: 100% !important;
-    height: 60px !important;   /* Height of the nav bar */
-    background: #ffffff;       /* Set your background color */
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-around !important; /* Spaces icons evenly */
-    align-items: center !important;
-    border-top: 1px solid #ddd;
-    z-index: 99999;            /* Keeps it above all content */
-    margin: 0 !important;
-    padding: 0 !important;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+
+  .combine{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
-  /* Hide the text Labels (Suppliers, Customers, etc.) */
-  .head-option p {
-    font-size: 0 !important;  /* Hides text */
-    margin: 0 !important;
-    padding: 0 !important;
+  .main-first-row{
+   width: 100%;
+
+  }
+  .top-products{
+width: 100%;
+  }
+  .second-section-header {
+    display: none;
+  }
+
+  .mobile-bottom-nav {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    z-index: 999999;
+    margin-bottom: 10px;
+    
+    
+  }
+  .second-row{
+    display: flex;
+    flex-direction: column;
+  }
+  .first-row{
+    width: 95%;
+     display: flex;
+  flex-wrap: wrap;
+  }
+  .best-seller-cards{
+     width: 95%;
+  }
+  .mobile-head-option {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 6px 5px;
+    background-color: rgba(0, 0, 0, 0.233);
+     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.452);
+    border-radius: 10px;
+    width: 80%;
+    gap: 10px;
+
+  }
+
+  .mobile-head-option p {
     flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    margin: 0;
+
     text-align: center;
     cursor: pointer;
   }
 
-  /* Style the FontAwesome icons only */
-  .head-option p i {
-    font-size: 22px !important; /* Size of the icon */
-    display: inline-block !important;
-    color: #333;                /* Icon color */
-    line-height: 60px;          /* Centers icon vertically */
+  .mobile-head-option i {
+    font-size: 18px;
+    margin-bottom: 3px;
   }
 
-  /* Push the body up so the bottom bar doesn't cover your content */
-  body {
-    padding-bottom: 70px !important;
+  .footer{
+    margin-bottom: 50px;
   }
+
+   .body{
+    padding-left: 10px;
+   }
 }
 
 /* Desktop Styles (Resets it to look normal on big screens) */

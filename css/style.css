@@ -8,7 +8,9 @@
     width: 100%;
     padding-left: 30px;
     height: 500px;
-    overflow-y: auto;
+    overflow-y: auto;    
+    overflow-x: hidden;
+
   }
 
   .kpi-h2 h2 {
@@ -92,8 +94,8 @@
   .one-section-header {
     width: 20%;
     display: flex;
-    flex-direction: column;
-    align-items: start;
+    flex-direction: row;
+    align-items: center;
     margin-top: 0px;
   }
 
@@ -307,6 +309,8 @@ font-size: 20px;
   .data-table {
     height: 300px;
     overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
   }
 
   .data-table::-webkit-scrollbar {
@@ -1088,7 +1092,7 @@ font-size: 20px;
     position: absolute;
     text-align: center;
     top: 30px;
-    left: -35px;
+    left: -56px;
     background: rgba(255, 255, 255, 0.568);
     /* slight white tint */
     border-radius: 15px;
@@ -1428,3 +1432,6 @@ font-size: 20px;
     margin: 0 auto;
     gap: 10px;
   }
+  .mobile-bottom-nav {
+  display: none;
+}
