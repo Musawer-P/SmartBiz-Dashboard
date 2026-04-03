@@ -58,14 +58,14 @@ img{
 
 
 .cart-table{
-  width: 100%;
+  width: 120px;
     border-radius: 10px;
     padding-bottom: 15px;
+    overflow-x: auto;
+    overflow-y: auto;
 
 }
 #cart-table{
-    width: 100%;
-
 }
 table{
   padding: 10px;
