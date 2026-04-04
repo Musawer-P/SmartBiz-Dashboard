@@ -1166,7 +1166,8 @@ font-size: 20px;
 
   .records-one,
   .records-two,
-  .records-three {
+  .records-three,
+  .records-four {
     border: 1px solid rgba(255, 255, 255, 0.432);
     width: 100%;
     border-radius: 10px;
@@ -1175,14 +1176,16 @@ font-size: 20px;
 
   .records-one h2,
   .records-two h2,
-  .records-three h2 {
+  .records-three h2,
+  .records-four h2 {
     color: white;
     text-decoration: none;
   }
 
   .records-one:hover,
   .records-two:hover,
-  .records-three:hover {
+  .records-three:hover,
+  .records-four:hover {
     background-color: rgba(255, 255, 255, 0.788);
     color: black;
   }

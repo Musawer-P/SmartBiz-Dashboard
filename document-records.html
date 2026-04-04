@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href = "css/document.css" rel = "stylesheet">
+    <title>Documents</title>
+</head>
+<body>
+     <div class = "body">
+    <h1>Documents</h1>
+   <div class="document-input">
+    <input type="text" id="doc-name" placeholder="Document Name">
+    <input type="text" id="doc-description" placeholder="Description">
+    <input type="file" id="doc-file">
+    <!-- Add this button -->
+    <button type="button" onclick="addDocument()">Add Document</button>
+</div>
+    <div class = "date">
+        <input type = "datetime-local" id = "from">
+        <input type = "datetime-local" id = "to">
+    </div>
+    <div class = "table">
+        <table id = "table">
+            <thead>
+                              <th>#</th>
+
+                <th>Document Name</th>
+                <th>Description</th>
+                <th>File</th>
+                                <th>Date</th>
+               <th>Action</th>
+            </thead>
+            <tbody id = "documentsTable">
+            </tbody>    
+    
+        </table>
+    </div>
+    </div>
+
+
+    <script src = "js/document.js">
+    </script>
+</body>
+</html>
