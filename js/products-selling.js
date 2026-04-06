@@ -1,3 +1,55 @@
+// 0. NOTIFICATION SYSTEM
+const notificationCenter = document.querySelector(".notification-center");
+let notifications = JSON.parse(localStorage.getItem("notifications")) || [];
+
+function renderNotifications() {
+    if (!notificationCenter) return;
+    notificationCenter.innerHTML = "<h3>Notifications</h3>";
+
+    notifications.forEach((note, i) => {
+        const div = document.createElement("div");
+        div.className = "notification-item";
+        div.innerHTML = `
+            <span>${note}</span>
+            <button class="clear-btn" data-index="${i}">×</button>
+        `;
+        notificationCenter.appendChild(div);
+    });
+
+    if (notifications.length > 0) {
+        const clearAllBtn = document.createElement("button");
+        clearAllBtn.className = "clear-all-btn";
+        clearAllBtn.textContent = "Clear All";
+        notificationCenter.appendChild(clearAllBtn);
+
+        clearAllBtn.addEventListener("click", () => {
+            notifications = [];
+            localStorage.setItem("notifications", JSON.stringify(notifications));
+            renderNotifications();
+        });
+    }
+}
+
+function addNotification(message) {
+    notifications.push(message);
+    localStorage.setItem("notifications", JSON.stringify(notifications));
+    renderNotifications();
+}
+
+// Handle clearing single notification
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("clear-btn")) {
+        const idx = parseInt(e.target.dataset.index);
+        notifications.splice(idx, 1);
+        localStorage.setItem("notifications", JSON.stringify(notifications));
+        renderNotifications();
+    }
+});
+
+// Initial render
+renderNotifications();
+
+
 // 1. SELECT UI ELEMENTS
 const container = document.querySelector(".products-container");
 const cartTable = document.querySelector("#cart-table tbody");
@@ -194,6 +246,15 @@ submitBtn?.addEventListener("click", () => {
   localStorage.setItem("bills", JSON.stringify(bills));
   localStorage.setItem("salesReports", JSON.stringify(salesReports));
   localStorage.setItem("todaySales", JSON.stringify(todaySales));
+
+
+  // --- ADD NOTIFICATIONS FOR EACH ITEM SOLD ---
+for (let itemName in cart) {
+    const soldQty = cart[itemName].qty;
+    const message = `Sold ${soldQty} × ${itemName}`;
+    addNotification(message); // <-- Call the function from notification.js
+}
+
 
   // 8. RESET UI
   alert("Transaction Successful! ✅");

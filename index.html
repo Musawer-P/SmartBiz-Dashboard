@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <title>SmartBiz Dashboard</title>
 </head>
-
 
 
 <body>
@@ -359,19 +358,19 @@
         <h3>Sales Chart</h3>
         <p id="x-chart">x</p>
       </div>
-      <div class="sales-chart">
-        <div clss="sales-chart-header">
-          <div class="sales-chart-input">
-            <input type="datetime-local" id="sales-chart-input" />
-            <input type="datetime-local" id="sales-chart-input" />
-          </div>
+     <div class="sales-chart">
+  <div class="sales-chart-header">
+    <div class="sales-chart-input">
+      <input type="date" id="modal-start-date" />
+      <input type="date" id="modal-end-date" />
+      <button onclick="ModalChart.update()" id = "modal-chart-btn">Filter</button>
+    </div>
+  </div>
+  <div class="chart-main-div" style="height: 300px; position: relative;">
+    <canvas id="modalSalesChart"></canvas>
+  </div>
+</div>
 
-        </div>
-        <div class="chart-main-div">
-          <h3>2025/3/3 Chart</h3>
-          <canvas id="lineChart"></canvas>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -470,6 +469,24 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
+
+  <!--/-->
+
+
+
+  
+  <!--notification-->
+  <div id="modalOverlay-notification">
+    <div id="modalBox-notification">
+      <div class="modal-header-notification">
+        <h3>Expenses</h3>
+        <p id="x-notification">x</p>
+      </div>
+<div class="notification-center">
+  <h3>Notifications</h3>
+</div>
     </div>
   </div>
 
@@ -644,7 +661,7 @@
   <p data-amount="180.75"></p>
 
  
-
+<div class="main-content" id="mainContent">
   <div class="header">
        
     <div class="one-section-header">
@@ -652,9 +669,11 @@
   <i class="fas fa-bars"></i>
 </button>
       <div class="merge-p-s">
-        <div class="profile">
-          <img src="assets/images/2.jpg" id="profile-img">
-        </div>
+       <div class="profile">
+  <img id="profile-img" title="Double click to change profile picture">
+  <input type="file" id="profile-upload" style="display: none;" accept="image/*">
+</div>
+
         <div class="setting">
           <p id="logout">logout</p>
 
@@ -673,9 +692,24 @@
 </div>
 
     <div class="search-bar">
-      <i class="fa fa-search" id="search-icon"></i>
-      <i class="fas fa-headset">
-      </i>
+<div class="search-container">
+
+    <div class="search-box" id="searchBox">
+        <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Search..." 
+        />
+
+        <span id="matchCount">0/0</span>
+
+        <i class="fa fa-times close-icon" id="closeSearch"></i>
+    </div>
+
+    <i class="fa fa-search search-icon" id="search-icon"></i>
+
+</div>         <p class="openModal-notification" ><i class="fas fa-bell"></i></p>
+
       <div class="language-dropdown">
         <i class="fas fa-globe" id="globeIcon2" style="cursor:pointer;"></i>
         <div class="dropdown-menu" id="languageMenu" style="display:none;">
@@ -751,7 +785,7 @@
       <div class="sales-orders">
         <i class="fas fa-warehouse"></i>
 
-        <p class="openModal-stock" data-key="sales">Stock</p>
+        <p class="openModal-stock" data-key="stock">Stock</p>
       </div>
       <div class="chart">
         <i class="fas fa-chart-line"></i>
@@ -831,27 +865,24 @@
               <div class="profit">$7.00</div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="second-row">
-        <div class="line-chart">
-          <h2 data-key="lineChart">Line Chart</h2>
-          <div style="width:600px; margin:20px auto;">
+    <div class="line-chart">
+        <h2 data-key="lineChart">Line Chart</h2>
+        <!-- Remove fixed width, use relative height for Chart.js -->
+        <div style="position: relative; height:300px; width:100%;">
             <canvas id="lineChart"></canvas>
-          </div>
-
         </div>
-        <div class="bar-chart">
-          <h2 data-key="barChart">Bar Chart</h2>
-
-          <div style="width:600px; margin:20px auto;">
+    </div>
+    <div class="bar-chart">
+        <h2 data-key="barChart">Bar Chart</h2>
+        <div style="position: relative; height:300px; width:100%;">
             <canvas id="barChart"></canvas>
-          </div>
-
         </div>
+    </div>
+</div>
 
-      </div>
       <div class="third-row">
         <h2 id="table-header" data-key="soldToday">Sold Items Today</h2>
         <div class="data-table">
@@ -887,8 +918,12 @@
       </div>
     </div>
   </div>
+  </div>
+    <script src="js/charts.js"></script>
+    <script src="js/modal-chart.js"></script>
 
   <script src="js/sales.js"></script>
+  <script src="js/notification.js"></script>
   <script src="js/payment-customer.js"></script>
   <script src="js/pay-get-c.js"></script>
   <script src="js/payment-supplier.js"></script>

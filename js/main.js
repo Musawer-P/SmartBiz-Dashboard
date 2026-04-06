@@ -85,6 +85,7 @@ if (localStorage.getItem("loggedIn") !== "true") {
     setupModal(".openModal-ads", "modalOverlay-ads", "x-ads");
     setupModal(".openModal-setting", "modalOverlay-setting", "x-setting");
     setupModal(".openModal-expenses", "modalOverlay-expenses", "x-expenses");
+    setupModal(".openModal-notification", "modalOverlay-notification", "x-notification");
     setupModal(".openModal-records", "modalOverlay-records", "x-records");
     setupModal(".openModal-stock", "modalOverlay-stock", "x-stock");
     setupModal(".openModal-freight-cost", "modalOverlay-freight-cost", "x-freight-cost");

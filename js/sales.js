@@ -1,3 +1,9 @@
+/**
+ * SALES.JS
+ * Handles rendering, filtering, calculations, and deletion.
+ * Includes event dispatchers to trigger Notifications and Charts.
+ */
+
 // 1. RENDER SALES REPORTS TABLE & ALL FINANCIALS
 function renderSalesReports() {
   const tbody = document.getElementById("modal-sales-body");
@@ -72,12 +78,11 @@ function renderSalesReports() {
   calculateNetProfit(totalGrossProfit);
 }
 
-// 2. THE CALCULATION FUNCTION (Standalone so it can be called anytime)
+// 2. THE CALCULATION FUNCTION
 function calculateNetProfit(currentGrossProfit) {
   const totalExpensesUI = document.getElementById("total-expenses");
   const pureProfitUI = document.getElementById("total-profit");
 
-  // If we didn't pass a profit (like when an expense is deleted), calculate it from scratch
   if (currentGrossProfit === undefined) {
       let sales = JSON.parse(localStorage.getItem("salesReports")) || [];
       currentGrossProfit = sales.reduce((sum, s) => sum + Number(s.profit || 0), 0);
@@ -85,7 +90,6 @@ function calculateNetProfit(currentGrossProfit) {
 
   const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
   const totalExpenses = expenses.reduce((sum, item) => sum + Number(item.amount || 0), 0);
-
   const netProfit = currentGrossProfit - totalExpenses;
 
   if (totalExpensesUI) totalExpensesUI.textContent = totalExpenses.toFixed(2);
@@ -95,13 +99,15 @@ function calculateNetProfit(currentGrossProfit) {
   }
 }
 
-// 3. THE "AUTO-SYNC" LISTENER
-// This detects when expenses are deleted or sales are added in OTHER scripts
+// 3. LISTENERS (Cross-tab and Internal)
 window.addEventListener('storage', (e) => {
     if (e.key === 'expenses' || e.key === 'salesReports') {
-        renderSalesReports(); // Refresh everything instantly
+        renderSalesReports();
     }
 });
+
+// Listener for the same-page event
+window.addEventListener('salesUpdated', renderSalesReports);
 
 // 4. HANDLE DELETE (Sales)
 document.addEventListener("click", function(e) {
@@ -117,7 +123,7 @@ document.addEventListener("click", function(e) {
   if (index >= 0 && index < salesReports.length) {
     const sale = salesReports[index];
     
-    // Undo Stock
+    // Restore Stock logic
     let sItem = stock.find(s => s.name === sale.product);
     if (sItem) {
         sItem.soldQty = (Number(sItem.soldQty) || 0) - sale.soldQty;
@@ -125,18 +131,21 @@ document.addEventListener("click", function(e) {
         sItem.profit = (Number(sItem.salePrice) - Number(sItem.realPrice)) * sItem.soldQty;
     }
 
-    // Undo Products UI
     let pItem = products.find(p => p.name === sale.product);
     if (pItem) pItem.qty = (Number(pItem.qty) || 0) + sale.soldQty;
 
     todaySales = todaySales.filter(ts => ts.timestamp !== sale.timestamp);
     salesReports.splice(index, 1);
 
+    // Save all changes
     localStorage.setItem("salesReports", JSON.stringify(salesReports));
     localStorage.setItem("stock", JSON.stringify(stock));
     localStorage.setItem("products", JSON.stringify(products));
     localStorage.setItem("todaySales", JSON.stringify(todaySales));
 
+    // TRIGGER REFRESH: This tells charts and notifications to update
+    window.dispatchEvent(new Event('salesUpdated'));
+    
     renderSalesReports(); 
     if (typeof renderStockTable === "function") renderStockTable();
     if (typeof renderTodaySales === "function") renderTodaySales();

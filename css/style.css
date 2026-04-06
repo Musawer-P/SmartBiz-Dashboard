@@ -1,6 +1,6 @@
  body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
+    background: linear-gradient(135deg, #45485ae7, rgba(63, 63, 63, 0.822), #3054c0);
     color: white;
   }
 
@@ -284,10 +284,21 @@ font-size: 20px;
 
   .second-row {
     display: flex;
-    justify-content: space-between;
     padding: 20px;
+    gap: 40px;
+    padding-right: 70px;
   }
 
+  .line-chart{
+    width: 50%;
+           
+
+  }
+  .bar-chart{
+            padding-left: 20px;
+    width: 50%;
+
+  }
   .line-chart h2 {
     font-weight: 1;
     color: #dbdbdbce;
@@ -507,7 +518,8 @@ font-size: 20px;
   #modalOverlay-expenses,
   #modalOverlay-records,
   #modalOverlay-stock,
-  #modalOverlay-freight-cost {
+  #modalOverlay-freight-cost,
+  #modalOverlay-notification {
     position: fixed;
     top: 0;
     left: 0;
@@ -532,7 +544,8 @@ font-size: 20px;
   #modalBox-expenses,
   #modalBox-records,
   #modalBox-stock,
-  #modalBox-freight-cost {
+  #modalBox-freight-cost ,
+  #modalBox-notification {
     width: 80%;
     background: rgba(255, 255, 255, 0.1);
     /* slight white tint */
@@ -558,7 +571,8 @@ font-size: 20px;
   #modalBox-expenses input,
   #modalBox-records input,
   #modalBox-stock input,
-  #modalBox-freight-cost input {
+  #modalBox-freight-cost input,
+  #modalBox-notification input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -588,7 +602,8 @@ font-size: 20px;
   #submitBtn-expenses,
   #submitBtn-records,
   #submitBtn-stock,
-  #submitBtn-freight-cost {
+  #submitBtn-freight-cost,
+  #submitBtn-notification {
     padding: 12px 10px;
     border: none;
     border-radius: 8px;
@@ -635,7 +650,8 @@ font-size: 20px;
   .modal-header-expenses,
   .modal-header-records,
   .modal-header-stock,
-  .modal-header-freight-cost {
+  .modal-header-freight-cost,
+  .modal-header-notification {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -656,7 +672,8 @@ font-size: 20px;
   #x-expenses,
   #x-records,
   #x-stock,
-  #x-freight-cost {
+  #x-freight-cost,
+  #x-notification {
     font-size: 25px;
     cursor: pointer;
   }
@@ -672,7 +689,8 @@ font-size: 20px;
   #x-expenses:hover,
   #x-records:hover,
   #x-stock:hover,
-  #x-freight-cost:hover {
+  #x-freight-cost:hover ,
+  #x-notification:hover {
     color: rgb(240, 29, 29);
   }
 
@@ -788,8 +806,11 @@ font-size: 20px;
 
   }
 
+
   .sales-chart-input {
     display: flex;
+    align-items: center;
+
     gap: 10px;
   }
 
@@ -1437,4 +1458,140 @@ font-size: 20px;
   }
   .mobile-bottom-nav {
   display: none;
+}
+
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Search Icon */
+.search-icon {
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Search Box */
+.search-box {
+    position: absolute;
+    right: 30px;
+    
+    display: flex;
+    align-items: center;
+
+    width: 0;
+    overflow: hidden;
+
+    transition: width 0.35s ease;
+}
+
+/* Active State */
+.search-box.active {
+    width: 220px;
+}
+
+/* Input */
+.search-box input {
+    width: 100%;
+    padding: 6px 30px 6px 10px;
+    border-radius: 15px;
+    border: 1px solid #e7e7e7;
+    outline: none;
+    background-color: #ffffff1a;
+    color: white;
+}
+
+.search-box input::placeholder{
+  color:rgba(255, 255, 255, 0.664);
+}
+
+/* Close Icon */
+.close-icon {
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e2e2e2;
+}
+
+
+/* Match Counter */
+#matchCount {
+    position: absolute;
+    right: 28px;
+    font-size: 12px;
+    color: #f8f8f8;
+}
+
+/* Highlighted Text */
+.highlight {
+    background: yellow;
+}
+
+/* Active Highlight */
+.highlight.active {
+    background: orange;
+}
+
+
+#modal-chart-btn{
+  margin-bottom: auto;
+  padding: 13px 0px;
+border: none;
+width: 100%;
+background-color: white;
+color: black;
+border-radius: 5px;
+}
+
+
+
+.notification-wrapper {
+    width: 300px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-center {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.notification-text {
+    font-size: 13px;
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+.no-notifications {
+    padding: 15px;
+    text-align: center;
+    color: gray;
 }
