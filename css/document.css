@@ -1,108 +1,117 @@
-body{
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background: linear-gradient(135deg, #020617, #061a2e, #0a3cff);
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, #45485ae7, rgba(63, 63, 63, 0.822), #3054c0);
   color: white;
 }
+
 .body {
   width: 100%;
   padding-left: 30px;
   height: 100vh;
   overflow-y: auto;
 }
-.document-input{
-    display: flex;
-    width: 95%;
-    gap: 10px;
-    margin-bottom: 20px;
+
+.document-input {
+  display: flex;
+  width: 95%;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.document-input input{
-padding: 8px;
-border: 1px solid white;
-border-radius: 5px;
-outline: none;
-    width: 100%;
+
+.document-input input {
+  padding: 8px;
+  border: 1px solid white;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
 
 }
+
 .document-input button {
-    width: 100%;
-    background-color: rgba(10, 10, 10, 0.911);
-    border: none;
-    color: white;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-}
-  #edit-btn {
-    background-color: #22c55e;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 3px;
-    border: none;
-  }
-
-  #delete-btn {
-    background-color: #e62828;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 3px;
-    border: none;
-  }
-
-
-h1{
-    font-weight: 1;
-}
-.date{
-    margin-bottom: 30px;
-display: flex;
-width: 95%;
-align-items: center;
-justify-content: center;
-gap: 10px;
+  width: 100%;
+  background-color: rgba(10, 10, 10, 0.911);
+  border: none;
+  color: white;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-#from,#to{
-padding: 10px;
-width: 100%;
-background-color: #ffffff25;
-border: 1px solid rgba(255, 255, 255, 0.432);
-color: white;
-border-radius: 30px;
+#edit-btn {
+  background-color: #22c55e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
+}
+
+#delete-btn {
+  background-color: #e62828;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  border: none;
 }
 
 
+h1 {
+  font-weight: 1;
+}
 
-.table{
-    overflow-x: auto;
-    padding-bottom: 10px;
+.date {
+  margin-bottom: 30px;
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+#from,
+#to {
+  padding: 10px;
+  width: 100%;
+  background-color: #ffffff25;
+  border: 1px solid rgba(255, 255, 255, 0.432);
+  color: white;
+  border-radius: 30px;
+}
+
+
+
+.table {
+  overflow-x: auto;
+  padding-bottom: 10px;
 
 }
 
-  .table::-webkit-scrollbar {
-    width: 1px;
-  }
+.table::-webkit-scrollbar {
+  width: 1px;
+}
 
-  .table::-webkit-scrollbar-track {
-    background: #1e1e1e4b;
-  }
+.table::-webkit-scrollbar-track {
+  background: #1e1e1e4b;
+}
 
-  .table::-webkit-scrollbar-thumb {
-    background: #ffffff5b;
-    border-radius: 10px;
-  }
+.table::-webkit-scrollbar-thumb {
+  background: #ffffff5b;
+  border-radius: 10px;
+}
 
-  .table::-webkit-scrollbar-thumb:hover {
-    background: #ecececb4;
-  }
+.table::-webkit-scrollbar-thumb:hover {
+  background: #ecececb4;
+}
 
 #table {
   text-align: center;
   width: 95%;
   border-collapse: collapse;
 }
-#table th{
-    padding-bottom: 15px;
+
+#table th {
+  padding-bottom: 15px;
 }
+
 #table td {
   padding: 20px;
   font-size: 17px;
@@ -115,13 +124,15 @@ border-radius: 30px;
 
 
 .modal {
-  display: none; /* hidden by default */
+  display: none;
+  /* hidden by default */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.25); /* soft overlay */
+  background: rgba(0, 0, 0, 0.25);
+  /* soft overlay */
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -131,14 +142,21 @@ border-radius: 30px;
   background: #fff;
   width: 450px;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   animation: popupFade 0.3s ease-out;
 }
 
 @keyframes popupFade {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .modal-header {
@@ -153,7 +171,8 @@ border-radius: 30px;
   margin: 0;
   font-size: 18px;
   font-weight: 500;
-  color: #202124; /* Chrome title color */
+  color: #202124;
+  /* Chrome title color */
 }
 
 .close-btn {
@@ -191,7 +210,7 @@ form {
 
 .form-group input:focus {
   border-color: #1a73e8;
-  box-shadow: 0 0 0 2px rgba(66,133,244,0.2);
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
 }
 
 .save-btn {
@@ -209,17 +228,29 @@ form {
 .save-btn:hover {
   background-color: #1669c1;
 }
-#edit-btn{
+
+#edit-btn {
   background-color: #22c55e;
   color: white;
   padding: 5px 15px;
   border-radius: 3px;
   border: none;
 }
-#delete-btn{
+
+#delete-btn {
   background-color: #e62828;
   color: white;
   padding: 5px 15px;
   border-radius: 3px;
   border: none;
+}
+
+@media (max-width: 1024px) {
+  .document-input {
+    display: grid;
+    grid-template-columns:
+      repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    width: 100%;
+  }
 }
