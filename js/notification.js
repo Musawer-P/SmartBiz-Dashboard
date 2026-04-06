@@ -1,98 +1,56 @@
-// SmartBiz Notifications System
+/**
+ * NOTIFICATION.JS
+ * Simple sales notification system
+ */
 
-// Storage key
-const NOTIF_KEY = "smartbiz_notifications";
+const notificationCenter = document.querySelector(".notification-center");
+let notifications = JSON.parse(localStorage.getItem("notifications")) || [];
 
-// Get notifications from localStorage
-function getNotifications() {
-  return JSON.parse(localStorage.getItem(NOTIF_KEY)) || [];
-}
-
-// Save notifications to localStorage
-function saveNotifications(notifications) {
-  localStorage.setItem(NOTIF_KEY, JSON.stringify(notifications));
-}
-
-// Add a new notification
-function addNotification(message, type = "info") {
-  const notifications = getNotifications();
-
-  const newNotification = {
-    id: Date.now(),
-    message,
-    type, // info | success | warning | error
-    read: false,
-    time: new Date().toLocaleString()
-  };
-
-  notifications.unshift(newNotification);
-  saveNotifications(notifications);
-  renderNotifications();
-}
-
-// Mark notification as read
-function markAsRead(id) {
-  const notifications = getNotifications().map(n =>
-    n.id === id ? { ...n, read: true } : n
-  );
-
-  saveNotifications(notifications);
-  renderNotifications();
-}
-
-// Mark all as read
-function markAllAsRead() {
-  const notifications = getNotifications().map(n => ({
-    ...n,
-    read: true
-  }));
-
-  saveNotifications(notifications);
-  renderNotifications();
-}
-
-// Get unread count
-function getUnreadCount() {
-  return getNotifications().filter(n => !n.read).length;
-}
-
-// Render notifications in UI
+// Render notifications
 function renderNotifications() {
-  const container = document.getElementById("notificationList");
-  const badge = document.getElementById("notificationCount");
+    if (!notificationCenter) return;
+    notificationCenter.innerHTML = "";
 
-  if (!container) return;
+    notifications.forEach((note, i) => {
+        const div = document.createElement("div");
+        div.className = "notification-item";
+        div.innerHTML = `
+            <span>${note}</span>
+            <button class="clear-btn" data-index="${i}">×</button>
+        `;
+        notificationCenter.appendChild(div);
+    });
 
-  const notifications = getNotifications();
-  container.innerHTML = "";
+    if (notifications.length > 0) {
+        const clearAllBtn = document.createElement("button");
+        clearAllBtn.className = "clear-all-btn";
+        clearAllBtn.textContent = "Clear All";
+        notificationCenter.appendChild(clearAllBtn);
 
-  notifications.forEach(n => {
-    const item = document.createElement("div");
-    item.className = `notification-item ${n.read ? "read" : "unread"} ${n.type}`;
-
-    item.innerHTML = `
-      <p>${n.message}</p>
-      <small>${n.time}</small>
-      ${!n.read ? `<button onclick="markAsRead(${n.id})">Mark as read</button>` : ""}
-    `;
-
-    container.appendChild(item);
-  });
-
-  if (badge) {
-    badge.textContent = getUnreadCount();
-    badge.style.display = getUnreadCount() > 0 ? "inline-block" : "none";
-  }
+        clearAllBtn.addEventListener("click", () => {
+            notifications = [];
+            localStorage.setItem("notifications", JSON.stringify(notifications));
+            renderNotifications();
+        });
+    }
 }
 
+// Add a notification
+function addNotification(message) {
+    notifications.push(message);
+    localStorage.setItem("notifications", JSON.stringify(notifications));
+    renderNotifications();
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderNotifications();
-
-  // Example demo notifications
-  if (getNotifications().length === 0) {
-    addNotification("Welcome to SmartBiz Dashboard", "success");
-    addNotification("New payment received", "info");
-    addNotification("Low stock warning", "warning");
-  }
+// Handle single notification clear
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("clear-btn")) {
+        const idx = parseInt(e.target.dataset.index);
+        notifications.splice(idx, 1);
+        localStorage.setItem("notifications", JSON.stringify(notifications));
+        renderNotifications();
+    }
 });
+
+// Initial render
+renderNotifications();
