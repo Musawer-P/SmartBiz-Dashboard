@@ -34,7 +34,7 @@ function renderSalesReports() {
 
   // --- EMPTY STATE ---
   if (salesReports.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 20px; color: gray;">No data found for this time frame.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding: 20px; color: gray;">No data found for this time frame.</td></tr>`;
     if (totalQtyElement) totalQtyElement.textContent = "0";
     if (totalSalesElement) totalSalesElement.textContent = "0.00";
     if (totalSalesProfitElement) totalSalesProfitElement.textContent = "0.00";
@@ -52,18 +52,22 @@ function renderSalesReports() {
     const sPrice = Number(sale.sellPrice || 0);
     const profit = Number(sale.profit || 0);
     const qty = Number(sale.soldQty || 0);
-
+const discount =
+  Number(sale.discount || 0);
     row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${sale.product}</td>
-      <td>${sale.stockQty || 0}</td>
-      <td>${qty}</td>
-      <td>$${mPrice.toFixed(2)}</td>
-      <td>$${sPrice.toFixed(2)}</td>
-      <td>$${profit.toFixed(2)}</td>
-      <td>${new Date(sale.timestamp).toLocaleDateString()}</td>
-      <td><button class="delete-btn" data-index="${index}">Delete</button></td>
-    `;
+  <td>${index + 1}</td>
+  <td>${sale.product}</td>
+  <td>${sale.stockQty || 0}</td>
+  <td>${qty}</td>
+  <td>$${mPrice.toFixed(2)}</td>
+  <td>$${sPrice.toFixed(2)}</td>
+
+  <td>$${discount.toFixed(2)}</td> <!-- NEW -->
+
+  <td>$${profit.toFixed(2)}</td>
+  <td>${new Date(sale.timestamp).toLocaleDateString()}</td>
+  <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+`;
     tbody.appendChild(row);
 
     totalSoldQty += qty;

@@ -2,6 +2,7 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: linear-gradient(135deg, #45485ae7, rgba(63, 63, 63, 0.822), #3054c0);
     color: white;
+    height: 100vh;
   }
 
   .body {
@@ -127,6 +128,29 @@
     color: rgba(255, 255, 255, 0.918);
   }
 
+  #store{
+    color: white;
+    text-decoration: none;
+    background-color: #0daf4b;
+    border: 1px solid rgba(255, 255, 255, 0.116);
+    border-radius: 5px;
+    padding: 7px;
+    transition: transform 0.2s ease;
+       animation: floatMove 2s ease-in-out infinite;
+
+  }
+@keyframes floatMove {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+  #icon-store{
+    padding-right: 5px;
+  }
   .merge-p-s {
     margin-left: 0px;
     display: flex;
@@ -186,10 +210,12 @@
   .sales-orders,
   .chart,
   .setting-sidebar,
-  .supplier {
+  .supplier,
+  .stock {
     display: flex;
     align-items: center;
     gap: 15px;
+    cursor: pointer;
   }
 
   .home a {
@@ -637,28 +663,30 @@ font-size: 20px;
 
   }
 
-  #bank-btn:hover {
-    background-color: #0a3cff;
-    border-color: #0a3cff;
+ 
+.payment-btn {
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: 0.2s;
+}
 
-  }
+.payment-btn.selected {
+  background: rgb(43, 226, 59);   /* Active color */
+  color: white;
+  border-color: rgb(10, 148, 10);
+}
 
- #cash-btn:active {
-    background-color: #22c55e;
-    border-color: #22c55e;
-  }
+.payment-btn#loan-btn.selected {
+  background: rgb(228, 41, 41);     /* Make Loan button red when selected */
+  border-color: rgb(170, 26, 26);
+}
 
-  #loan-btn:active {
-    background-color: rgb(240, 29, 29);
-    border-color: rgb(240, 29, 29);
-
-  }
-
-  #bank-btn:active {
-    background-color: #0a3cff;
-    border-color: #0a3cff;
-
-  }
+ 
   .modal-header,
   .modal-header-vendor,
   .modal-header-customer,
@@ -752,7 +780,7 @@ font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 1px;
   }
 
   .payment-type button {
@@ -762,7 +790,7 @@ font-size: 20px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    width: 33%;
+    width: 100%;
 
   }
 
@@ -1497,7 +1525,7 @@ font-size: 20px;
 /* Search Box */
 .search-box {
     position: absolute;
-    right: 30px;
+    right: -10px;
     
     display: flex;
     align-items: center;
@@ -1623,4 +1651,41 @@ border-radius: 5px;
     padding: 15px;
     text-align: center;
     color: gray;
+}
+
+#delete-all-stock{
+  background-color: #00000000;
+  color: rgb(255, 41, 41);
+  border: 1px solid rgb(255, 41, 41);
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+
+.password-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 30px; 
+  box-sizing: border-box;
+}
+
+#toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  color: gray;
+}
+#toggle-password:hover {
+  color: black;
 }

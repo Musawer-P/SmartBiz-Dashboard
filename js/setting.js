@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
         compName: "Tusqa",
         compEmail: "contact@tusqa.com",
         compAddress: "Madina",
-        currency: "USD",
         fullName: "Mike",
         username: "admin", // Default
         password: "123"    // Default
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("comp-name").value = savedData.compName;
     document.getElementById("comp-email").value = savedData.compEmail;
     document.getElementById("comp-address").value = savedData.compAddress;
-    document.getElementById("currency").value = savedData.currency;
     document.getElementById("user-fullname").value = savedData.fullName;
     document.getElementById("set-username").value = savedData.username;
     document.getElementById("set-password").value = savedData.password;
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
             compName: document.getElementById("comp-name").value,
             compEmail: document.getElementById("comp-email").value,
             compAddress: document.getElementById("comp-address").value,
-            currency: document.getElementById("currency").value,
             fullName: document.getElementById("user-fullname").value,
             username: document.getElementById("set-username").value,
             password: document.getElementById("set-password").value
@@ -39,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("smartbiz_settings", JSON.stringify(updatedData));
         
         statusMsg.innerText = "Settings Saved!";
-        statusMsg.style.color = "green";
+        statusMsg.style.color = "#40ff60";
 
         setTimeout(() => { statusMsg.innerText = ""; }, 3000);
     });
@@ -48,4 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("x-setting").onclick = () => {
         document.getElementById("modalOverlay-setting").style.display = "none";
     };
+});
+
+
+const togglePassword = document.getElementById("toggle-password");
+const passwordInput = document.getElementById("set-password");
+
+togglePassword?.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    togglePassword.textContent = "🙈"; // Change icon when visible
+  } else {
+    passwordInput.type = "password";
+    togglePassword.textContent = "👁️"; // Back to hidden
+  }
 });

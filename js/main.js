@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   const globe = document.getElementById("globeIcon2");
   const menu = document.getElementById("languageMenu");
@@ -75,6 +76,8 @@ if (localStorage.getItem("loggedIn") !== "true") {
         }
     };
 
+
+
     // List all your modals here
     setupModal(".openModal-vendor", "modalOverlay-vendor", "x-vendor");
     setupModal(".openModal-product", "modalOverlay", "x");
@@ -91,3 +94,16 @@ if (localStorage.getItem("loggedIn") !== "true") {
     setupModal(".openModal-freight-cost", "modalOverlay-freight-cost", "x-freight-cost");
 });
 
+
+const cashBtn = document.getElementById("cash-btn");
+const loanBtn = document.getElementById("loan-btn");
+const paymentButtons = document.querySelectorAll(".payment-btn");
+
+paymentButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // Remove 'selected' class from all buttons
+    paymentButtons.forEach(b => b.classList.remove("selected"));
+    // Add 'selected' class to clicked button
+    btn.classList.add("selected");
+  });
+});

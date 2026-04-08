@@ -15,8 +15,7 @@ loginForm.addEventListener("submit", function (e) {
     
     // Fallback defaults if settings haven't been saved yet
     const validUser = savedData ? savedData.username : "admin";
-    const validPass = savedData ? savedData.password : "123456";
-
+const validPass = savedData ? savedData.password : "123";
     loginBtn.innerText = "Logging in...";
 
     setTimeout(() => {

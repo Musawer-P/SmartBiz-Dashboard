@@ -6,9 +6,13 @@
   <link rel="stylesheet" href="css/product-selling.css">
 </head>
 <body>
-
+  <div class = "header">
+    <a href = "index.html">← Home</a>
+    <h1>Products</h1>
+  </div>
   <div class = "main-row">
     <div class="products-container">
+      
    <div class="product-cart" 
      data-name="" 
      data-price="">
@@ -36,24 +40,7 @@
   <option value="">Select Customer</option>
 </select>
 
-<!-- Loyalty Panel: Place this inside your Checkout Page -->
-<div id="loyalty-panel" class="loyalty-card" style="display: none;">
-    <h4><span id="selected-customer-name">Customer</span>'s Rewards</h4>
-    <div id="tier-badge" class="badge">BRONZE</div>
-    
-    <div class="loyalty-stats">
-        <p>Lifetime Spend: <strong id="lifetime-spend">$0</strong></p>
-        <!-- The Progress Bar for Portfolio impact -->
-        <div class="progress-container">
-            <div id="loyalty-progress" class="progress-bar"></div>
-        </div>
-        <small id="loyalty-msg">Spend $XX more for Silver!</small>
-    </div>
-    
-    <div class="discount-alert" id="discount-banner">
-         <span id="discount-pct">0</span>% Loyalty Discount Applied!
-    </div>
-</div>
+
 
     <div class = "cart-table">
       <table id = "cart-table">
@@ -61,6 +48,7 @@
           <th>Name</th>
           <th>Qty</th>
           <th>Price</th>
+                    <th>Action</th>
         </thead>
         <tbody>
         
@@ -82,7 +70,19 @@
       </div>
       <div class = "payment-footer">
 <div class="cart-total">
-  <h3>Total: <span id="cart-total">0</span> $</h3>
+
+  <p id="customer-discount-info"></p>
+
+  <h3>
+    Total: 
+    <span id="cart-total">0</span> $
+  </h3>
+
+  <h3>
+    After Discount: 
+    <span id="final-total">0</span> $
+  </h3>
+
 </div>        <button type = "submit" id = "payment-submit">Submit</button>
       </div>
     </div>

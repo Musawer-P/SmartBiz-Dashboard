@@ -1,3 +1,8 @@
+// multicurrency features will come soon
+
+
+
+
 //SMARTBIZ MULTI-CURRENCY SCRIPT
 
 // Base currency

@@ -2,11 +2,21 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       background: linear-gradient(135deg, #45485ae7, rgba(63, 63, 63, 0.822), #3054c0);
   overflow-x: hidden;
-  overflow-y: hidden;
   padding: 20px;
   padding-top: 0px;
-  height: 100vh;
 
+}
+.header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header a{
+  color: rgba(94, 94, 94, 0.979);
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 2px 10px;
+  border-radius: 7px;
 }
 #main-h1{
   color:rgba(255, 255, 255, 0.801);
@@ -17,6 +27,9 @@
   justify-content: space-between;
   gap: 20px;
   width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.274);
+  padding: 10px;
+  border-radius: 13px;
   
 }
 h1{
@@ -30,15 +43,21 @@ h1{
   width: fit-content;
   border: 1px solid rgba(255, 255, 255, 0.356);
   padding: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  padding-top: 0px;
 height: fit-content;
   border-radius: 20px;
+
 }
 .p-price{
   text-align: center;
-  font-size: 25px;
-  margin-top: 5px;
+  margin-top: 0px;
   color: rgba(255, 255, 255, 0.808);
+  background-color: rgba(0, 0, 0, 0.877);
+  border-radius: 10px;
+}
+#p-price{
+  margin-top: 0px;
 }
 .img{
   display: flex;
@@ -46,17 +65,19 @@ height: fit-content;
 }
 img{
   text-align: center;
-  width: 150px;
+  width: 120px;
 }
 .product-desc{
-  width: fit-content;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0px 20px;
-  background-color: #0e0e0eee;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 40px;
   color: white;
+  margin-top: 10px;
+}
+.product-desc p{
+  margin: 5px;
 }
 @media (max-width: 1024px) {
   .cart-table{
@@ -72,8 +93,22 @@ img{
     overflow-y: auto;
 
 }
-.cart-total h3{
+#customer-discount-info{
   color: white;
+  background-color: rgba(0, 0, 0, 0.884);
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
+
+}
+.cart-total{
+  width: 100%;
+}
+.cart-total h3{
+  font-size: 18px;
+  font-weight: 1;
+  color: white;
+  margin-top: 0px;
 }
 
 table{
@@ -85,7 +120,7 @@ table th{
   padding-top: 10px;
   padding-right: 10px;
   text-align: start;
-  font-size: 18px;
+  font-size: 13px;
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.164);
   padding-bottom: 7px;
@@ -94,6 +129,8 @@ table th{
 table td{
   padding: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+    color: white;
+    font-size: 13px;
 }
 
 .cc-row{
@@ -105,7 +142,7 @@ table td{
 
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: 23%;
   border: 1px solid rgba(255, 255, 255, 0.733);
   padding: 10px;
   border-radius: 20px;
@@ -137,6 +174,7 @@ table td{
   gap: 5px;
 
 }
+
 #cash , #loan{
   width: 100%;
   padding: 5px 10px;
@@ -219,4 +257,32 @@ flex-wrap: wrap;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.212);
   outline: none;
+}
+
+.remove-item-btn {
+  background: rgba(228, 38, 38, 0.548);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 3px 7px;
+  cursor: pointer;
+  border-radius: 40px;
+  font-size: 13px;
+}
+
+.remove-item-btn:hover {
+  background: rgb(134, 4, 4);
+}
+
+@media (max-width: 1024px) {
+  .main-row{
+    display: flex;
+    flex-direction: column;
+  }
+  .cc-row{
+    width: 95%;
+  }
+  .products-container{
+    width: 95%;
+    height: 260px;
+  }
 }

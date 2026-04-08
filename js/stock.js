@@ -56,6 +56,26 @@ function renderStockTable() {
 // 4. EVENT LISTENERS
 document.getElementById("stock-from")?.addEventListener("change", renderStockTable);
 document.getElementById("stock-to")?.addEventListener("change", renderStockTable);
+// DELETE ALL STOCK REPORTS
+document
+  .getElementById("delete-all-stock")
+  ?.addEventListener("click", () => {
 
+    // CONFIRM FIRST
+    const confirmDelete = confirm(
+      "Are you sure you want to delete ALL stock reports?\nThis cannot be undone!"
+    );
+
+    if (!confirmDelete) return;
+
+    // CLEAR STOCK DATA
+    localStorage.removeItem("stock");
+
+    // RELOAD TABLE
+    renderStockTable();
+
+    alert("All stock reports deleted successfully ✅");
+
+});
 // Call on page load
 window.onload = renderStockTable;
