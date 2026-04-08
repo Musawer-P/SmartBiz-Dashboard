@@ -1,5 +1,12 @@
 SmartBiz Dashboard
 
+Link of the Project : 
+https://smartbiz-dashboard.netlify.app/
+
+username : admin
+pass : 123
+
+
 SmartBiz Dashboard is a modern, modular business management dashboard designed to simplify daily operations such as managing customers, suppliers, products, sales, and financial records. It provides a clean interface and scalable structure suitable for small to medium-sized businesses.
 
 Overview
